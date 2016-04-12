@@ -10,8 +10,13 @@
 
 #import "TTAppLaunchView.h"
 
-#import "IndexViewController.h"
+#import "DiscoverViewController.h"
+#import "TopicViewController.h"
+#import "MessageViewController.h"
+#import "MeViewController.h"
 
+#import "SignInUpViewController.h"
+#import "TTUserService.h"
 
 @interface ApplicationEntrance ()
 
@@ -99,9 +104,15 @@
 - (void)appInit
 {
     
-    [TTAppLaunchView sharedInstance];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFY_APP_LAUNCH_LOADING object:nil];
+    if ( ![TTUserService sharedService].isLogin ) {
+        
+        SignInUpViewController *vc = [[SignInUpViewController alloc] init];
+        [self.currentNavController pushViewController:vc animated:NO];
+        
+    }
+//    [TTAppLaunchView sharedInstance];
+//    
+//    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFY_APP_LAUNCH_LOADING object:nil];
     
 }
 
@@ -120,7 +131,10 @@
 {
     self.tabbarController = [[TTTabbarController alloc] initWithViewControllers:
                             @[
-                              [[IndexViewController alloc] init]
+                              [[DiscoverViewController alloc] init],
+                              [[TopicViewController alloc] init],
+                              [[MessageViewController alloc] init],
+                              [[MeViewController alloc] init]
                               ]
                             ];
     

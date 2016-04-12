@@ -1,13 +1,13 @@
 //
-//  IndexViewController.h
+//  MessageViewController.h
 //  TTProject
 //
-//  Created by Ivan on 16/4/9.
+//  Created by Ivan on 16/4/12.
 //  Copyright © 2016年 ivan. All rights reserved.
 //
 
 #import "BaseViewController.h"
 
-@interface IndexViewController : BaseViewController
+@interface MessageViewController : BaseViewController
 
 @end

@@ -16,8 +16,6 @@
 
 @end
 
-BOOL isPushing;
-
 @implementation TTNavigationService
 
 + (TTNavigationService *)sharedService {
