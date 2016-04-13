@@ -35,14 +35,14 @@
         UIVisualEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
         UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
         effectView.frame = self.bounds;
-        effectView.tintColor = Color_Gray245;
+        effectView.tintColor = Color_Gray4;
         [self addSubview:effectView];
         self.barPanel = effectView.contentView;
     }
     else
     {
         self.barPanel = [[UIView alloc]initWithFrame:self.bounds];
-        self.barPanel.backgroundColor = Color_Gray245;
+        self.barPanel.backgroundColor = Color_Gray4;
         [self addSubview:self.barPanel];
     }
     

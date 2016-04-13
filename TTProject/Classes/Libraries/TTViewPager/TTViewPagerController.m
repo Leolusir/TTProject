@@ -214,7 +214,7 @@
         self.bottomLine.width = SCREEN_WIDTH;
         self.bottomLine.height = .5f;
         self.bottomLine.bottom = self.tabsView.bottom + 0.5;
-        self.bottomLine.backgroundColor = Color_Gray209;
+        self.bottomLine.backgroundColor = Color_Gray3;
         [self.view addSubview:self.bottomLine];
     }
     
@@ -248,7 +248,7 @@
             
             for (UILabel *titleLabel in tabView.subviews) {
                 if (titleLabel) {
-                    titleLabel.textColor = Color_Gray153;
+                    titleLabel.textColor = Color_Gray3;
                     titleLabel.font = FONT(14);
                     [titleLabel sizeToFit];
                     titleLabel.centerX = tabView.width / 2;
@@ -272,7 +272,7 @@
         
         _selectedBorder = [[UIView alloc] initWithFrame:CGRectZero];
         _selectedBorder.height = 1.5;
-        _selectedBorder.backgroundColor = _choosedColor ? _choosedColor : Color_Red6;
+        _selectedBorder.backgroundColor = _choosedColor ? _choosedColor : Color_Green1;
     }
     if (!self.noScroll) {
         _selectedBorder.bottom = self.tabsView.height;
@@ -421,7 +421,7 @@
     activeTabView = [self tabViewAtIndex:self.activeTabIndex];
     for (UILabel *titleLabel in activeTabView.subviews) {
         if (titleLabel) {
-            titleLabel.textColor = Color_Gray153;
+            titleLabel.textColor = Color_Gray3;
             titleLabel.font = FONT(14);
             [titleLabel sizeToFit];
             titleLabel.centerX = activeTabView.width / 2;

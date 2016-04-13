@@ -49,7 +49,7 @@
         
         TTTabbarItem *tabBarItem = viewController.tabbarItem;
         if (!tabBarItem) {
-            tabBarItem = [[TTTabbarItem alloc] initWithTitle:viewController.title titleColor:Color_Gray51 selectedTitleColor:nil icon:nil selectedIcon:nil];
+            tabBarItem = [[TTTabbarItem alloc] initWithTitle:viewController.title titleColor:Color_Gray2 selectedTitleColor:nil icon:nil selectedIcon:nil];
             viewController.tabbarItem = tabBarItem;
         }
         [itemsArray addObject:tabBarItem];

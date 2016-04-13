@@ -18,7 +18,7 @@
 
 - (void)reloadData
 {
-    self.backgroundColor = Color_Gray100;
+    self.backgroundColor = Color_Gray2;
     
     if ( ![self.label superview ]) {
         [self addSubview:self.label];

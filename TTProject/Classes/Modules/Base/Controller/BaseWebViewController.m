@@ -106,7 +106,7 @@
     
     self.closeButton = [[UIButton alloc] init];
     [self.closeButton setTitle:@"关闭" forState:UIControlStateNormal];
-    [self.closeButton setTitleColor:Color_Gray146 forState:UIControlStateNormal];
+    [self.closeButton setTitleColor:Color_Green1 forState:UIControlStateNormal];
     self.closeButton.titleLabel.font = FONT(16);
     self.closeButton.width = 32;
     self.closeButton.height = 20;

@@ -33,8 +33,7 @@
         lblMessage.top = lblErrow.bottom + 7.f;
         [self addSubview:lblMessage];
                 
-        self.refreshButton = [UIButton custom37OrangeButtonWithTitle:@"点击刷新" target:self action:@selector(refresh) forControlEvents:UIControlEventTouchUpInside];
-        [self.refreshButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        self.refreshButton = [UIButton buttonWithTitle:@"点击刷新" font:FONT(16) color:Color_White highlightedColor:Color_White target:self action:@selector(refresh) forControlEvents:UIControlEventTouchUpInside];
         self.refreshButton.height = 32.f;
         self.refreshButton.width = 160.f;
         self.refreshButton.top = lblMessage.bottom + 12.f;

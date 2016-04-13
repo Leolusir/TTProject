@@ -139,7 +139,7 @@
     UILabel *noMoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
     noMoreLabel.text = text;
     noMoreLabel.font = FONT(13);
-    noMoreLabel.textColor = Color_Gray100;
+    noMoreLabel.textColor = Color_Gray2;
     noMoreLabel.textAlignment = NSTextAlignmentCenter;
     
     [self.tableView setTableFooterView:noMoreLabel];

@@ -78,7 +78,7 @@
     
     if ( !_titleLable ) {
         _titleLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-        _titleLable.textColor = Color_Gray100;
+        _titleLable.textColor = Color_Gray2;
         _titleLable.font = FONT(12);
     }
     
@@ -90,7 +90,7 @@
     
     if ( !_priceLable ) {
         _priceLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-        _priceLable.textColor = Color_Gray66;
+        _priceLable.textColor = Color_Gray2;
         _priceLable.font = FONT(14);
     }
     

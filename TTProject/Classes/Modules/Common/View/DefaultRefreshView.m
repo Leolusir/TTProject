@@ -76,7 +76,7 @@
     
     _stateLabel.text = text;
     _stateLabel.font = FONT(12);
-    _stateLabel.textColor = Color_Gray153;
+    _stateLabel.textColor = Color_Gray3;
     [_stateLabel sizeToFit];
     _stateLabel.width = self.width;
     _stateLabel.top = ( NAVBAR_HEIGHT - _stateLabel.height ) / 2;

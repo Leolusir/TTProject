@@ -117,7 +117,7 @@ static const double SliderAutoScrollDuration = 0.4;
         pageControl.bottom = self.height - 3;
         pageControl.hidesForSinglePage = YES;
         pageControl.userInteractionEnabled = NO;
-        pageControl.currentPageIndicatorTintColor = Color_Red;
+        pageControl.currentPageIndicatorTintColor = Color_Green1;
         pageControl.pageIndicatorTintColor = [UIColor whiteColor];
         [self addSubview:pageControl];
     }

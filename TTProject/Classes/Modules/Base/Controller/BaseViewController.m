@@ -81,7 +81,7 @@
     }
     
     //设置shadow色值
-    [_navigationBar setBottomBorderColor:Color_Gray224];
+    [_navigationBar setBottomBorderColor:Color_Gray1];
     
     if (!_navigationBar.superview) {
         [self.view addSubview:_navigationBar];

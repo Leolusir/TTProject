@@ -79,18 +79,6 @@
 
 + (UIButton *)buttonWithTitle:(NSString *)title frame:(CGRect)frame target:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
 
-+ (UIButton *)buttonWithTitle:(NSString *)title backgroundImage:(UIImage *)backgroundImage highlightedBackgroundImage:(UIImage *)highlightedBackgroundImage target:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
-
-+ (UIButton *)navigationButtonWithTitle:(NSString *)title target:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
-
-+ (UIButton *)custom37OrangeButtonWithTitle:(NSString *)title target:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
-
-+ (UIButton *)custom37redButtonWithTitle:(NSString *)title target:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
-
-+ (UIButton *)custom37grayButtonWithTitle:(NSString *)title target:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
-
-+ (UIButton *)custom37WhiteButtonWithTitle:(NSString *)title target:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
-
-+ (UIButton *)buttonWithImage:(NSString *)image imageEdgeInsets:(UIEdgeInsets)imageEdgeInsets title:(NSString *)title titleEdgeInsets:(UIEdgeInsets)titleEdgeInsets font:(UIFont *)font target:(id)target action:(SEL)action frame:(CGRect)frame;
++ (UIButton *)buttonWithTitle:(NSString *)title font:(UIFont *)font color:(UIColor *)color highlightedColor:(UIColor *)highlightedColor target:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
 
 @end
