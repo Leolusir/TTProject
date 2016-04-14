@@ -11,7 +11,7 @@
 @implementation UIButton (TT)
 
 + (UIButton *)backButtonWithTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents {
-	return [self leftBarButtonWithImage:[UIImage imageNamed:@"btn_back"] highlightedImage:[UIImage imageNamed:@"btn_back"] target:target action:action forControlEvents:UIControlEventTouchUpInside];
+	return [self leftBarButtonWithImage:[UIImage imageNamed:@"icon_back"] highlightedImage:[UIImage imageNamed:@"icon_back"] target:target action:action forControlEvents:UIControlEventTouchUpInside];
 }
 
 + (UIButton *)leftBarButtonWithImage:(UIImage*)image highlightedImage:(UIImage*)highlightedImage target:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents {
