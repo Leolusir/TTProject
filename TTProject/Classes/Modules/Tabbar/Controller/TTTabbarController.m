@@ -11,7 +11,6 @@
 @interface TTTabbarController ()
 
 @property (nonatomic, strong) NSArray *viewControllers;
-@property (nonatomic, strong) NSArray *defaultViewControllers;
 @property (nonatomic, strong) TTTabbar *tabBar;
 @property (nonatomic, strong) BaseViewController *selectedViewController;
 @property (nonatomic, assign) NSInteger selectIndex;

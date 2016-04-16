@@ -39,7 +39,7 @@
     if (!CGRectIsEmpty(_defaultFrame)) {
         self.view.frame = _defaultFrame;
     }
-    self.view.backgroundColor = Color_White;
+    self.view.backgroundColor = Color_Gray4;
     [self.navigationController.navigationBar setHidden:YES];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.needBlurEffect = YES;
@@ -71,6 +71,7 @@
     if (!_navigationBar) {
         
         _navigationBar = [[TTNavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.width, NAVBAR_HEIGHT) needBlurEffect:self.needBlurEffect];
+        _navigationBar.backgroundColor = Color_Green1;
         _navigationBar.title = self.title;
     }
     
@@ -81,7 +82,7 @@
     }
     
     //设置shadow色值
-    [_navigationBar setBottomBorderColor:Color_Gray1];
+    [_navigationBar setBottomBorderColor:Color_Green1];
     
     if (!_navigationBar.superview) {
         [self.view addSubview:_navigationBar];

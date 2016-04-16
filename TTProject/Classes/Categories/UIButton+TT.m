@@ -70,11 +70,10 @@
     return button;
 }
 
-+ (UIButton *)buttonWithTitle:(NSString *)title frame:(CGRect)frame target:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents {
++ (UIButton *)buttonWithTitle:(NSString *)title font:(UIFont *)font frame:(CGRect)frame target:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIFont   *titleFont   = FONT(15.f);
     button.frame  = frame;
-    button.titleLabel.font = titleFont;
+    button.titleLabel.font = font;
     [button setTitle:title forState:UIControlStateNormal];
     [button setTitleColor:Color_Green1 forState:UIControlStateNormal];
     [button addTarget:target action:action forControlEvents:controlEvents];

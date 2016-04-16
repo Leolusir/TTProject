@@ -6,8 +6,10 @@
 //  Copyright © 2016年 ivan. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "PostListViewController.h"
 
-@interface DiscoverViewController : BaseViewController
+@interface DiscoverViewController : PostListViewController
+
+@property (nonatomic, assign) NSInteger sort;
 
 @end

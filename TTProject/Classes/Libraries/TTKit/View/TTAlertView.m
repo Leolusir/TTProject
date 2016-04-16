@@ -25,7 +25,7 @@
         // 初始化window
         self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         self.window.windowLevel = UIWindowLevelStatusBar + 1;
-        self.window.opaque = NO;
+//        self.window.opaque = NO;
         
         // 遮罩
         self.overlayView = [[UIView alloc] initWithFrame:self.window.bounds];
@@ -115,13 +115,13 @@
                 if (!IsEmptyString(confirmButtonTitle)) {
                     
                     NSString *otherButtonTitle = [otherButtonTitles firstObject];
-                    UIButton *anotherButton = [UIButton buttonWithTitle:otherButtonTitle frame:CGRectMake(0, totalHeight, ALERT_WIDTH / 2, 45.f) target:self action:@selector(buttonDidtouched:) forControlEvents:UIControlEventTouchUpInside];
+                    UIButton *anotherButton = [UIButton buttonWithTitle:otherButtonTitle font:FONT(15) frame:CGRectMake(0, totalHeight, ALERT_WIDTH / 2, 45.f) target:self action:@selector(buttonDidtouched:) forControlEvents:UIControlEventTouchUpInside];
                     anotherButton.tag = 1;
                     anotherButton.titleLabel.font = FONT(16);
-                    [anotherButton setTitleColor:Color_Gray3 forState:UIControlStateNormal];
+                    [anotherButton setTitleColor:Color_Gray2 forState:UIControlStateNormal];
                     [self addSubview:anotherButton];
                     
-                    UIButton *confirmButton = [UIButton buttonWithTitle:confirmButtonTitle frame:CGRectMake(anotherButton.right, totalHeight, ALERT_WIDTH / 2, 45.f) target:self action:@selector(buttonDidtouched:) forControlEvents:UIControlEventTouchUpInside];
+                    UIButton *confirmButton = [UIButton buttonWithTitle:confirmButtonTitle font:FONT(15) frame:CGRectMake(anotherButton.right, totalHeight, ALERT_WIDTH / 2, 45.f) target:self action:@selector(buttonDidtouched:) forControlEvents:UIControlEventTouchUpInside];
                     confirmButton.tag = 0;
                     confirmButton.titleLabel.font = FONT(16);
                     [confirmButton setTitleColor:Color_Green1 forState:UIControlStateNormal];
@@ -133,7 +133,7 @@
                     for (int i = 0; i < [otherButtonTitles count]; i++) {
                         
                         NSString *otherButtonTitle = [otherButtonTitles objectAtIndex:i];
-                        UIButton *anotherButton = [UIButton buttonWithTitle:otherButtonTitle frame:CGRectMake(0, totalHeight, ALERT_WIDTH / 2, 45.f) target:self action:@selector(buttonDidtouched:) forControlEvents:UIControlEventTouchUpInside];
+                        UIButton *anotherButton = [UIButton buttonWithTitle:otherButtonTitle font:FONT(15) frame:CGRectMake(0, totalHeight, ALERT_WIDTH / 2, 45.f) target:self action:@selector(buttonDidtouched:) forControlEvents:UIControlEventTouchUpInside];
                         anotherButton.left = ALERT_WIDTH / 2 * i;
                         anotherButton.titleLabel.font = FONT(16);
                         [anotherButton setTitleColor:Color_Gray2 forState:UIControlStateNormal];
@@ -153,7 +153,7 @@
                     contentBtnSegementLine.backgroundColor = RGB(228, 228, 228);
                     [self addSubview:contentBtnSegementLine];
 
-                    UIButton *confirmButton = [UIButton buttonWithTitle:confirmButtonTitle frame:CGRectMake(0, totalHeight, ALERT_WIDTH, 45.f) target:self action:@selector(buttonDidtouched:) forControlEvents:UIControlEventTouchUpInside];
+                    UIButton *confirmButton = [UIButton buttonWithTitle:confirmButtonTitle font:FONT(15) frame:CGRectMake(0, totalHeight, ALERT_WIDTH, 45.f) target:self action:@selector(buttonDidtouched:) forControlEvents:UIControlEventTouchUpInside];
                     confirmButton.tag = 1;
                     confirmButton.titleLabel.font = FONT(16);
                     [confirmButton setTitleColor:Color_Green1 forState:UIControlStateNormal];
@@ -169,7 +169,7 @@
                     [self addSubview:contentBtnSegementLine];
 
                     NSString *otherButtonTitle = [otherButtonTitles objectAtIndex:i];
-                    UIButton *anotherButton = [UIButton buttonWithTitle:otherButtonTitle frame:CGRectMake(0, totalHeight, ALERT_WIDTH, 45.f) target:self action:@selector(buttonDidtouched:) forControlEvents:UIControlEventTouchUpInside];
+                    UIButton *anotherButton = [UIButton buttonWithTitle:otherButtonTitle font:FONT(15) frame:CGRectMake(0, totalHeight, ALERT_WIDTH, 45.f) target:self action:@selector(buttonDidtouched:) forControlEvents:UIControlEventTouchUpInside];
                     anotherButton.titleLabel.font = FONT(16);
                     [anotherButton setTitleColor:Color_Gray2 forState:UIControlStateNormal];
                     [self addSubview:anotherButton];

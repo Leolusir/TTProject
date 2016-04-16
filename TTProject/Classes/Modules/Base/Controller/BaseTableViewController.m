@@ -52,6 +52,7 @@
     refreshView.loadingType = LoadingTypeRefresh;
     
     [self.tableView.pullToRefreshView addRefreshView:refreshView];
+    self.tableView.showsPullToRefresh = NO;
 }
 
 - (void)customInfiniteScrollingView{
@@ -60,6 +61,7 @@
     loadingView.loadingType = LoadingTypeLoadMore;
     
     [self.tableView.infiniteScrollingView addRefreshView:loadingView];
+    self.tableView.showsInfiniteScrolling = NO;
 }
 
 - (void)addBackToTopButton{

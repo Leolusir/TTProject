@@ -31,27 +31,15 @@
 
 - (void)loadContent
 {
-    if (SYSTEM_VERSION >= 8.0) {
-        UIVisualEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
-        UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
-        effectView.frame = self.bounds;
-        effectView.tintColor = Color_Gray4;
-        [self addSubview:effectView];
-        self.barPanel = effectView.contentView;
-    }
-    else
-    {
-        self.barPanel = [[UIView alloc]initWithFrame:self.bounds];
-        self.barPanel.backgroundColor = Color_Gray4;
-        [self addSubview:self.barPanel];
-    }
+    self.barPanel = [[UIView alloc]initWithFrame:self.bounds];
+    self.barPanel.backgroundColor = Color_White;
+    [self addSubview:self.barPanel];
     
     //描边
-    UIView *topLine = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_HEIGHT, 1 / [UIScreen mainScreen].scale)];
-    topLine.backgroundColor = RGB(217,217,217);
+    UIView *topLine = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, LINE_WIDTH)];
+    topLine.backgroundColor = Color_Green1;
     [self addSubview:topLine];
     [self bringSubviewToFront:topLine];
-    
     
     
     self.selectedIndex = 0;

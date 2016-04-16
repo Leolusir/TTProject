@@ -19,6 +19,7 @@
 
 #import "TTNavigationService.h"
 #import "ApplicationEntrance.h"
+#import "TTUserService.h"
 
 #import "UIImage+GIF.h"
 

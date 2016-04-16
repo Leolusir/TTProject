@@ -10,8 +10,8 @@
 
 #import "TTAppLaunchView.h"
 
-#import "DiscoverViewController.h"
-#import "TopicViewController.h"
+#import "DiscoverGroupViewController.h"
+#import "TopicGroupViewController.h"
 #import "MessageViewController.h"
 #import "MeViewController.h"
 
@@ -106,9 +106,7 @@
     
     if ( ![TTUserService sharedService].isLogin ) {
         
-        SignInUpViewController *vc = [[SignInUpViewController alloc] init];
-        [self.currentNavController pushViewController:vc animated:NO];
-        
+        [[TTNavigationService sharedService] openUrl:@"jump://sign_in_up"];
     }
 //    [TTAppLaunchView sharedInstance];
 //    
@@ -131,8 +129,8 @@
 {
     self.tabbarController = [[TTTabbarController alloc] initWithViewControllers:
                             @[
-                              [[DiscoverViewController alloc] init],
-                              [[TopicViewController alloc] init],
+                              [[DiscoverGroupViewController alloc] init],
+                              [[TopicGroupViewController alloc] init],
                               [[MessageViewController alloc] init],
                               [[MeViewController alloc] init]
                               ]

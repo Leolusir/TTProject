@@ -7,8 +7,10 @@
 //
 
 #import "SignInUpViewController.h"
+#import "TTMDTextField.h"
+#import "UserRequest.h"
 
-@interface SignInUpViewController () <UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
+@interface SignInUpViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 @property (nonatomic, strong) UIButton *signUpButton;
@@ -16,10 +18,8 @@
 @property (nonatomic, strong) UIView *maskView;
 @property (nonatomic, strong) UIView *formBgView;
 
-@property (nonatomic, strong) UITextField *phoneTextField;
-@property (nonatomic, strong) UIView *phoneTextFieldBottomLine;
-@property (nonatomic, strong) UITextField *captchaTextField;
-@property (nonatomic, strong) UIView *captchaTextFieldBottomLine;
+@property (nonatomic, strong) TTMDTextField *phoneTextField;
+@property (nonatomic, strong) TTMDTextField *captchaTextField;
 @property (nonatomic, strong) UIImageView *maleImageView;
 @property (nonatomic, strong) UIImageView *femaleImageView;
 @property (nonatomic, strong) UIPickerView *datePickerView;
@@ -36,6 +36,8 @@
 @property (nonatomic, strong) NSString *birthMonth;
 @property (nonatomic, strong) NSString *birthDay;
 @property (nonatomic, strong) NSString *gender;
+
+@property (nonatomic, assign) BOOL isSignIn;
 
 @end
 
@@ -64,6 +66,19 @@
     [self.view addSubview:self.signUpButton];
     [self.view addSubview:self.maskView];
     [self.view addSubview:self.formBgView];
+}
+
+- (void)addSignInComponentToForm
+{
+    [self.formBgView addSubview:self.phoneTextField];
+    [self.formBgView addSubview:self.captchaTextField];
+    [self.formBgView addSubview:self.captchaButton];
+    [self.formBgView addSubview:self.doSignInButton];
+}
+
+-(NSInteger)getCaptchaType
+{
+    return self.isSignIn ? 1 : 0;
 }
 
 #pragma mark - Getters And Setters
@@ -130,6 +145,48 @@
     return _formBgView;
 }
 
+- (TTMDTextField *)phoneTextField
+{
+    if ( !_phoneTextField ) {
+        _phoneTextField = [[TTMDTextField alloc] initWithFrame:CGRectMake(30, 30, 275, 40) normalColor:Color_Green1 errorColor:Color_Red1 disabledColor:Color_Gray1 textColor:Color_Gray2 placeholderTextColor:Color_Gray3 titleFontSize:10 textFontSize:14];
+        _phoneTextField.placeholder = @"手机号";
+    }
+    
+    return _phoneTextField;
+}
+
+- (TTMDTextField *)captchaTextField
+{
+    if ( !_captchaTextField ) {
+        _captchaTextField = [[TTMDTextField alloc] initWithFrame:CGRectMake(30, self.phoneTextField.bottom + 30, 180, 40) normalColor:Color_Green1 errorColor:Color_Red1 disabledColor:Color_Gray1 textColor:Color_Gray2 placeholderTextColor:Color_Gray3 titleFontSize:10 textFontSize:14];
+        _captchaTextField.placeholder = @"验证码";
+    }
+    
+    return _captchaTextField;
+}
+
+- (UIButton *)captchaButton
+{
+    if ( !_captchaButton ) {
+        _captchaButton = [UIButton buttonWithTitle:@"发送验证码" font:FONT(16) color:Color_Gray2 highlightedColor:Color_Gray2 target:self action:@selector(getCaptcha) forControlEvents:UIControlEventTouchUpInside];
+        _captchaButton.right = self.formBgView.width - 30;
+        _captchaButton.centerY = self.captchaTextField.centerY;
+    }
+    
+    return _captchaButton;
+}
+
+- (UIButton *)doSignInButton
+{
+    if ( !_doSignInButton ) {
+        _doSignInButton = [UIButton buttonWithTitle:@"登录" font:FONT(18) color:Color_Green1 highlightedColor:Color_Green1 target:self action:@selector(doSignIn) forControlEvents:UIControlEventTouchUpInside];
+        _doSignInButton.right = self.formBgView.width - 30;
+        _doSignInButton.bottom = self.formBgView.height - 10;
+    }
+    
+    return _doSignInButton;
+}
+
 #pragma mark - Event Response
 
 - (void)showSignInView
@@ -137,7 +194,9 @@
     DBG(@"showSignInView");
     self.maskView.hidden = NO;
     self.formBgView.hidden = NO;
+    self.isSignIn = YES;
     [self.formBgView removeAllSubviews];
+    [self addSignInComponentToForm];
     
 }
 
@@ -146,7 +205,87 @@
     DBG(@"showSignUpView");
     self.maskView.hidden = NO;
     self.formBgView.hidden = NO;
+    self.isSignIn = NO;
     [self.formBgView removeAllSubviews];
+}
+
+- (void)doSignIn
+{
+    DBG(@"doSignIn %@ %@", self.phoneTextField.text, self.captchaTextField.text);
+    
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setSafeObject:[self.phoneTextField.text trim] forKey:@"phone"];
+    [params setSafeObject:self.captchaTextField.text forKey:@"verCode"];
+    
+    weakify(self);
+    
+    [UserRequest loginWithParams:params success:^(SignInResultModel *resultModel) {
+        
+        strongify(self);
+        
+        [[TTUserService sharedService] saveUserInfo:resultModel.user token:resultModel.token];
+        
+        [self showNotice:@"登录成功"];
+        
+        [self bk_performBlock:^(id obj) {
+            [[TTNavigationService sharedService] openUrl:@"jump://discover"];
+        } afterDelay:1.f];
+        
+    } failure:^(StatusModel *status) {
+        
+        if( status ) {
+            strongify(self);
+            [self showNotice:status.msg];
+        } else {
+            [self showNotice:@"登录失败"];
+        }
+        
+    }];
+}
+
+- (void)getCaptcha
+{
+    DBG(@"getCaptcha");
+    
+    NSString *phoneText = self.phoneTextField.text;
+    
+    if ( IsEmptyString(phoneText)) {
+        
+        [self showAlert:@"请输入手机号"];
+        
+        return;
+    }
+    
+    NSDictionary *params = @{@"phone":phoneText,@"type":[NSString stringWithFormat:@"%ld", [self getCaptchaType]]};
+    
+    weakify(self);
+    [UserRequest getCaptchaWithParams:params success:^{
+        
+        strongify(self);
+        
+        self.captchaButton.enabled = NO;
+        self.time = 60;
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleTimer) userInfo:nil repeats:YES];
+        [self.timer fire];
+        
+    } failure:^(StatusModel *status) {
+        
+        [self showAlert:status.msg];
+        
+    }];
+}
+
+- (void)handleTimer
+{
+    if (self.time <= 1) {
+        [self.timer invalidate];
+        self.captchaButton.enabled = YES;
+        [_captchaButton setTitle:@"重发验证码" forState:UIControlStateNormal];
+        return;
+    }
+    
+    [self.captchaButton setTitle:[NSString stringWithFormat:@"%lds", (long)self.time] forState:UIControlStateDisabled];
+    self.time--;
 }
 
 #pragma mark - UITextFieldDelegate
