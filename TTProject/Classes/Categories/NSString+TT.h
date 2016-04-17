@@ -50,13 +50,24 @@
 - (CGSize)sizeWithUIFont:(UIFont *)font forWidth:(CGFloat)width;
 
 /**
+ *  计算文本Size
+ *
+ *  @param font
+ *  @param width
+ *  @param lineHeight
+ *
+ *  @return
+ */
+- (CGSize)sizeWithUIFont:(UIFont *)font lineSpacing:(CGFloat)lineSpacing forWidth:(CGFloat)width;
+
+/**
  *  计算文本Size sizeWithUIFont实际上是调用了该方法
  *
- *  @param attribute
+ *  @param attributes
  *  @param width
  *
  *  @return
  */
-- (CGSize)sizeWithUIAttribute:(NSDictionary *)attribute forWidth:(CGFloat)width;
+- (CGSize)sizeWithUIAttributes:(NSDictionary *)attributes forWidth:(CGFloat)width;
 
 @end

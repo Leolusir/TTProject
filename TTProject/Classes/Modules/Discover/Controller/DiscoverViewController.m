@@ -51,24 +51,27 @@
     [params setSafeObject:@"中国" forKey:@"country"];
     [params setSafeObject:[TTUserService sharedService].id forKey:@"userId"];
     
+    
     if ( LoadingTypeLoadMore == self.loadingType ) {
         
     } else {
         
         weakify(self);
         
+        [params setSafeObject:@"0" forKey:@"wp"];
+        
         [DiscoverRequest getPostsWithParams:params success:^(PostListResultModel *resultModel) {
             
             strongify(self);
             
             if (resultModel) {
-                [self.posts removeAllObjects];
+                [self cleanUpPosts];
                 
-                [self.posts addObjectsFromSafeArray:resultModel.posts];
-                self.page = resultModel.page;
-                self.totalPages = resultModel.totalPages;
+                [self addPosts:resultModel.posts];
                 
-                if( self.page >= self.totalPages ){
+                self.wp = resultModel.wp;
+                
+                if( resultModel.isEnd ){
                     self.tableView.showsInfiniteScrolling = NO;
                 } else {
                     self.tableView.showsInfiniteScrolling = YES;

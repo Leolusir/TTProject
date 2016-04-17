@@ -15,6 +15,7 @@ pod 'SwipeView', '~> 1.3.2'
 pod 'Toast', '~> 2.4'
 #pod 'FMDB', '~> 2.5'
 pod 'Reachability', '~> 3.1.1'
+pod 'TTTAttributedLabel'
 
 end
 

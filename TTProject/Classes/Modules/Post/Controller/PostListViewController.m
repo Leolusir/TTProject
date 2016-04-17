@@ -12,6 +12,9 @@
 
 @interface PostListViewController ()
 
+@property (nonatomic, strong) NSMutableDictionary *textCellHeightCache;
+@property (nonatomic, strong) NSMutableArray<PostModel> *posts;
+
 @end
 
 @implementation PostListViewController
@@ -32,6 +35,8 @@
     self.loadingType = LoadingTypeInit;
     
     self.posts = [NSMutableArray<PostModel> array];
+    self.textCellHeightCache = [NSMutableDictionary dictionary];
+    self.wp = @"0";
     
     [self loadData];
 }
@@ -49,6 +54,34 @@
         
     }
     
+}
+
+- (CGFloat)getTextCellHeight:(PostModel *)post
+{
+    
+    CGFloat height = 0;
+    
+    if ( [self.textCellHeightCache objectForKey:post.id] ) {
+        height = [[self.textCellHeightCache objectForKey:post.id] floatValue];
+    } else {
+        height = [PostTextCell heightForCell:post];
+        [self.textCellHeightCache setSafeObject:@(height) forKey:post.id];
+    }
+    
+    return height;
+}
+
+#pragma mark - Custom Methods
+
+- (void)addPosts:(NSArray *)posts
+{
+    [self.posts addObjectsFromArray:posts];
+}
+
+- (void)cleanUpPosts
+{
+    [self.posts removeAllObjects];
+    [self.textCellHeightCache removeAllObjects];
 }
 
 #pragma mark - UITableViewDataSource
@@ -108,7 +141,7 @@
             
         } else if ( 1 == indexPath.row) {
             
-            height = [PostTextCell heightForCell:post];
+            height = [self getTextCellHeight:post];
             
         }
         
@@ -122,7 +155,7 @@
     PostModel *post = [self.posts safeObjectAtIndex:indexPath.section];
     
     if ( post ) {
-        
+        DBG(@"Post:%@ Click", post.id);
     }
 }
 

@@ -28,7 +28,7 @@
 
 + (CGFloat)heightForCell:(id)cellData {
     
-    return 10;
+    return 0;
 }
 
 #pragma mark - Getters And Setters

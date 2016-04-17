@@ -31,7 +31,8 @@
 @property (nonatomic, assign) NSInteger voteDown;
 @property (nonatomic, assign) NSInteger commentCount;
 @property (nonatomic, assign) NSInteger score;
-@property (nonatomic, assign) NSInteger vote;
+@property (nonatomic, assign) NSInteger vote; //0 => 啥也没 1 => 赞  2 => 踩
 @property (nonatomic, strong) NSString *createTime;
+@property (nonatomic, assign) NSInteger member;
 
 @end

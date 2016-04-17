@@ -28,27 +28,28 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        needBlurEffect = NO;
         self.clipsToBounds = NO;
         
         self.containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height - (IS_IOS7 ? STATUSBAR_HEIGHT : 0))];
         self.containerView.bottom = self.height;
         
-        if (SYSTEM_VERSION >= 8.0 && needBlurEffect) {
-            
-            UIVisualEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
-            
-            self.effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
-            self.effectView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-            self.effectView.tintColor = Color_White;
-            [self addSubview:self.effectView];
-            [self.effectView.contentView addSubview:self.containerView];
-            
-        }
-        else
-        {
+//        if (SYSTEM_VERSION >= 8.0 && needBlurEffect) {
+//            
+//            UIVisualEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleExtraLight];
+//            
+//            self.effectView = [[UIVisualEffectView alloc] initWithEffect:effect];
+//            self.effectView.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+//            self.effectView.tintColor = Color_White;
+//            [self addSubview:self.effectView];
+//            [self.effectView.contentView addSubview:self.containerView];
+//            
+//        }
+//        else
+//        {
             self.backgroundColor = Color_White;
             [self addSubview:self.containerView];
-        }
+//        }
         
         //描边
         self.bottomBorder = [[UIView alloc] initWithFrame:CGRectMake(0, self.containerView.height - 1 / [UIScreen mainScreen].scale, self.containerView.width, 1 / [UIScreen mainScreen].scale)];
@@ -81,12 +82,12 @@
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, 200, _titleView.height - 10)];
     titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.textColor = [UIColor blackColor];
+    titleLabel.textColor = [UIColor whiteColor];
     titleLabel.text = _title;
-    titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    titleLabel.font = [UIFont systemFontOfSize:16];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.adjustsFontSizeToFitWidth = YES;
-    titleLabel.minimumScaleFactor = 14 / 18.f;
+    titleLabel.minimumScaleFactor = 14 / 16.f;
     titleLabel.tag = TAG_TITLELABEL_NAVIGATIONBAR;
     [_titleView addSubview:titleLabel];
     

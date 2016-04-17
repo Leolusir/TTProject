@@ -11,8 +11,7 @@
 
 @interface PostListViewController : BaseTableViewController
 
-@property (nonatomic, strong) NSMutableArray<PostModel> *posts;
-@property (nonatomic, assign) NSInteger totalPages;
-@property (nonatomic, assign) NSInteger page;
+- (void)addPosts:(NSArray *)posts;
+- (void)cleanUpPosts;
 
 @end

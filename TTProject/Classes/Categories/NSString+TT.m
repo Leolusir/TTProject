@@ -53,13 +53,23 @@
 - (CGSize)sizeWithUIFont:(UIFont *)font forWidth:(CGFloat)width
 {
     NSDictionary *attribute = @{NSFontAttributeName:font};
-    CGSize size = [self sizeWithUIAttribute:attribute forWidth:width];
+    CGSize size = [self sizeWithUIAttributes:attribute forWidth:width];
     return size;
 }
 
-- (CGSize)sizeWithUIAttribute:(NSDictionary *)attribute forWidth:(CGFloat)width
+- (CGSize)sizeWithUIFont:(UIFont *)font lineSpacing:(CGFloat)lineSpacing forWidth:(CGFloat)width
 {
-    CGSize size = [self boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attribute context:nil].size;
+    NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+    paragraphStyle.lineSpacing = lineSpacing;
+    
+    NSDictionary *attribute = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle};
+    CGSize size = [self sizeWithUIAttributes:attribute forWidth:width];
+    return size;
+}
+
+- (CGSize)sizeWithUIAttributes:(NSDictionary *)attributes forWidth:(CGFloat)width
+{
+    CGSize size = [self boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options: NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:attributes context:nil].size;
     
     return size;
 }

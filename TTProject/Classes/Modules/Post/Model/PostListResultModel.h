@@ -15,10 +15,8 @@
 
 @interface PostListResultModel : BaseModel
 
-@property (nonatomic, assign) NSInteger size;
-@property (nonatomic, assign) NSInteger totalPages;
-@property (nonatomic, assign) NSInteger page;
-@property (nonatomic, assign) NSInteger totalElements;
+@property (nonatomic, assign) BOOL isEnd;
+@property (nonatomic, strong) NSString *wp;
 @property (nonatomic, strong) NSArray<PostModel> *posts;
 
 @end
