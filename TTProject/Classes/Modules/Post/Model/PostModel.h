@@ -34,5 +34,6 @@
 @property (nonatomic, assign) NSInteger vote; //0 => 啥也没 1 => 赞  2 => 踩
 @property (nonatomic, strong) NSString *createTime;
 @property (nonatomic, assign) NSInteger member;
+@property (nonatomic, strong) NSString<Optional> *imageUrl;
 
 @end

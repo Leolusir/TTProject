@@ -7,6 +7,7 @@
 //
 
 #import "PostVoteView.h"
+#import "PostRequest.h"
 
 @interface PostVoteView ()
 
@@ -37,19 +38,6 @@
 
 #pragma mark - Custom Methods
 
-- (void)reloadWithVote:(NSInteger)vote voteUp:(NSInteger)voteUp voteDown:(NSInteger)voteDown
-{
-    //vote：0 => 啥也没 1 => 赞  2 => 踩
-    self.vote = vote;
-    self.voteUp = voteUp;
-    self.voteDown = voteDown;
-    
-    [self refresh];
-    
-}
-
-#pragma mark - Private Methods
-
 - (void)refresh
 {
     self.voteDownButton.selected = NO;
@@ -64,6 +52,7 @@
         self.voteDownButton.selected = YES;
         [self.voteDownButton setImage:[UIImage imageNamed:@"icon_vote_down_selected"] forState:UIControlStateHighlighted];
     }
+    
     self.countLabel.text = [NSString stringWithFormat:@"%ld", self.voteUp - self.voteDown];
     
 }
@@ -123,11 +112,88 @@
 - (void)handleVoteUpButton
 {
     DBG(@"handleVoteUpButton");
+    
+    NSInteger oriVote = self.vote;
+    NSInteger oriVoteUp = self.voteUp;
+    NSInteger oriVoteDown = self.voteDown;
+    
+    if( 1 == self.vote ){
+        self.vote = 0;
+        self.voteUp -= 1;
+    } else if( 2 == self.vote){
+        self.vote = 1;
+        self.voteUp += 1;
+        self.voteDown -= 1;
+    } else {
+        self.vote = 1;
+        self.voteUp += 1;
+    }
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setSafeObject:[TTUserService sharedService].id forKey:@"userId"];
+    [params setSafeObject:self.postId forKey:@"postId"];
+    [params setSafeObject:@(oriVote) forKey:@"oriVote"];
+    [params setSafeObject:@(self.vote) forKey:@"vote"];
+    
+    weakify(self);
+    
+    [PostRequest voteWithParams:params success:^{
+        
+        strongify(self);
+        
+        [self refresh];
+        
+    } failure:^(StatusModel *status) {
+        
+        self.vote = oriVote;
+        self.voteUp = oriVoteUp;
+        self.voteDown = oriVoteDown;
+        
+    }];
+    
 }
 
 - (void)handleVoteDownButton
 {
     DBG(@"handleVoteDownButton");
+    
+    NSInteger oriVote = self.vote;
+    NSInteger oriVoteUp = self.voteUp;
+    NSInteger oriVoteDown = self.voteDown;
+    
+    if( 1 == self.vote ){
+        self.vote = 2;
+        self.voteUp -= 1;
+        self.voteDown += 1;
+    } else if( 2 == self.vote){
+        self.vote = 0;
+        self.voteDown -= 1;
+    } else {
+        self.vote = 2;
+        self.voteDown += 1;
+    }
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setSafeObject:[TTUserService sharedService].id forKey:@"userId"];
+    [params setSafeObject:self.postId forKey:@"postId"];
+    [params setSafeObject:@(oriVote) forKey:@"oriVote"];
+    [params setSafeObject:@(self.vote) forKey:@"vote"];
+    
+    weakify(self);
+    
+    [PostRequest voteWithParams:params success:^{
+        
+        strongify(self);
+        
+        [self refresh];
+        
+    } failure:^(StatusModel *status) {
+        
+        self.vote = oriVote;
+        self.voteUp = oriVoteUp;
+        self.voteDown = oriVoteDown;
+        
+    }];
 }
 
 @end

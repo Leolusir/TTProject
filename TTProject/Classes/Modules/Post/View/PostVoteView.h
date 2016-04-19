@@ -11,7 +11,8 @@
 @property (nonatomic, assign) NSInteger voteUp;
 @property (nonatomic, assign) NSInteger voteDown;
 @property (nonatomic, assign) NSInteger vote;
+@property (nonatomic, strong) NSString *postId;
 
-- (void)reloadWithVote:(NSInteger)vote voteUp:(NSInteger)voteUp voteDown:(NSInteger)voteDown;
+- (void)refresh;
 
 @end

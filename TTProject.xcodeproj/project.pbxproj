@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C387A441CC6768A0054D404 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C387A431CC6768A0054D404 /* CommentModel.m */; };
+		2C387A471CC677170054D404 /* CommentListResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C387A461CC677170054D404 /* CommentListResultModel.m */; };
+		2C387A4A1CC678940054D404 /* PostRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C387A491CC678940054D404 /* PostRequest.m */; };
 		2C5008691CC366A800D0101B /* PostVoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5008681CC366A800D0101B /* PostVoteView.m */; };
 		2C8312981CC1F4A8005E11AB /* TTAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C83128F1CC1F4A8005E11AB /* TTAlertView.m */; };
 		2C8312991CC1F4A8005E11AB /* TTHighlightTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8312911CC1F4A8005E11AB /* TTHighlightTextStorage.m */; };
@@ -99,6 +102,12 @@
 
 /* Begin PBXFileReference section */
 		0360BCC909B1F192B326897D /* Pods-TTProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TTProject/Pods-TTProject.debug.xcconfig"; sourceTree = "<group>"; };
+		2C387A421CC6768A0054D404 /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
+		2C387A431CC6768A0054D404 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
+		2C387A451CC677170054D404 /* CommentListResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentListResultModel.h; sourceTree = "<group>"; };
+		2C387A461CC677170054D404 /* CommentListResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentListResultModel.m; sourceTree = "<group>"; };
+		2C387A481CC678940054D404 /* PostRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostRequest.h; sourceTree = "<group>"; };
+		2C387A491CC678940054D404 /* PostRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostRequest.m; sourceTree = "<group>"; };
 		2C5008671CC366A800D0101B /* PostVoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostVoteView.h; sourceTree = "<group>"; };
 		2C5008681CC366A800D0101B /* PostVoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostVoteView.m; sourceTree = "<group>"; };
 		2C83128E1CC1F4A8005E11AB /* TTAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTAlertView.h; sourceTree = "<group>"; };
@@ -352,6 +361,10 @@
 				2C8312C11CC231A3005E11AB /* PostListResultModel.m */,
 				2C8312C31CC2325D005E11AB /* PostModel.h */,
 				2C8312C41CC2325D005E11AB /* PostModel.m */,
+				2C387A421CC6768A0054D404 /* CommentModel.h */,
+				2C387A431CC6768A0054D404 /* CommentModel.m */,
+				2C387A451CC677170054D404 /* CommentListResultModel.h */,
+				2C387A461CC677170054D404 /* CommentListResultModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -359,6 +372,8 @@
 		2C8312B81CC22F27005E11AB /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				2C387A481CC678940054D404 /* PostRequest.h */,
+				2C387A491CC678940054D404 /* PostRequest.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1131,11 +1146,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C387A471CC677170054D404 /* CommentListResultModel.m in Sources */,
 				2C8312D71CC24EE9005E11AB /* PostTextCell.m in Sources */,
 				2C8ECF5A1CB8CCBA00A294AB /* NSURL+TT.m in Sources */,
 				2C8ECFA61CB8D2B900A294AB /* TTNavigationService.m in Sources */,
 				2C8312BC1CC22F66005E11AB /* PostViewController.m in Sources */,
 				2C8ECF601CB8CCBA00A294AB /* UINavigationController+Block.m in Sources */,
+				2C387A4A1CC678940054D404 /* PostRequest.m in Sources */,
 				2C8312C21CC231A3005E11AB /* PostListResultModel.m in Sources */,
 				2C8ECF541CB8CCBA00A294AB /* ApplicationEntrance.m in Sources */,
 				2C8ECF761CB8CCBA00A294AB /* ImageUnitModel.m in Sources */,
@@ -1172,6 +1189,7 @@
 				2C8ECF8A1CB8CCBA00A294AB /* WallItemCell.m in Sources */,
 				2CE574FF1CBD4D8400F2AC04 /* DiscoverViewController.m in Sources */,
 				2C8ECFA31CB8D2B900A294AB /* TTModuleEntrance.m in Sources */,
+				2C387A441CC6768A0054D404 /* CommentModel.m in Sources */,
 				2C8ECF551CB8CCBA00A294AB /* NSArray+NullCheck.m in Sources */,
 				2C8312D61CC24EE9005E11AB /* PostImageCell.m in Sources */,
 				2C8ECF591CB8CCBA00A294AB /* NSString+TT.m in Sources */,

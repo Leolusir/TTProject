@@ -58,7 +58,11 @@
         [self.countLabel sizeToFit];
         self.countLabel.bottom = cellHeight - 15;
         
-        [self.postVoteView reloadWithVote:post.vote voteUp:post.voteUp voteDown:post.voteDown];
+        self.postVoteView.vote = post.vote;
+        self.postVoteView.voteUp = post.voteUp;
+        self.postVoteView.voteDown = post.voteDown;
+        self.postVoteView.postId = post.id;
+        [self.postVoteView refresh];
     }
     
 }

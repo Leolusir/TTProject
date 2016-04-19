@@ -105,7 +105,7 @@
         if ( 0 == indexPath.row ) {
 
             PostImageCell *cell = [PostImageCell dequeueReusableCellForTableView:tableView];
-            cell.cellData = post;
+            cell.cellData = post.imageUrl;
             [cell reloadData];
             return cell;
 
@@ -137,7 +137,7 @@
         
         if ( 0 == indexPath.row ) {
             
-            height = [PostImageCell heightForCell:post];
+            height = [PostImageCell heightForCell:post.imageUrl];
             
         } else if ( 1 == indexPath.row) {
             
