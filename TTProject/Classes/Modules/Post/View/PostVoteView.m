@@ -143,6 +143,8 @@
         
         [self refresh];
         
+        //TODO: 同步vote信息 以及参数人数
+        
     } failure:^(StatusModel *status) {
         
         self.vote = oriVote;
@@ -186,6 +188,8 @@
         strongify(self);
         
         [self refresh];
+        
+        //TODO: 同步vote信息 以及参数人数
         
     } failure:^(StatusModel *status) {
         

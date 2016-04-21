@@ -10,6 +10,7 @@
 		2C387A441CC6768A0054D404 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C387A431CC6768A0054D404 /* CommentModel.m */; };
 		2C387A471CC677170054D404 /* CommentListResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C387A461CC677170054D404 /* CommentListResultModel.m */; };
 		2C387A4A1CC678940054D404 /* PostRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C387A491CC678940054D404 /* PostRequest.m */; };
+		2C3C910A1CC90362004DB793 /* TTGalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C91081CC90362004DB793 /* TTGalleryView.m */; };
 		2C5008691CC366A800D0101B /* PostVoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5008681CC366A800D0101B /* PostVoteView.m */; };
 		2C8312981CC1F4A8005E11AB /* TTAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C83128F1CC1F4A8005E11AB /* TTAlertView.m */; };
 		2C8312991CC1F4A8005E11AB /* TTHighlightTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8312911CC1F4A8005E11AB /* TTHighlightTextStorage.m */; };
@@ -108,6 +109,8 @@
 		2C387A461CC677170054D404 /* CommentListResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentListResultModel.m; sourceTree = "<group>"; };
 		2C387A481CC678940054D404 /* PostRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostRequest.h; sourceTree = "<group>"; };
 		2C387A491CC678940054D404 /* PostRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostRequest.m; sourceTree = "<group>"; };
+		2C3C91081CC90362004DB793 /* TTGalleryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGalleryView.m; sourceTree = "<group>"; };
+		2C3C91091CC90362004DB793 /* TTGalleryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTGalleryView.h; sourceTree = "<group>"; };
 		2C5008671CC366A800D0101B /* PostVoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostVoteView.h; sourceTree = "<group>"; };
 		2C5008681CC366A800D0101B /* PostVoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostVoteView.m; sourceTree = "<group>"; };
 		2C83128E1CC1F4A8005E11AB /* TTAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTAlertView.h; sourceTree = "<group>"; };
@@ -679,6 +682,8 @@
 		2C8ECEF31CB8CCBA00A294AB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2C3C91081CC90362004DB793 /* TTGalleryView.m */,
+				2C3C91091CC90362004DB793 /* TTGalleryView.h */,
 				2C8ECEF41CB8CCBA00A294AB /* DefaultRefreshView.h */,
 				2C8ECEF51CB8CCBA00A294AB /* DefaultRefreshView.m */,
 				2C8ECEF61CB8CCBA00A294AB /* DefaultWallCell.h */,
@@ -1183,6 +1188,7 @@
 				2C8ECF741CB8CCBA00A294AB /* TTGalleryViewController.m in Sources */,
 				2C83129F1CC1FECE005E11AB /* UserRequest.m in Sources */,
 				2C8ECF691CB8CCBA00A294AB /* BaseViewController.m in Sources */,
+				2C3C910A1CC90362004DB793 /* TTGalleryView.m in Sources */,
 				2C8ECF821CB8CCBA00A294AB /* DefaultWallHeaderCell.m in Sources */,
 				2C8312A51CC205E4005E11AB /* UserModel.m in Sources */,
 				2C8ECF611CB8CCBA00A294AB /* UIView+TT.m in Sources */,

@@ -10,7 +10,7 @@
 
 @interface TTGalleryViewController : BaseViewController
 
-@property (nonatomic, strong) NSArray *images;
+@property (nonatomic, strong) NSArray *imageSrcs;
 @property (nonatomic, assign) NSInteger index;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "TTGalleryViewController.h"
 #import "TTSliderView.h"
+#import "TTGalleryView.h"
 
 @interface TTGalleryViewController ()<TTSliderViewDataSource, TTSliderViewDelegate>
 
@@ -41,7 +42,7 @@
     self.sliderView.dataSource = self;
     self.sliderView.autoScroll = NO;
     self.sliderView.wrapEnabled = NO;
-    self.sliderView.currentPageColor = Color_White;
+    self.sliderView.currentPageColor = Color_Green1;;
     self.sliderView.userInteractionEnabled = YES;
     [self.view addSubview:self.sliderView];
     [self.view sendSubviewToBack:self.sliderView];
@@ -60,21 +61,25 @@
 
 - (NSInteger)numberOfItemsInSliderView:(TTSliderView *)sliderView {
     
-    return self.images ? self.images.count : 0;
+    return self.imageSrcs ? self.imageSrcs.count : 0;
     
 }
 
 - (UIView *)sliderView:(TTSliderView *)sliderView viewForItemAtIndex:(NSInteger)index reusingView:(UIView *)view {
     
-    if (self.images) {
+    if (self.imageSrcs) {
         
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, sliderView.width, sliderView.height)];
+        TTGalleryView *galleryView = nil;
         
-        [imageView setOnlineImage:[self.images safeObjectAtIndex:index]];
+        if ( view ) {
+            galleryView = (TTGalleryView *)view;
+        } else {
+            galleryView = [[TTGalleryView alloc] initWithFrame:CGRectMake(0, 0, sliderView.width, sliderView.height)];
+        }
         
-        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [galleryView showImageWithSrc:[self.imageSrcs safeObjectAtIndex:index]];
         
-        return imageView;
+        return galleryView;
         
     }
     

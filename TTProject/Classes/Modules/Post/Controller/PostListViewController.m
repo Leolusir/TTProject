@@ -7,6 +7,7 @@
 //
 
 #import "PostListViewController.h"
+#import "PostViewController.h"
 #import "PostTextCell.h"
 #import "PostImageCell.h"
 
@@ -156,6 +157,12 @@
     
     if ( post ) {
         DBG(@"Post:%@ Click", post.id);
+        
+        TTNavigationController *navigationController = [[ApplicationEntrance shareEntrance] currentNavigationController];
+        PostViewController *vc = [[PostViewController alloc] init];
+        vc.post = post;
+        
+        [navigationController pushViewController:vc animated:NO];
     }
 }
 

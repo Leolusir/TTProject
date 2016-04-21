@@ -7,7 +7,10 @@
 //
 
 #import "BaseTableViewController.h"
+#import "PostModel.h"
 
 @interface PostViewController : BaseTableViewController
+
+@property (nonatomic, strong) PostModel *post;
 
 @end
