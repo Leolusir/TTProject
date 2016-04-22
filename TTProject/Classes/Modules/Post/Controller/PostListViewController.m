@@ -45,15 +45,15 @@
 - (void)loadData
 {
     
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    
-    if ( LoadingTypeLoadMore == self.loadingType ) {
-        
-        
-    } else {
-        
-        
-    }
+//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+//    
+//    if ( LoadingTypeLoadMore == self.loadingType ) {
+//        
+//        
+//    } else {
+//        
+//        
+//    }
     
 }
 

@@ -44,8 +44,10 @@
 
 #pragma mark - Private Methods
 
-- (void)initSubViewController
+- (void)addNavigationBar
 {
+    [super addNavigationBar];
+    
     NSArray *items = @[@"最新",@"最热"];
     self.segmentedControl = [[UISegmentedControl alloc] initWithItems:items];
     self.segmentedControl.frame = CGRectMake(0, 0, 152, 30);
@@ -55,6 +57,21 @@
     self.segmentedControl.selectedSegmentIndex = 0;
     [self.segmentedControl addTarget:self action:@selector(segmentedControlChanged) forControlEvents:UIControlEventValueChanged];
     [self.navigationBar addSubview:self.segmentedControl];
+    
+    UIImage *searchImage = [UIImage imageNamed:@"icon_nav_search"];
+    UIButton *searchButton = [UIButton leftBarButtonWithImage:searchImage highlightedImage:searchImage target:self action:@selector(doSearch) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationBar setLeftBarButton:searchButton];
+    
+    UIImage *addImage = [UIImage imageNamed:@"icon_nav_add"];
+    UIButton *addTopicButton = [UIButton rightBarButtonWithImage:addImage highlightedImage:addImage target:self action:@selector(addTopic) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationBar setRightBarButton:addTopicButton];
+
+}
+
+#pragma mark - Private Methods
+
+- (void)initSubViewController
+{
     
     TopicListViewController *newTopicListViewController = [[TopicListViewController alloc] init];
     newTopicListViewController.sort = 0;
@@ -85,6 +102,16 @@
         
         [self.view insertSubview:self.selectedViewController.view belowSubview:self.navigationBar];
     }
+}
+
+- (void)addTopic
+{
+    DBG(@"addTopic");
+}
+
+- (void)doSearch
+{
+    DBG(@"doSearch");
 }
 
 @end

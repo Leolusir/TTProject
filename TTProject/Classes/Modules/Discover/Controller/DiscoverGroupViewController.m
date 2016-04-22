@@ -42,8 +42,10 @@
 
 #pragma mark - Private Methods
 
-- (void)initSubViewController
+- (void)addNavigationBar
 {
+    [super addNavigationBar];
+    
     NSArray *items = @[@"最新",@"最热"];
     self.segmentedControl = [[UISegmentedControl alloc] initWithItems:items];
     self.segmentedControl.frame = CGRectMake(0, 0, 152, 30);
@@ -53,6 +55,14 @@
     self.segmentedControl.selectedSegmentIndex = 0;
     [self.segmentedControl addTarget:self action:@selector(segmentedControlChanged) forControlEvents:UIControlEventValueChanged];
     [self.navigationBar addSubview:self.segmentedControl];
+    
+    UIImage *addImage = [UIImage imageNamed:@"icon_nav_add"];
+    UIButton *addPostButton = [UIButton rightBarButtonWithImage:addImage highlightedImage:addImage target:self action:@selector(addPost) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationBar setRightBarButton:addPostButton];
+}
+
+- (void)initSubViewController
+{
     
     DiscoverViewController *newDiscoverViewController = [[DiscoverViewController alloc] init];
     newDiscoverViewController.sort = 0;
@@ -83,6 +93,11 @@
         
         [self.view insertSubview:self.selectedViewController.view belowSubview:self.navigationBar];
     }
+}
+
+- (void)addPost
+{
+    [[TTNavigationService sharedService] openUrl:@"jump://post_publish"];
 }
 
 @end

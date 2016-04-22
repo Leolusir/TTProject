@@ -29,6 +29,8 @@
 {
     [super viewDidLoad];
     
+    self.title = @"详情";
+    
     [self initData];
 }
 

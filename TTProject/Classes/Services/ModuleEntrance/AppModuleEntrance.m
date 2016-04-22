@@ -10,6 +10,7 @@
 
 #import "TTNavigationService.h"
 #import "TTNavigationController.h"
+#import "PostPublishViewController.h"
 
 #import "SignInUpViewController.h"
 
@@ -32,6 +33,10 @@
     
     // 发现首页
     [[TTNavigationService sharedService] registerModule:self withScheme:APP_SCHEME host:@"discover"];
+    
+    // 发Post
+    [[TTNavigationService sharedService] registerModule:self withScheme:APP_SCHEME host:@"post_publish"];
+    
     
 }
 
@@ -67,6 +72,11 @@
             } else {
                 [[ApplicationEntrance shareEntrance].tabbarController selectAtIndex:0];
             }
+            
+        } else if([url.host isEqualToString:@"post_publish"]) {
+            
+            PostPublishViewController *vc = [[PostPublishViewController alloc] init];
+            [navigationController pushViewController:vc animated:YES];
             
         }
         
