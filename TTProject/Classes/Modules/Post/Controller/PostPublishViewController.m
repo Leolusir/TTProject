@@ -7,6 +7,21 @@
 //
 
 #import "PostPublishViewController.h"
+#import "TTHighlightTextView.h"
+#import "PostRequest.h"
+
+@interface PostPublishViewController () <UIScrollViewDelegate>
+
+@property (nonatomic, strong) UIScrollView *containerView;
+
+@property (nonatomic, strong) UIButton *addTitleButton;
+@property (nonatomic, strong) UIButton *addImageButton;
+
+@property (nonatomic, strong) UIImageView *postImageView;
+@property (nonatomic, strong) TTHighlightTextView *postTextView;
+@property (nonatomic, strong) UIImage *postImage;
+
+@end
 
 @implementation PostPublishViewController
 
@@ -19,7 +34,8 @@
     self.title = @"发表";
     
     [self addNavigationBar];
-    
+    [self addContainerView];
+    [self addEditZone];
 }
 
 #pragma mark - Private Methods
@@ -33,11 +49,84 @@
     [self.navigationBar setRightBarButton:publishPostButton];
 }
 
+- (void)addContainerView
+{
+    self.containerView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, NAVBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - NAVBAR_HEIGHT - TABBAR_HEIGHT)];
+    self.containerView.delegate = self;
+    self.containerView.backgroundColor = Color_White;
+    
+    [self.view addSubview:self.containerView];
+    [self.view sendSubviewToBack:self.containerView];
+}
+
+- (void)addEditZone
+{
+    self.addTitleButton = [UIButton buttonWithImage:[UIImage imageNamed:@"icon_pub_title"] target:self action:@selector(addTitle) forControlEvents:UIControlEventTouchUpInside];
+    self.addTitleButton.top = 10;
+    self.addTitleButton.left = 10;
+    
+    self.addImageButton = [UIButton buttonWithImage:[UIImage imageNamed:@"icon_pub_image"] target:self action:@selector(addImage) forControlEvents:UIControlEventTouchUpInside];
+    self.addImageButton.top = 10;
+    self.addImageButton.left = self.addTitleButton.right + 10;
+    [self.containerView addSubview:self.addTitleButton];
+    [self.containerView addSubview:self.addImageButton];
+    
+    
+    self.postTextView = [[TTHighlightTextView alloc] initWithFrame:CGRectMake(10, self.addTitleButton.bottom + 10, SCREEN_WIDTH - 20, self.containerView.height - self.addTitleButton.bottom - 10) highlightColor:Color_Green1 pattern:@"#[^#]+?#"];
+    self.postTextView.textColor = Color_Gray2;
+    self.postTextView.font = FONT(14);
+    self.postTextView.tintColor = Color_Green1;
+    [self.containerView addSubview:self.postTextView];
+    
+}
+
 #pragma mark - Event Response
+
+- (void)addTitle
+{
+    
+}
+
+- (void)addImage
+{
+    
+}
 
 - (void)publishPost
 {
     DBG(@"publishPost");
+    
+    //TODO: 参数待实装
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setSafeObject:@"120.121806" forKey:@"longitude"];
+    [params setSafeObject:@"30.274818" forKey:@"latitude"];
+    [params setSafeObject:@"中国" forKey:@"country"];
+    [params setSafeObject:@"浙江" forKey:@"province"];
+    [params setSafeObject:@"杭州" forKey:@"city"];
+    [params setSafeObject:@"通向天国的阶梯" forKey:@"street"];
+    [params setSafeObject:@"天上人间" forKey:@"aoi"];
+    [params setSafeObject:[TTUserService sharedService].id forKey:@"userId"];
+//    title、imageUrl
+    [params setSafeObject:self.postTextView.text forKey:@"content"];
+    
+    weakify(self);
+    
+    [PostRequest publishPostWithParams:params success:^(PostPublishResultModel *resultModel) {
+        
+        strongify(self);
+        
+        [self showNotice:@"发布成功 ~"];
+        
+    } failure:^(StatusModel *status) {
+        
+        DBG(@"%@", status);
+        
+        strongify(self);
+        
+        [self showNotice:status.msg];
+        
+    }];
+    
 }
 
 

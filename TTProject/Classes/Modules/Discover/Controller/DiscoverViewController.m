@@ -102,6 +102,7 @@
         if ( LoadingTypeLoadMore == self.loadingType ) {
             [self finishLoadMore];
         } else {
+            self.tableView.showsPullToRefresh = YES;
             [self finishRefresh];
         }
         

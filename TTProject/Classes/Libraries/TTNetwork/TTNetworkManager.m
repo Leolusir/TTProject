@@ -361,7 +361,7 @@
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     
-    [params setSafeObject:[UIDevice TT_uniqueID] forKey:@"did"];
+//    [params setSafeObject:[UIDevice TT_uniqueID] forKey:@"did"];
     
     if (parameters) {
         [params addEntriesFromDictionary:parameters];

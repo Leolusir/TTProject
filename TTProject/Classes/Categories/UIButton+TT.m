@@ -106,4 +106,20 @@
     return button;
 }
 
++ (UIButton *)buttonWithImage:(UIImage*)image target:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents {
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+
+    button.frame = CGRectMake(0.0f, 0.0f, image.size.width, image.size.height);
+    
+    [button setImage:image forState:UIControlStateNormal];
+    [button setImage:image forState:UIControlStateHighlighted];
+    
+    [button addTarget:target action:action forControlEvents:controlEvents];
+    [button setExclusiveTouch:YES];
+    
+    return button;
+    
+}
+
 @end

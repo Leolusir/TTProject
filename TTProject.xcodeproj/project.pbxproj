@@ -103,6 +103,7 @@
 		2CE574FF1CBD4D8400F2AC04 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE574FE1CBD4D8400F2AC04 /* DiscoverViewController.m */; };
 		2CE575051CBD4DBF00F2AC04 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE575041CBD4DBF00F2AC04 /* MessageViewController.m */; };
 		2CE575081CBD4DDF00F2AC04 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE575071CBD4DDF00F2AC04 /* MeViewController.m */; };
+		2CFD2D161CCB511500229DC3 /* PostPublishResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CFD2D151CCB511500229DC3 /* PostPublishResultModel.m */; };
 		5EC3D570984AB821751EB04C /* libPods-TTProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFEFC431E93DB98C672CD566 /* libPods-TTProject.a */; };
 /* End PBXBuildFile section */
 
@@ -309,6 +310,8 @@
 		2CE575041CBD4DBF00F2AC04 /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		2CE575061CBD4DDF00F2AC04 /* MeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeViewController.h; sourceTree = "<group>"; };
 		2CE575071CBD4DDF00F2AC04 /* MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
+		2CFD2D141CCB511500229DC3 /* PostPublishResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostPublishResultModel.h; sourceTree = "<group>"; };
+		2CFD2D151CCB511500229DC3 /* PostPublishResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostPublishResultModel.m; sourceTree = "<group>"; };
 		5334C4DEAEFCFDFB5848EEAD /* Pods-TTProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-TTProject/Pods-TTProject.release.xcconfig"; sourceTree = "<group>"; };
 		AFEFC431E93DB98C672CD566 /* libPods-TTProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TTProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -385,6 +388,8 @@
 				2C387A431CC6768A0054D404 /* CommentModel.m */,
 				2C387A451CC677170054D404 /* CommentListResultModel.h */,
 				2C387A461CC677170054D404 /* CommentListResultModel.m */,
+				2CFD2D141CCB511500229DC3 /* PostPublishResultModel.h */,
+				2CFD2D151CCB511500229DC3 /* PostPublishResultModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1180,6 +1185,7 @@
 				2C8312D71CC24EE9005E11AB /* PostTextCell.m in Sources */,
 				2C8ECF5A1CB8CCBA00A294AB /* NSURL+TT.m in Sources */,
 				2C8ECFA61CB8D2B900A294AB /* TTNavigationService.m in Sources */,
+				2CFD2D161CCB511500229DC3 /* PostPublishResultModel.m in Sources */,
 				2C8312BC1CC22F66005E11AB /* PostViewController.m in Sources */,
 				2C8ECF601CB8CCBA00A294AB /* UINavigationController+Block.m in Sources */,
 				2C387A4A1CC678940054D404 /* PostRequest.m in Sources */,

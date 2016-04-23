@@ -81,4 +81,6 @@
 
 + (UIButton *)buttonWithTitle:(NSString *)title font:(UIFont *)font color:(UIColor *)color highlightedColor:(UIColor *)highlightedColor target:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
 
++ (UIButton *)buttonWithImage:(UIImage*)image target:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
+
 @end
