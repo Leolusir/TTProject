@@ -76,7 +76,7 @@
     [self.containerView addSubview:self.addTitleButton];
     [self.containerView addSubview:self.addImageButton];
     
-    TTTopicParser *topicParser = [TTTopicParser new];
+    SKTopicParser *topicParser = [SKTopicParser new];
     
     self.postTextView = [[YYTextView alloc] initWithFrame:CGRectMake(10, self.addTitleButton.bottom + 10, SCREEN_WIDTH - 20, self.containerView.height - self.addTitleButton.bottom - 10)];
 //    @"#[^#]+?#"

@@ -264,7 +264,8 @@
         strongify(self);
         
         self.captchaButton.enabled = NO;
-        self.time = 60;
+        [self.captchaButton setTitle:@"60s" forState:UIControlStateDisabled];
+        self.time = 59;
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleTimer) userInfo:nil repeats:YES];
         [self.timer fire];
         
@@ -289,6 +290,9 @@
 }
 
 #pragma mark - UITextFieldDelegate
+
+
+
 #pragma mark - UIPickerViewDelegate
 #pragma mark - UIPickerViewDataSource
 

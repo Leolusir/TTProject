@@ -79,14 +79,14 @@
 - (void)cleanAttributeInRange:(NSRange)range
 {
     [self removeAttribute:NSForegroundColorAttributeName range:range];
-    [self removeAttribute:NSFontAttributeName range:range];
+//    [self removeAttribute:NSFontAttributeName range:range];
     [self addAttribute:NSForegroundColorAttributeName value:self.normalColor range:range];
-    [self addAttribute:NSFontAttributeName value:FONT(self.fontSize) range:range];
+//    [self addAttribute:NSFontAttributeName value:FONT(self.fontSize) range:range];
 }
 
 - (void)addHighlightInRange:(NSRange)range {
     [self addAttribute:NSForegroundColorAttributeName value:self.highlightColor range:range];
-    [self addAttribute:NSFontAttributeName value:BOLD_FONT(self.fontSize) range:range];
+//    [self addAttribute:NSFontAttributeName value:BOLD_FONT(self.fontSize) range:range];
 }
 
 @end

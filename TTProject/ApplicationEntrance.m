@@ -10,8 +10,8 @@
 
 #import "TTAppLaunchView.h"
 
-#import "DiscoverGroupViewController.h"
-#import "TitleGroupViewController.h"
+#import "DiscoverViewController.h"
+#import "TitleListViewController.h"
 #import "MessageViewController.h"
 #import "MeViewController.h"
 
@@ -132,8 +132,8 @@
 {
     self.tabbarController = [[TTTabbarController alloc] initWithViewControllers:
                             @[
-                              [[DiscoverGroupViewController alloc] init],
-                              [[TitleGroupViewController alloc] init],
+                              [[DiscoverViewController alloc] init],
+                              [[TitleListViewController alloc] init],
                               [[MessageViewController alloc] init],
                               [[MeViewController alloc] init]
                               ]

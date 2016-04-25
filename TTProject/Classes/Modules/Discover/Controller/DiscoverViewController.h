@@ -10,6 +10,4 @@
 
 @interface DiscoverViewController : PostListViewController
 
-@property (nonatomic, assign) NSInteger sort;
-
 @end

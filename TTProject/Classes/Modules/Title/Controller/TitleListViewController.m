@@ -23,9 +23,22 @@
 
 #pragma mark - Life Cycle
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.tabbarItem = [[TTTabbarItem alloc] initWithTitle:@"话题" titleColor:Color_Gray1 selectedTitleColor:Color_Green1 icon:[UIImage imageNamed:@"icon_tabbar_topic_normal"] selectedIcon:[UIImage imageNamed:@"icon_tabbar_topic_selected"]];
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.title = @"话题";
+    
+    [self addNavigationBar];
     
     [self initData];
 }
@@ -38,6 +51,20 @@
     
     self.tableView.top = NAVBAR_HEIGHT;
     self.tableView.height = SCREEN_HEIGHT - NAVBAR_HEIGHT - TABBAR_HEIGHT;
+    
+}
+
+- (void)addNavigationBar
+{
+    [super addNavigationBar];
+    
+    UIImage *searchImage = [UIImage imageNamed:@"icon_nav_search"];
+    UIButton *searchButton = [UIButton leftBarButtonWithImage:searchImage highlightedImage:searchImage target:self action:@selector(handleSearchButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationBar setLeftBarButton:searchButton];
+    
+    UIImage *addImage = [UIImage imageNamed:@"icon_nav_add"];
+    UIButton *addTopicButton = [UIButton rightBarButtonWithImage:addImage highlightedImage:addImage target:self action:@selector(handleAddTopicButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationBar setRightBarButton:addTopicButton];
     
 }
 
@@ -183,6 +210,18 @@
 - (void) errorTipsViewBeginRefresh:(TTErrorTipsView *)tipsView
 {
     [self initData];
+}
+
+#pragma mark - Event Response
+
+- (void)handleAddTopicButton
+{
+    DBG(@"handleAddTopicButton");
+}
+
+- (void)handleSearchButton
+{
+    DBG(@"handleSearchButton");
 }
 
 @end

@@ -65,11 +65,9 @@
 {
     
     DiscoverViewController *newDiscoverViewController = [[DiscoverViewController alloc] init];
-    newDiscoverViewController.sort = 0;
     [self addChildViewController:newDiscoverViewController];
     
     DiscoverViewController *hotDiscoverViewController = [[DiscoverViewController alloc] init];
-    hotDiscoverViewController.sort = 1;
     [self addChildViewController:hotDiscoverViewController];
     
     self.viewControllers = @[newDiscoverViewController, hotDiscoverViewController];

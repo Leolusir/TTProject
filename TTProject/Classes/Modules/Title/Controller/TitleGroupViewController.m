@@ -35,8 +35,6 @@
 {
     [super viewDidLoad];
     
-    self.needBlurEffect = NO;
-    
     [self addNavigationBar];
     
     [self initSubViewController];

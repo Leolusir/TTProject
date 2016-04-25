@@ -8,7 +8,7 @@
 
 #import "SKTopicParser.h"
 
-@implementation TTTopicParser
+@implementation SKTopicParser
 
 - (BOOL)parseText:(NSMutableAttributedString *)text selectedRange:(NSRangePointer)range {
     
