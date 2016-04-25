@@ -11,7 +11,7 @@
 #import "PostRequest.h"
 #import <QiniuSDK.h>
 #import <YYText/YYText.h>
-#import "TTTopicParser.h"
+#import "SKTopicParser.h"
 
 @interface PostPublishViewController () <UIScrollViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, YYTextViewDelegate>
 

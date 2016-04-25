@@ -6,7 +6,7 @@
 //  Copyright © 2016年 ivan. All rights reserved.
 //
 
-#import "TTTopicParser.h"
+#import "SKTopicParser.h"
 
 @implementation TTTopicParser
 

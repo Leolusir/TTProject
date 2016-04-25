@@ -29,7 +29,7 @@
 		2C8312CB1CC23AEF005E11AB /* DiscoverRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8312CA1CC23AEF005E11AB /* DiscoverRequest.m */; };
 		2C8312D61CC24EE9005E11AB /* PostImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8312D21CC24EE9005E11AB /* PostImageCell.m */; };
 		2C8312D71CC24EE9005E11AB /* PostTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8312D51CC24EE9005E11AB /* PostTextCell.m */; };
-		2C88E2791CCCC18D00646D9A /* TTTopicParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C88E2781CCCC18D00646D9A /* TTTopicParser.m */; };
+		2C88E2791CCCC18D00646D9A /* SKTopicParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C88E2781CCCC18D00646D9A /* SKTopicParser.m */; };
 		2C88E2DC1CCDE09900646D9A /* TitleGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C88E2CE1CCDE09900646D9A /* TitleGroupViewController.m */; };
 		2C88E2DD1CCDE09900646D9A /* TitleListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C88E2D01CCDE09900646D9A /* TitleListViewController.m */; };
 		2C88E2DE1CCDE09900646D9A /* TitleListResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C88E2D31CCDE09900646D9A /* TitleListResultModel.m */; };
@@ -153,8 +153,8 @@
 		2C8312D31CC24EE9005E11AB /* PostImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostImageCell.h; sourceTree = "<group>"; };
 		2C8312D41CC24EE9005E11AB /* PostTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTextCell.h; sourceTree = "<group>"; };
 		2C8312D51CC24EE9005E11AB /* PostTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTextCell.m; sourceTree = "<group>"; };
-		2C88E2771CCCC18D00646D9A /* TTTopicParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTopicParser.h; sourceTree = "<group>"; };
-		2C88E2781CCCC18D00646D9A /* TTTopicParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTopicParser.m; sourceTree = "<group>"; };
+		2C88E2771CCCC18D00646D9A /* SKTopicParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTopicParser.h; sourceTree = "<group>"; };
+		2C88E2781CCCC18D00646D9A /* SKTopicParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTopicParser.m; sourceTree = "<group>"; };
 		2C88E2CD1CCDE09900646D9A /* TitleGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleGroupViewController.h; sourceTree = "<group>"; };
 		2C88E2CE1CCDE09900646D9A /* TitleGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleGroupViewController.m; sourceTree = "<group>"; };
 		2C88E2CF1CCDE09900646D9A /* TitleListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleListViewController.h; sourceTree = "<group>"; };
@@ -565,8 +565,8 @@
 			children = (
 				2C8ECE9E1CB8CCBA00A294AB /* TTUrlHelper.h */,
 				2C8ECE9F1CB8CCBA00A294AB /* TTUrlHelper.m */,
-				2C88E2771CCCC18D00646D9A /* TTTopicParser.h */,
-				2C88E2781CCCC18D00646D9A /* TTTopicParser.m */,
+				2C88E2771CCCC18D00646D9A /* SKTopicParser.h */,
+				2C88E2781CCCC18D00646D9A /* SKTopicParser.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1230,7 +1230,7 @@
 				2C8ECF8A1CB8CCBA00A294AB /* WallItemCell.m in Sources */,
 				2CE574FF1CBD4D8400F2AC04 /* DiscoverViewController.m in Sources */,
 				2C8ECFA31CB8D2B900A294AB /* TTModuleEntrance.m in Sources */,
-				2C88E2791CCCC18D00646D9A /* TTTopicParser.m in Sources */,
+				2C88E2791CCCC18D00646D9A /* SKTopicParser.m in Sources */,
 				2C387A441CC6768A0054D404 /* CommentModel.m in Sources */,
 				2C8ECF551CB8CCBA00A294AB /* NSArray+NullCheck.m in Sources */,
 				2C8312D61CC24EE9005E11AB /* PostImageCell.m in Sources */,

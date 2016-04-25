@@ -8,6 +8,6 @@
 
 #import <YYText/YYText.h>
 
-@interface TTTopicParser : NSObject <YYTextParser>
+@interface SKTopicParser : NSObject <YYTextParser>
 
 @end
