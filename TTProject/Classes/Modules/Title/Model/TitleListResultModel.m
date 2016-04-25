@@ -6,8 +6,8 @@
 //  Copyright © 2016年 ivan. All rights reserved.
 //
 
-#import "TopicListResultModel.h"
+#import "TitleListResultModel.h"
 
-@implementation TopicListResultModel
+@implementation TitleListResultModel
 
 @end

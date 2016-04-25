@@ -25,7 +25,7 @@
     NSTextContainer *textContainer = [[NSTextContainer alloc] initWithSize:CGSizeMake(frame.size.width, CGFLOAT_MAX)];
     [layoutManager addTextContainer:textContainer];
     
-    self = [self initWithFrame:frame textContainer:textContainer];
+    self = [super initWithFrame:frame textContainer:textContainer];
     
 //    if (self) {
 //        

@@ -8,16 +8,16 @@
 
 #import "PostTextCell.h"
 #import "PostModel.h"
-#import "TTTAttributedLabel.h"
+#import <YYText/YYText.h>
 #import "PostVoteView.h"
 
 #define LINESPACE 4.f
 #define PADDING 20.f
 #define SINGLE_LINE_HEIGHT 22.f
 
-@interface PostTextCell () <TTTAttributedLabelDelegate>
+@interface PostTextCell ()<UITextViewDelegate>
 
-@property (nonatomic, strong) TTTAttributedLabel *contentLabel;
+@property (nonatomic, strong) YYLabel *contentLabel;
 @property (nonatomic, strong) UILabel *countLabel;
 @property (nonatomic, strong) PostVoteView *postVoteView;
 
@@ -45,16 +45,32 @@
         NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:@"#[^#]+?#" options:NSRegularExpressionCaseInsensitive error:nil];
         NSRange matchRange = [regularExpression rangeOfFirstMatchInString:post.content options:0 range:range];
         
-        self.contentLabel.text = post.content;
-        [self.contentLabel addLinkToURL:[NSURL URLWithString:@"http://baidu.com"] withRange:matchRange];
+        NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:post.content];
+        attributedText.yy_font = FONT(14);
+        attributedText.yy_color = Color_Gray2;
+        attributedText.yy_lineSpacing = LINESPACE;
         
-        [self.contentLabel sizeToFit];
-        self.contentLabel.width = SCREEN_WIDTH - PADDING - 90;
+        if ( matchRange.location == 0 ) {
+            [attributedText yy_setColor:Color_Green1 range:matchRange];
+            [attributedText yy_setFont:BOLD_FONT(14) range:matchRange];
+            
+            YYTextHighlight *highlight = [YYTextHighlight new];
+            [attributedText yy_setTextHighlight:highlight range:matchRange];
+        }
         
-        CGFloat contentHeight = ceil(self.contentLabel.height) + 10 + 12;
+        self.contentLabel.attributedText = attributedText;
+        
+        YYTextContainer *container = [YYTextContainer new];
+        container.size = CGSizeMake(SCREEN_WIDTH - PADDING - 90, CGFLOAT_MAX);
+        container.maximumNumberOfRows = 0;
+        YYTextLayout *textLayout = [YYTextLayout layoutWithContainer:container text:attributedText];
+        self.contentLabel.textLayout = textLayout;
+        self.contentLabel.size = textLayout.textBoundingSize;
+        
+        CGFloat contentHeight = ceil(textLayout.textBoundingSize.height) + 10 + 12;
         
         CGFloat cellHeight = 10 + ( contentHeight < 55 ? 55 : contentHeight ) + 15;
-        self.countLabel.text = [NSString stringWithFormat:@"%@    %ld条评论    %ld人参与",post.createTime, post.commentCount, post.member];//@"10分钟前   10条评论   100人参与";
+        self.countLabel.text = [NSString stringWithFormat:@"%@    %ld条评论    %ld人参与",post.createTime, (long)post.commentCount, (long)post.member];//@"10分钟前   10条评论   100人参与";
         [self.countLabel sizeToFit];
         self.countLabel.bottom = cellHeight - 15;
         
@@ -71,37 +87,36 @@
     
     PostModel *post = (PostModel *)cellData;
     
-    CGSize size = [post.content sizeWithUIFont:FONT(14) lineSpacing:LINESPACE forWidth:SCREEN_WIDTH - PADDING - 90];
+    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:post.content];
+    attributedText.yy_font = FONT(14);
+    attributedText.yy_color = Color_Gray2;
+    attributedText.yy_lineSpacing = LINESPACE;
     
-    CGFloat contentHeight = ceil(size.height) + 10 + 12;
+    YYTextContainer *container = [YYTextContainer new];
+    container.size = CGSizeMake(SCREEN_WIDTH - PADDING - 90, CGFLOAT_MAX);
+    container.maximumNumberOfRows = 0;
+    YYTextLayout *layout = [YYTextLayout layoutWithContainer:container text:attributedText];
+    
+    CGFloat contentHeight = ceil(layout.textBoundingSize.height) + 10 + 12;
     
     return 10 + ( contentHeight < 55 ? 55 : contentHeight ) + 15;
 }
 
 #pragma mark - Getters And Setters
 
-- (TTTAttributedLabel *)contentLabel
+- (YYLabel *)contentLabel
 {
     if ( !_contentLabel ) {
-        _contentLabel = [[TTTAttributedLabel alloc] initWithFrame:CGRectMake(PADDING, 10, SCREEN_WIDTH - PADDING - 90, 0)];
+        _contentLabel = [[YYLabel alloc] initWithFrame:CGRectMake(PADDING, 10, SCREEN_WIDTH - PADDING - 90, 0)];
         _contentLabel.numberOfLines = 0;
-        _contentLabel.textColor = Color_Gray2;
         _contentLabel.font = FONT(14);
-        _contentLabel.delegate = self;
-        _contentLabel.lineSpacing = LINESPACE;
-        _contentLabel.highlightedTextColor = Color_Green1;
         
-        NSMutableDictionary *linkAttributes = [NSMutableDictionary dictionary];
-        [linkAttributes setValue:[NSNumber numberWithBool:NO] forKey:(NSString *)kCTUnderlineStyleAttributeName];
-        [linkAttributes setValue:(__bridge id)Color_Green1.CGColor forKey:(NSString *)kCTForegroundColorAttributeName];
-        CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)BOLD_FONT(14).fontName, BOLD_FONT(14).pointSize, NULL);
-        if (font) {
-            //设置可点击文本的大小
-            [linkAttributes setValue:(__bridge id)font forKey:(NSString *)kCTFontAttributeName];
-            CFRelease(font);
-        }
-        _contentLabel.linkAttributes = linkAttributes;
-        _contentLabel.activeLinkAttributes = linkAttributes;
+        weakify(self);
+        _contentLabel.highlightTapAction = ^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect) {
+            strongify(self);
+            [self highlightTapWithContainerView:containerView text:text range:range rect:rect];
+        };
+        
     }
     
     return _contentLabel;
@@ -126,12 +141,11 @@
     return _postVoteView;
 }
 
-#pragma mark - TTTAttributedLabelDelegate
+#pragma mark - Private Methods
 
-- (void)attributedLabel:(TTTAttributedLabel *)label didSelectLinkWithURL:(NSURL *)url
+- (void)highlightTapWithContainerView:(UIView *)containerView text:(NSAttributedString *)text range:(NSRange)range rect:(CGRect)rect
 {
-    DBG(@"link: %@", url);
-    [[TTNavigationService sharedService] openUrl:url.absoluteString];
+    DBG(@"highlightTap");
 }
 
 @end

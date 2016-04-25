@@ -6,10 +6,10 @@
 //  Copyright © 2016年 ivan. All rights reserved.
 //
 
-#import "TopicGroupViewController.h"
-#import "TopicListViewController.h"
+#import "TitleGroupViewController.h"
+#import "TitleListViewController.h"
 
-@interface TopicGroupViewController ()
+@interface TitleGroupViewController ()
 
 @property (nonatomic, strong) NSArray *viewControllers;
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation TopicGroupViewController
+@implementation TitleGroupViewController
 
 #pragma mark - Life Cycle
 
@@ -73,11 +73,11 @@
 - (void)initSubViewController
 {
     
-    TopicListViewController *newTopicListViewController = [[TopicListViewController alloc] init];
+    TitleListViewController *newTopicListViewController = [[TitleListViewController alloc] init];
     newTopicListViewController.sort = 0;
     [self addChildViewController:newTopicListViewController];
     
-    TopicListViewController *hotTopicListViewController = [[TopicListViewController alloc] init];
+    TitleListViewController *hotTopicListViewController = [[TitleListViewController alloc] init];
     hotTopicListViewController.sort = 1;
     [self addChildViewController:hotTopicListViewController];
     

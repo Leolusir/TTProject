@@ -8,11 +8,11 @@
 
 #import "BaseModel.h"
 
-@protocol TopicModel
+@protocol TitleModel
 
 @end
 
-@interface TopicModel : BaseModel
+@interface TitleModel : BaseModel
 
 @property (nonatomic, strong) NSString *id;
 @property (nonatomic, assign) NSInteger ref;

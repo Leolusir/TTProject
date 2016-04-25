@@ -14,4 +14,7 @@
 + (void)voteWithParams:(NSDictionary *)params success:(void(^)())success failure:(void(^)(StatusModel *status))failure;
 
 + (void)publishPostWithParams:(NSDictionary *)params success:(void(^)(PostPublishResultModel *resultModel))success failure:(void(^)(StatusModel *status))failure;
+
++ (void)getQiniuTokenWithSuccess:(void(^)(NSString *token))success failure:(void(^)(StatusModel *status))failure;
+
 @end

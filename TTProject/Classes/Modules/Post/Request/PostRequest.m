@@ -10,6 +10,7 @@
 
 #define POST_VOTE                          @"/api/v1/vote"
 #define POST_PUBLISH                       @"/api/v1/post"
+#define POST_TOKEN                         @"/api/v1/qiniu"
 
 @implementation PostRequest
 
@@ -38,6 +39,23 @@
         
         if (success) {
             success(resultModel);
+        }
+        
+    } failure:^(StatusModel *status) {
+        if (failure) {
+            failure(status);
+        }
+    }];
+}
+
++ (void)getQiniuTokenWithSuccess:(void(^)(NSString *token))success failure:(void(^)(StatusModel *status))failure
+{
+    [[TTNetworkManager sharedInstance] getWithUrl:POST_TOKEN parameters:nil success:^(NSDictionary *result) {
+        
+        NSString *token = [result objectForKey:@"authToken"];
+        
+        if (success) {
+            success(token);
         }
         
     } failure:^(StatusModel *status) {

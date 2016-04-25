@@ -104,6 +104,7 @@
     [self hideNotice];
     
     _noticeView = [[MBProgressHUD alloc] initWithView:self.view];
+    _noticeView.color = RGBA(39, 212, 178, 0.8);
     [self.view addSubview:_noticeView];
     _noticeView.userInteractionEnabled = NO;
     
@@ -135,6 +136,7 @@
     [self hideNotice];
     
     _noticeView = [[MBProgressHUD alloc] initWithView:self.view.window];
+    _noticeView.color = RGBA(39, 212, 178, 0.8);
     [self.view.window addSubview:_noticeView];
     
     _noticeView.customView = [[UIImageView alloc] initWithImage:nil];

@@ -6,20 +6,20 @@
 //  Copyright © 2016年 ivan. All rights reserved.
 //
 
-#import "TopicListViewController.h"
+#import "TitleListViewController.h"
 
-#import "TopicRequest.h"
-#import "TopicModel.h"
+#import "TitleRequest.h"
+#import "TitleModel.h"
 
-#import "TopicCell.h"
+#import "TitleCell.h"
 
-@interface TopicListViewController ()
+@interface TitleListViewController ()
 
-@property (nonatomic, strong) NSMutableArray<TopicModel> *titles;
+@property (nonatomic, strong) NSMutableArray<TitleModel> *titles;
 
 @end
 
-@implementation TopicListViewController
+@implementation TitleListViewController
 
 #pragma mark - Life Cycle
 
@@ -47,7 +47,7 @@
 {
     self.loadingType = LoadingTypeInit;
     
-    self.titles = [NSMutableArray<TopicModel> array];
+    self.titles = [NSMutableArray<TitleModel> array];
     
     [self loadData];
 }
@@ -75,7 +75,7 @@
     
     weakify(self);
     
-    [TopicRequest getTopicsWithParams:params success:^(TopicListResultModel *resultModel) {
+    [TitleRequest getTopicsWithParams:params success:^(TitleListResultModel *resultModel) {
         
         strongify(self);
         
@@ -136,11 +136,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TopicModel *topic = [self.titles safeObjectAtIndex:indexPath.row];
+    TitleModel *topic = [self.titles safeObjectAtIndex:indexPath.row];
     
     if (topic) {
         
-        TopicCell *cell = [TopicCell dequeueReusableCellForTableView:tableView];
+        TitleCell *cell = [TitleCell dequeueReusableCellForTableView:tableView];
         cell.cellData = topic;
         [cell reloadData];
         return cell;
@@ -156,13 +156,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TopicModel *topic = [self.titles safeObjectAtIndex:indexPath.row];
+    TitleModel *topic = [self.titles safeObjectAtIndex:indexPath.row];
     
     CGFloat height = 0;
     
     if ( topic ) {
         
-        height = [TopicCell heightForCell:topic];
+        height = [TitleCell heightForCell:topic];
         
     }
     
@@ -171,7 +171,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    TopicModel *topic = [self.titles safeObjectAtIndex:indexPath.row];
+    TitleModel *topic = [self.titles safeObjectAtIndex:indexPath.row];
     
     if ( topic ) {
         DBG(@"Post:%@ Click", topic.id);

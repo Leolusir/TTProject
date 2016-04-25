@@ -6,19 +6,19 @@
 //  Copyright © 2016年 ivan. All rights reserved.
 //
 
-#import "TopicCell.h"
-#import "TopicModel.h"
+#import "TitleCell.h"
+#import "TitleModel.h"
 
 #define PADDING 10
 
-@interface TopicCell ()
+@interface TitleCell ()
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *countLabel;
 
 @end
 
-@implementation TopicCell
+@implementation TitleCell
 
 - (void)drawCell{
     
@@ -31,10 +31,10 @@
     
     if ( self.cellData ) {
         
-        TopicModel *topic = (TopicModel *)self.cellData;
+        TitleModel *topic = (TitleModel *)self.cellData;
         
         self.titleLabel.text = [NSString stringWithFormat:@"# %@ #", topic.id];
-        self.countLabel.text = [NSString stringWithFormat:@"%ld条内容", topic.ref];
+        self.countLabel.text = [NSString stringWithFormat:@"%ld条内容", (long)topic.ref];
         
     }
     

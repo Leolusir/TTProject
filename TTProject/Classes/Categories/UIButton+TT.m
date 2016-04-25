@@ -52,7 +52,7 @@
         size = image.size;
     }
     
-    button.frame = CGRectMake(0.0f, 0.0f, size.width < 44.0f ? 44.0f : size.width, size.height);
+    button.frame = CGRectMake(0.0f, 0.0f, size.width < 44.0f ? 44.0f : size.width, size.height < 44.0f ? 44.0f : size.height);
     
     [button setTitle:title forState:UIControlStateNormal];
     

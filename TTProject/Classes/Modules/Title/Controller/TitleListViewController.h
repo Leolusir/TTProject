@@ -8,7 +8,7 @@
 
 #import "BaseTableViewController.h"
 
-@interface TopicListViewController : BaseTableViewController
+@interface TitleListViewController : BaseTableViewController
 
 @property (nonatomic, assign) NSInteger sort;
 

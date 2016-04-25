@@ -162,7 +162,7 @@
         PostViewController *vc = [[PostViewController alloc] init];
         vc.post = post;
         
-        [navigationController pushViewController:vc animated:NO];
+        [navigationController pushViewController:vc animated:YES];
     }
 }
 

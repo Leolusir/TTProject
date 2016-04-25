@@ -148,7 +148,7 @@
 - (TTMDTextField *)phoneTextField
 {
     if ( !_phoneTextField ) {
-        _phoneTextField = [[TTMDTextField alloc] initWithFrame:CGRectMake(30, 30, 275, 40) normalColor:Color_Green1 errorColor:Color_Red1 disabledColor:Color_Gray1 textColor:Color_Gray2 placeholderTextColor:Color_Gray3 titleFontSize:10 textFontSize:14];
+        _phoneTextField = [[TTMDTextField alloc] initWithFrame:CGRectMake(30, 30, SCREEN_WIDTH - 100, 40) normalColor:Color_Green1 errorColor:Color_Red1 disabledColor:Color_Gray1 textColor:Color_Gray2 placeholderTextColor:Color_Gray3 titleFontSize:10 textFontSize:14];
         _phoneTextField.placeholder = @"手机号";
     }
     
@@ -158,7 +158,7 @@
 - (TTMDTextField *)captchaTextField
 {
     if ( !_captchaTextField ) {
-        _captchaTextField = [[TTMDTextField alloc] initWithFrame:CGRectMake(30, self.phoneTextField.bottom + 30, 180, 40) normalColor:Color_Green1 errorColor:Color_Red1 disabledColor:Color_Gray1 textColor:Color_Gray2 placeholderTextColor:Color_Gray3 titleFontSize:10 textFontSize:14];
+        _captchaTextField = [[TTMDTextField alloc] initWithFrame:CGRectMake(30, self.phoneTextField.bottom + 30, SCREEN_WIDTH - 200, 40) normalColor:Color_Green1 errorColor:Color_Red1 disabledColor:Color_Gray1 textColor:Color_Gray2 placeholderTextColor:Color_Gray3 titleFontSize:10 textFontSize:14];
         _captchaTextField.placeholder = @"验证码";
     }
     
@@ -256,7 +256,7 @@
         return;
     }
     
-    NSDictionary *params = @{@"phone":phoneText,@"type":[NSString stringWithFormat:@"%ld", [self getCaptchaType]]};
+    NSDictionary *params = @{@"phone":phoneText,@"type":[NSString stringWithFormat:@"%ld", (long)[self getCaptchaType]]};
     
     weakify(self);
     [UserRequest getCaptchaWithParams:params success:^{

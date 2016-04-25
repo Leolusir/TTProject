@@ -15,7 +15,10 @@ pod 'SwipeView', '~> 1.3.2'
 pod 'Toast', '~> 2.4'
 #pod 'FMDB', '~> 2.5'
 pod 'Reachability', '~> 3.1.1'
-pod 'TTTAttributedLabel'
+#pod 'TTTAttributedLabel'
+pod 'Qiniu', :git => 'https://github.com/qiniu/objc-sdk.git', :branch => 'AFNetworking-3.x'
+pod 'YYText'
+pod 'AMapLocation'
 
 end
 

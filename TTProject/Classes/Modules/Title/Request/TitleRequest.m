@@ -6,19 +6,19 @@
 //  Copyright © 2016年 ivan. All rights reserved.
 //
 
-#import "TopicRequest.h"
+#import "TitleRequest.h"
 
 #define TOPIC_GET_TITLES                          @"/api/v1/post/title"
 
-@implementation TopicRequest
+@implementation TitleRequest
 
-+ (void)getTopicsWithParams:(NSDictionary *)params success:(void(^)(TopicListResultModel *resultModel))success failure:(void(^)(StatusModel *status))failure
++ (void)getTopicsWithParams:(NSDictionary *)params success:(void(^)(TitleListResultModel *resultModel))success failure:(void(^)(StatusModel *status))failure
 {
     [[TTNetworkManager sharedInstance] getWithUrl:TOPIC_GET_TITLES parameters:params success:^(NSDictionary *result) {
         
         NSError *err = [[NSError alloc] init];
         
-        TopicListResultModel *resultModel = [[TopicListResultModel alloc] initWithDictionary:result error:&err];
+        TitleListResultModel *resultModel = [[TitleListResultModel alloc] initWithDictionary:result error:&err];
         
         if (success) {
             success(resultModel);

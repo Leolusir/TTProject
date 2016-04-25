@@ -17,7 +17,6 @@
 @interface PostModel : BaseModel
 
 @property (nonatomic, strong) UserModel *user;
-@property (nonatomic, strong) TitleModel<Optional> *title;
 @property (nonatomic, strong) NSString *id;
 @property (nonatomic, strong) NSString *content;
 @property (nonatomic, assign) CGFloat longitude;

@@ -10,12 +10,8 @@
 		2C387A441CC6768A0054D404 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C387A431CC6768A0054D404 /* CommentModel.m */; };
 		2C387A471CC677170054D404 /* CommentListResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C387A461CC677170054D404 /* CommentListResultModel.m */; };
 		2C387A4A1CC678940054D404 /* PostRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C387A491CC678940054D404 /* PostRequest.m */; };
-		2C39BA641CCA7A5A006E4DC6 /* TopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C39BA631CCA7A5A006E4DC6 /* TopicCell.m */; };
 		2C3C910A1CC90362004DB793 /* TTGalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C91081CC90362004DB793 /* TTGalleryView.m */; };
 		2C3C910D1CC90E86004DB793 /* PostPublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C910C1CC90E86004DB793 /* PostPublishViewController.m */; };
-		2C3C91101CC93655004DB793 /* TopicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C910F1CC93655004DB793 /* TopicModel.m */; };
-		2C3C91131CC936D2004DB793 /* TopicListResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C91121CC936D2004DB793 /* TopicListResultModel.m */; };
-		2C3C91161CC93721004DB793 /* TopicRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C91151CC93721004DB793 /* TopicRequest.m */; };
 		2C5008691CC366A800D0101B /* PostVoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5008681CC366A800D0101B /* PostVoteView.m */; };
 		2C8312981CC1F4A8005E11AB /* TTAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C83128F1CC1F4A8005E11AB /* TTAlertView.m */; };
 		2C8312991CC1F4A8005E11AB /* TTHighlightTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8312911CC1F4A8005E11AB /* TTHighlightTextStorage.m */; };
@@ -26,16 +22,20 @@
 		2C8312A21CC2059F005E11AB /* SignInResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8312A11CC2059F005E11AB /* SignInResultModel.m */; };
 		2C8312A51CC205E4005E11AB /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8312A41CC205E4005E11AB /* UserModel.m */; };
 		2C8312AB1CC21B2D005E11AB /* DiscoverGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8312AA1CC21B2D005E11AB /* DiscoverGroupViewController.m */; };
-		2C8312AE1CC227C9005E11AB /* TopicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8312AD1CC227C9005E11AB /* TopicListViewController.m */; };
-		2C8312B11CC227D7005E11AB /* TopicGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8312B01CC227D7005E11AB /* TopicGroupViewController.m */; };
 		2C8312BC1CC22F66005E11AB /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8312BB1CC22F66005E11AB /* PostViewController.m */; };
 		2C8312BF1CC22F76005E11AB /* PostListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8312BE1CC22F76005E11AB /* PostListViewController.m */; };
 		2C8312C21CC231A3005E11AB /* PostListResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8312C11CC231A3005E11AB /* PostListResultModel.m */; };
 		2C8312C51CC2325D005E11AB /* PostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8312C41CC2325D005E11AB /* PostModel.m */; };
-		2C8312C81CC23423005E11AB /* TitleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8312C71CC23423005E11AB /* TitleModel.m */; };
 		2C8312CB1CC23AEF005E11AB /* DiscoverRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8312CA1CC23AEF005E11AB /* DiscoverRequest.m */; };
 		2C8312D61CC24EE9005E11AB /* PostImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8312D21CC24EE9005E11AB /* PostImageCell.m */; };
 		2C8312D71CC24EE9005E11AB /* PostTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8312D51CC24EE9005E11AB /* PostTextCell.m */; };
+		2C88E2791CCCC18D00646D9A /* TTTopicParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C88E2781CCCC18D00646D9A /* TTTopicParser.m */; };
+		2C88E2DC1CCDE09900646D9A /* TitleGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C88E2CE1CCDE09900646D9A /* TitleGroupViewController.m */; };
+		2C88E2DD1CCDE09900646D9A /* TitleListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C88E2D01CCDE09900646D9A /* TitleListViewController.m */; };
+		2C88E2DE1CCDE09900646D9A /* TitleListResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C88E2D31CCDE09900646D9A /* TitleListResultModel.m */; };
+		2C88E2DF1CCDE09900646D9A /* TitleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C88E2D51CCDE09900646D9A /* TitleModel.m */; };
+		2C88E2E01CCDE09900646D9A /* TitleRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C88E2D81CCDE09900646D9A /* TitleRequest.m */; };
+		2C88E2E11CCDE09900646D9A /* TitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C88E2DB1CCDE09900646D9A /* TitleCell.m */; };
 		2C8ECE681CB8C8F700A294AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8ECE671CB8C8F700A294AB /* main.m */; };
 		2C8ECE6B1CB8C8F700A294AB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8ECE6A1CB8C8F700A294AB /* AppDelegate.m */; };
 		2C8ECE6E1CB8C8F700A294AB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8ECE6D1CB8C8F700A294AB /* ViewController.m */; };
@@ -115,18 +115,10 @@
 		2C387A461CC677170054D404 /* CommentListResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentListResultModel.m; sourceTree = "<group>"; };
 		2C387A481CC678940054D404 /* PostRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostRequest.h; sourceTree = "<group>"; };
 		2C387A491CC678940054D404 /* PostRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostRequest.m; sourceTree = "<group>"; };
-		2C39BA621CCA7A5A006E4DC6 /* TopicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicCell.h; sourceTree = "<group>"; };
-		2C39BA631CCA7A5A006E4DC6 /* TopicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicCell.m; sourceTree = "<group>"; };
 		2C3C91081CC90362004DB793 /* TTGalleryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGalleryView.m; sourceTree = "<group>"; };
 		2C3C91091CC90362004DB793 /* TTGalleryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTGalleryView.h; sourceTree = "<group>"; };
 		2C3C910B1CC90E86004DB793 /* PostPublishViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostPublishViewController.h; sourceTree = "<group>"; };
 		2C3C910C1CC90E86004DB793 /* PostPublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostPublishViewController.m; sourceTree = "<group>"; };
-		2C3C910E1CC93655004DB793 /* TopicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicModel.h; sourceTree = "<group>"; };
-		2C3C910F1CC93655004DB793 /* TopicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicModel.m; sourceTree = "<group>"; };
-		2C3C91111CC936D2004DB793 /* TopicListResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicListResultModel.h; sourceTree = "<group>"; };
-		2C3C91121CC936D2004DB793 /* TopicListResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicListResultModel.m; sourceTree = "<group>"; };
-		2C3C91141CC93721004DB793 /* TopicRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicRequest.h; sourceTree = "<group>"; };
-		2C3C91151CC93721004DB793 /* TopicRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicRequest.m; sourceTree = "<group>"; };
 		2C5008671CC366A800D0101B /* PostVoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostVoteView.h; sourceTree = "<group>"; };
 		2C5008681CC366A800D0101B /* PostVoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostVoteView.m; sourceTree = "<group>"; };
 		2C83128E1CC1F4A8005E11AB /* TTAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTAlertView.h; sourceTree = "<group>"; };
@@ -147,10 +139,6 @@
 		2C8312A41CC205E4005E11AB /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		2C8312A91CC21B2D005E11AB /* DiscoverGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverGroupViewController.h; sourceTree = "<group>"; };
 		2C8312AA1CC21B2D005E11AB /* DiscoverGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverGroupViewController.m; sourceTree = "<group>"; };
-		2C8312AC1CC227C9005E11AB /* TopicListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicListViewController.h; sourceTree = "<group>"; };
-		2C8312AD1CC227C9005E11AB /* TopicListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicListViewController.m; sourceTree = "<group>"; };
-		2C8312AF1CC227D7005E11AB /* TopicGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicGroupViewController.h; sourceTree = "<group>"; };
-		2C8312B01CC227D7005E11AB /* TopicGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicGroupViewController.m; sourceTree = "<group>"; };
 		2C8312BA1CC22F66005E11AB /* PostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostViewController.h; sourceTree = "<group>"; };
 		2C8312BB1CC22F66005E11AB /* PostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostViewController.m; sourceTree = "<group>"; };
 		2C8312BD1CC22F76005E11AB /* PostListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostListViewController.h; sourceTree = "<group>"; };
@@ -159,14 +147,26 @@
 		2C8312C11CC231A3005E11AB /* PostListResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostListResultModel.m; sourceTree = "<group>"; };
 		2C8312C31CC2325D005E11AB /* PostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostModel.h; sourceTree = "<group>"; };
 		2C8312C41CC2325D005E11AB /* PostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostModel.m; sourceTree = "<group>"; };
-		2C8312C61CC23423005E11AB /* TitleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleModel.h; sourceTree = "<group>"; };
-		2C8312C71CC23423005E11AB /* TitleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleModel.m; sourceTree = "<group>"; };
 		2C8312C91CC23AEF005E11AB /* DiscoverRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverRequest.h; sourceTree = "<group>"; };
 		2C8312CA1CC23AEF005E11AB /* DiscoverRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverRequest.m; sourceTree = "<group>"; };
 		2C8312D21CC24EE9005E11AB /* PostImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostImageCell.m; sourceTree = "<group>"; };
 		2C8312D31CC24EE9005E11AB /* PostImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostImageCell.h; sourceTree = "<group>"; };
 		2C8312D41CC24EE9005E11AB /* PostTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTextCell.h; sourceTree = "<group>"; };
 		2C8312D51CC24EE9005E11AB /* PostTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTextCell.m; sourceTree = "<group>"; };
+		2C88E2771CCCC18D00646D9A /* TTTopicParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTopicParser.h; sourceTree = "<group>"; };
+		2C88E2781CCCC18D00646D9A /* TTTopicParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTopicParser.m; sourceTree = "<group>"; };
+		2C88E2CD1CCDE09900646D9A /* TitleGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleGroupViewController.h; sourceTree = "<group>"; };
+		2C88E2CE1CCDE09900646D9A /* TitleGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleGroupViewController.m; sourceTree = "<group>"; };
+		2C88E2CF1CCDE09900646D9A /* TitleListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleListViewController.h; sourceTree = "<group>"; };
+		2C88E2D01CCDE09900646D9A /* TitleListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleListViewController.m; sourceTree = "<group>"; };
+		2C88E2D21CCDE09900646D9A /* TitleListResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleListResultModel.h; sourceTree = "<group>"; };
+		2C88E2D31CCDE09900646D9A /* TitleListResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleListResultModel.m; sourceTree = "<group>"; };
+		2C88E2D41CCDE09900646D9A /* TitleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleModel.h; sourceTree = "<group>"; };
+		2C88E2D51CCDE09900646D9A /* TitleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleModel.m; sourceTree = "<group>"; };
+		2C88E2D71CCDE09900646D9A /* TitleRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleRequest.h; sourceTree = "<group>"; };
+		2C88E2D81CCDE09900646D9A /* TitleRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleRequest.m; sourceTree = "<group>"; };
+		2C88E2DA1CCDE09900646D9A /* TitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleCell.h; sourceTree = "<group>"; };
+		2C88E2DB1CCDE09900646D9A /* TitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleCell.m; sourceTree = "<group>"; };
 		2C8ECE631CB8C8F700A294AB /* TTProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C8ECE671CB8C8F700A294AB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2C8ECE691CB8C8F700A294AB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -416,6 +416,57 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		2C88E2CB1CCDE09900646D9A /* Title */ = {
+			isa = PBXGroup;
+			children = (
+				2C88E2CC1CCDE09900646D9A /* Controller */,
+				2C88E2D11CCDE09900646D9A /* Model */,
+				2C88E2D61CCDE09900646D9A /* Request */,
+				2C88E2D91CCDE09900646D9A /* View */,
+			);
+			path = Title;
+			sourceTree = "<group>";
+		};
+		2C88E2CC1CCDE09900646D9A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2C88E2CD1CCDE09900646D9A /* TitleGroupViewController.h */,
+				2C88E2CE1CCDE09900646D9A /* TitleGroupViewController.m */,
+				2C88E2CF1CCDE09900646D9A /* TitleListViewController.h */,
+				2C88E2D01CCDE09900646D9A /* TitleListViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2C88E2D11CCDE09900646D9A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2C88E2D21CCDE09900646D9A /* TitleListResultModel.h */,
+				2C88E2D31CCDE09900646D9A /* TitleListResultModel.m */,
+				2C88E2D41CCDE09900646D9A /* TitleModel.h */,
+				2C88E2D51CCDE09900646D9A /* TitleModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2C88E2D61CCDE09900646D9A /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				2C88E2D71CCDE09900646D9A /* TitleRequest.h */,
+				2C88E2D81CCDE09900646D9A /* TitleRequest.m */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		2C88E2D91CCDE09900646D9A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2C88E2DA1CCDE09900646D9A /* TitleCell.h */,
+				2C88E2DB1CCDE09900646D9A /* TitleCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		2C8ECE5A1CB8C8F700A294AB = {
 			isa = PBXGroup;
 			children = (
@@ -514,6 +565,8 @@
 			children = (
 				2C8ECE9E1CB8CCBA00A294AB /* TTUrlHelper.h */,
 				2C8ECE9F1CB8CCBA00A294AB /* TTUrlHelper.m */,
+				2C88E2771CCCC18D00646D9A /* TTTopicParser.h */,
+				2C88E2781CCCC18D00646D9A /* TTTopicParser.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -577,10 +630,10 @@
 		2C8ECEB61CB8CCBA00A294AB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				2C88E2CB1CCDE09900646D9A /* Title */,
 				2CE574E11CBD4BF200F2AC04 /* Discover */,
 				2CE574E61CBD4BF200F2AC04 /* Me */,
 				2CE574EB1CBD4BF200F2AC04 /* Message */,
-				2CE574F01CBD4BF200F2AC04 /* Topic */,
 				2C8312B51CC22F27005E11AB /* Post */,
 				2CE574F51CBD4BF200F2AC04 /* User */,
 				2C8ECEB71CB8CCBA00A294AB /* Base */,
@@ -943,59 +996,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		2CE574F01CBD4BF200F2AC04 /* Topic */ = {
-			isa = PBXGroup;
-			children = (
-				2CE574F11CBD4BF200F2AC04 /* Controller */,
-				2CE574F21CBD4BF200F2AC04 /* Model */,
-				2CE574F31CBD4BF200F2AC04 /* Request */,
-				2CE574F41CBD4BF200F2AC04 /* View */,
-			);
-			path = Topic;
-			sourceTree = "<group>";
-		};
-		2CE574F11CBD4BF200F2AC04 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				2C8312AC1CC227C9005E11AB /* TopicListViewController.h */,
-				2C8312AD1CC227C9005E11AB /* TopicListViewController.m */,
-				2C8312AF1CC227D7005E11AB /* TopicGroupViewController.h */,
-				2C8312B01CC227D7005E11AB /* TopicGroupViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		2CE574F21CBD4BF200F2AC04 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				2C8312C61CC23423005E11AB /* TitleModel.h */,
-				2C8312C71CC23423005E11AB /* TitleModel.m */,
-				2C3C910E1CC93655004DB793 /* TopicModel.h */,
-				2C3C910F1CC93655004DB793 /* TopicModel.m */,
-				2C3C91111CC936D2004DB793 /* TopicListResultModel.h */,
-				2C3C91121CC936D2004DB793 /* TopicListResultModel.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		2CE574F31CBD4BF200F2AC04 /* Request */ = {
-			isa = PBXGroup;
-			children = (
-				2C3C91141CC93721004DB793 /* TopicRequest.h */,
-				2C3C91151CC93721004DB793 /* TopicRequest.m */,
-			);
-			path = Request;
-			sourceTree = "<group>";
-		};
-		2CE574F41CBD4BF200F2AC04 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				2C39BA621CCA7A5A006E4DC6 /* TopicCell.h */,
-				2C39BA631CCA7A5A006E4DC6 /* TopicCell.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		2CE574F51CBD4BF200F2AC04 /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -1094,6 +1094,7 @@
 				TargetAttributes = {
 					2C8ECE621CB8C8F700A294AB = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = FZMT527EK9;
 					};
 				};
 			};
@@ -1181,9 +1182,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C88E2E01CCDE09900646D9A /* TitleRequest.m in Sources */,
 				2C387A471CC677170054D404 /* CommentListResultModel.m in Sources */,
 				2C8312D71CC24EE9005E11AB /* PostTextCell.m in Sources */,
 				2C8ECF5A1CB8CCBA00A294AB /* NSURL+TT.m in Sources */,
+				2C88E2DC1CCDE09900646D9A /* TitleGroupViewController.m in Sources */,
 				2C8ECFA61CB8D2B900A294AB /* TTNavigationService.m in Sources */,
 				2CFD2D161CCB511500229DC3 /* PostPublishResultModel.m in Sources */,
 				2C8312BC1CC22F66005E11AB /* PostViewController.m in Sources */,
@@ -1191,13 +1194,10 @@
 				2C387A4A1CC678940054D404 /* PostRequest.m in Sources */,
 				2C8312C21CC231A3005E11AB /* PostListResultModel.m in Sources */,
 				2C8ECF541CB8CCBA00A294AB /* ApplicationEntrance.m in Sources */,
-				2C3C91161CC93721004DB793 /* TopicRequest.m in Sources */,
-				2C39BA641CCA7A5A006E4DC6 /* TopicCell.m in Sources */,
 				2C8ECF761CB8CCBA00A294AB /* ImageUnitModel.m in Sources */,
 				2C8ECF621CB8CCBA00A294AB /* TTUrlHelper.m in Sources */,
 				2CE574E01CBD497900F2AC04 /* TTUserService.m in Sources */,
 				2C8312AB1CC21B2D005E11AB /* DiscoverGroupViewController.m in Sources */,
-				2C3C91131CC936D2004DB793 /* TopicListResultModel.m in Sources */,
 				2CE575051CBD4DBF00F2AC04 /* MessageViewController.m in Sources */,
 				2C8ECF7A1CB8CCBA00A294AB /* WallModel.m in Sources */,
 				2C8ECF871CB8CCBA00A294AB /* TTErrorTipsView.m in Sources */,
@@ -1209,8 +1209,8 @@
 				2C8ECF5C1CB8CCBA00A294AB /* UIColor+TT.m in Sources */,
 				2C8ECF6A1CB8CCBA00A294AB /* BaseWallViewController.m in Sources */,
 				2C8ECF881CB8CCBA00A294AB /* TTNavigationBar.m in Sources */,
-				2C3C91101CC93655004DB793 /* TopicModel.m in Sources */,
 				2C8ECF5F1CB8CCBA00A294AB /* UILabel+TT.m in Sources */,
+				2C88E2E11CCDE09900646D9A /* TitleCell.m in Sources */,
 				2C8312981CC1F4A8005E11AB /* TTAlertView.m in Sources */,
 				2C8ECF5B1CB8CCBA00A294AB /* UIButton+TT.m in Sources */,
 				2C8ECF791CB8CCBA00A294AB /* WallItemModel.m in Sources */,
@@ -1230,11 +1230,11 @@
 				2C8ECF8A1CB8CCBA00A294AB /* WallItemCell.m in Sources */,
 				2CE574FF1CBD4D8400F2AC04 /* DiscoverViewController.m in Sources */,
 				2C8ECFA31CB8D2B900A294AB /* TTModuleEntrance.m in Sources */,
+				2C88E2791CCCC18D00646D9A /* TTTopicParser.m in Sources */,
 				2C387A441CC6768A0054D404 /* CommentModel.m in Sources */,
 				2C8ECF551CB8CCBA00A294AB /* NSArray+NullCheck.m in Sources */,
 				2C8312D61CC24EE9005E11AB /* PostImageCell.m in Sources */,
 				2C8ECF591CB8CCBA00A294AB /* NSString+TT.m in Sources */,
-				2C8312AE1CC227C9005E11AB /* TopicListViewController.m in Sources */,
 				2C8ECF781CB8CCBA00A294AB /* StatusModel.m in Sources */,
 				2C8ECF6B1CB8CCBA00A294AB /* BaseWebViewController.m in Sources */,
 				2C83129C1CC1F4A8005E11AB /* TTSliderView.m in Sources */,
@@ -1242,16 +1242,15 @@
 				2C8ECF721CB8CCBA00A294AB /* BaseRefreshView.m in Sources */,
 				2C8ECF6E1CB8CCBA00A294AB /* BaseModel.m in Sources */,
 				2C8ECF8C1CB8CCBA00A294AB /* TTTabbar.m in Sources */,
+				2C88E2DE1CCDE09900646D9A /* TitleListResultModel.m in Sources */,
 				2C8ECF6F1CB8CCBA00A294AB /* BaseRequest.m in Sources */,
 				2C8ECF861CB8CCBA00A294AB /* TTEmptyTipsView.m in Sources */,
-				2C8312B11CC227D7005E11AB /* TopicGroupViewController.m in Sources */,
 				2C8ECF701CB8CCBA00A294AB /* BaseCollectionSectionHeaderView.m in Sources */,
 				2C8312A21CC2059F005E11AB /* SignInResultModel.m in Sources */,
 				2C8ECF671CB8CCBA00A294AB /* BaseCollectionViewController.m in Sources */,
 				2C8ECE6B1CB8C8F700A294AB /* AppDelegate.m in Sources */,
 				2C8ECF771CB8CCBA00A294AB /* ResponseModel.m in Sources */,
 				2C8ECF751CB8CCBA00A294AB /* TTNavigationController.m in Sources */,
-				2C8312C81CC23423005E11AB /* TitleModel.m in Sources */,
 				2C8ECF6C1CB8CCBA00A294AB /* RootScrollViewController.m in Sources */,
 				2C8ECF811CB8CCBA00A294AB /* DefaultWallCell.m in Sources */,
 				2CE575081CBD4DDF00F2AC04 /* MeViewController.m in Sources */,
@@ -1261,6 +1260,7 @@
 				2C8ECE681CB8C8F700A294AB /* main.m in Sources */,
 				2C8312BF1CC22F76005E11AB /* PostListViewController.m in Sources */,
 				2C83129A1CC1F4A8005E11AB /* TTHighlightTextView.m in Sources */,
+				2C88E2DD1CCDE09900646D9A /* TitleListViewController.m in Sources */,
 				2C3C910D1CC90E86004DB793 /* PostPublishViewController.m in Sources */,
 				2C8ECF5E1CB8CCBA00A294AB /* UIImageView+TT.m in Sources */,
 				2C8ECFA41CB8D2B900A294AB /* WebModuleEntrance.m in Sources */,
@@ -1270,6 +1270,7 @@
 				2C8ECF5D1CB8CCBA00A294AB /* UIDevice+TT.m in Sources */,
 				2C8ECF681CB8CCBA00A294AB /* BaseTableViewController.m in Sources */,
 				2C8312CB1CC23AEF005E11AB /* DiscoverRequest.m in Sources */,
+				2C88E2DF1CCDE09900646D9A /* TitleModel.m in Sources */,
 				2C8ECF801CB8CCBA00A294AB /* DefaultRefreshView.m in Sources */,
 				2C8ECF8B1CB8CCBA00A294AB /* TTTabbarController.m in Sources */,
 				2C8ECF631CB8CCBA00A294AB /* UIScrollView+SVInfiniteScrolling.m in Sources */,
@@ -1387,12 +1388,15 @@
 			baseConfigurationReference = 0360BCC909B1F192B326897D /* Pods-TTProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = TTProject/PrefixHeader.pch;
 				INFOPLIST_FILE = TTProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.devils.seek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1401,12 +1405,15 @@
 			baseConfigurationReference = 5334C4DEAEFCFDFB5848EEAD /* Pods-TTProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = TTProject/PrefixHeader.pch;
 				INFOPLIST_FILE = TTProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.devils.seek;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

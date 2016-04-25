@@ -7,16 +7,16 @@
 //
 
 #import "BaseModel.h"
-#import "TopicModel.h"
+#import "TitleModel.h"
 
-@protocol TopicListResultModel
+@protocol TitleListResultModel
 
 @end
 
-@interface TopicListResultModel : BaseModel
+@interface TitleListResultModel : BaseModel
 
 @property (nonatomic, assign) BOOL isEnd;
 @property (nonatomic, strong) NSString *wp;
-@property (nonatomic, strong) NSArray<TopicModel> *titles;
+@property (nonatomic, strong) NSArray<TitleModel> *titles;
 
 @end

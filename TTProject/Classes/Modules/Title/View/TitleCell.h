@@ -1,13 +1,13 @@
 //
-//  TopicModel.m
+//  TopicCell.h
 //  TTProject
 //
 //  Created by Ivan on 16/4/22.
 //  Copyright © 2016年 ivan. All rights reserved.
 //
 
-#import "TopicModel.h"
+#import "BaseTableViewCell.h"
 
-@implementation TopicModel
+@interface TitleCell : BaseTableViewCell
 
 @end

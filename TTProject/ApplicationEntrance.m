@@ -11,7 +11,7 @@
 #import "TTAppLaunchView.h"
 
 #import "DiscoverGroupViewController.h"
-#import "TopicGroupViewController.h"
+#import "TitleGroupViewController.h"
 #import "MessageViewController.h"
 #import "MeViewController.h"
 
@@ -46,6 +46,9 @@
     
     //应用初始化
     [self appInit];
+    
+    // 高德
+    [AMapLocationServices sharedServices].apiKey = @"b53d77dabc08fbee9b3741bbddf88a53";
     
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
     
@@ -130,7 +133,7 @@
     self.tabbarController = [[TTTabbarController alloc] initWithViewControllers:
                             @[
                               [[DiscoverGroupViewController alloc] init],
-                              [[TopicGroupViewController alloc] init],
+                              [[TitleGroupViewController alloc] init],
                               [[MessageViewController alloc] init],
                               [[MeViewController alloc] init]
                               ]

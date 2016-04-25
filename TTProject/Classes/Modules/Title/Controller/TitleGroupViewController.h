@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface TopicGroupViewController : BaseViewController
+@interface TitleGroupViewController : BaseViewController
 
 @end
