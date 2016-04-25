@@ -36,6 +36,7 @@
 		2C88E2DF1CCDE09900646D9A /* TitleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C88E2D51CCDE09900646D9A /* TitleModel.m */; };
 		2C88E2E01CCDE09900646D9A /* TitleRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C88E2D81CCDE09900646D9A /* TitleRequest.m */; };
 		2C88E2E11CCDE09900646D9A /* TitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C88E2DB1CCDE09900646D9A /* TitleCell.m */; };
+		2C88E2E41CCE6A0F00646D9A /* TitlePostListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C88E2E31CCE6A0F00646D9A /* TitlePostListViewController.m */; };
 		2C8ECE681CB8C8F700A294AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8ECE671CB8C8F700A294AB /* main.m */; };
 		2C8ECE6B1CB8C8F700A294AB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8ECE6A1CB8C8F700A294AB /* AppDelegate.m */; };
 		2C8ECE6E1CB8C8F700A294AB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8ECE6D1CB8C8F700A294AB /* ViewController.m */; };
@@ -167,6 +168,8 @@
 		2C88E2D81CCDE09900646D9A /* TitleRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleRequest.m; sourceTree = "<group>"; };
 		2C88E2DA1CCDE09900646D9A /* TitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleCell.h; sourceTree = "<group>"; };
 		2C88E2DB1CCDE09900646D9A /* TitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleCell.m; sourceTree = "<group>"; };
+		2C88E2E21CCE6A0F00646D9A /* TitlePostListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitlePostListViewController.h; sourceTree = "<group>"; };
+		2C88E2E31CCE6A0F00646D9A /* TitlePostListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitlePostListViewController.m; sourceTree = "<group>"; };
 		2C8ECE631CB8C8F700A294AB /* TTProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TTProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C8ECE671CB8C8F700A294AB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2C8ECE691CB8C8F700A294AB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -373,6 +376,8 @@
 				2C8312BE1CC22F76005E11AB /* PostListViewController.m */,
 				2C3C910B1CC90E86004DB793 /* PostPublishViewController.h */,
 				2C3C910C1CC90E86004DB793 /* PostPublishViewController.m */,
+				2C88E2E21CCE6A0F00646D9A /* TitlePostListViewController.h */,
+				2C88E2E31CCE6A0F00646D9A /* TitlePostListViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1216,6 +1221,7 @@
 				2C8ECF791CB8CCBA00A294AB /* WallItemModel.m in Sources */,
 				2C8ECF651CB8CCBA00A294AB /* TTNetworkManager.m in Sources */,
 				2C8ECF6D1CB8CCBA00A294AB /* WallViewLayout.m in Sources */,
+				2C88E2E41CCE6A0F00646D9A /* TitlePostListViewController.m in Sources */,
 				2C8312C51CC2325D005E11AB /* PostModel.m in Sources */,
 				2C8312991CC1F4A8005E11AB /* TTHighlightTextStorage.m in Sources */,
 				2C8ECE6E1CB8C8F700A294AB /* ViewController.m in Sources */,

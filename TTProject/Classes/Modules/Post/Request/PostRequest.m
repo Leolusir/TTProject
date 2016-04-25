@@ -11,6 +11,7 @@
 #define POST_VOTE                          @"/api/v1/vote"
 #define POST_PUBLISH                       @"/api/v1/post"
 #define POST_TOKEN                         @"/api/v1/qiniu"
+#define POST_FOR_TITLE                     @"/api/v1/post/bytitle"
 
 @implementation PostRequest
 
@@ -56,6 +57,25 @@
         
         if (success) {
             success(token);
+        }
+        
+    } failure:^(StatusModel *status) {
+        if (failure) {
+            failure(status);
+        }
+    }];
+}
+
++ (void)getTitlePostsWithParams:(NSDictionary *)params success:(void(^)(PostListResultModel *resultModel))success failure:(void(^)(StatusModel *status))failure
+{
+    [[TTNetworkManager sharedInstance] getWithUrl:POST_FOR_TITLE parameters:params success:^(NSDictionary *result) {
+        
+        NSError *err = [[NSError alloc] init];
+        
+        PostListResultModel *resultModel = [[PostListResultModel alloc] initWithDictionary:result error:&err];
+        
+        if (success) {
+            success(resultModel);
         }
         
     } failure:^(StatusModel *status) {

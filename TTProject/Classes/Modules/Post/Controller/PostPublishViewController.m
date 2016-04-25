@@ -26,6 +26,8 @@
 @property (nonatomic, strong) NSString *postImageKey;
 @property (nonatomic, strong) UIButton *deleteImageButton;
 
+@property (nonatomic, strong) AMapLocationManager *locationManager;
+
 @end
 
 @implementation PostPublishViewController
@@ -41,6 +43,7 @@
     [self addNavigationBar];
     [self addContainerView];
     [self addEditZone];
+    [self initAMap];
 }
 
 #pragma mark - Private Methods
@@ -50,7 +53,7 @@
     [super addNavigationBar];
     
     UIImage *publishImage = [UIImage imageNamed:@"icon_nav_publish"];
-    UIButton *publishPostButton = [UIButton rightBarButtonWithImage:publishImage highlightedImage:publishImage target:self action:@selector(addPost) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *publishPostButton = [UIButton rightBarButtonWithImage:publishImage highlightedImage:publishImage target:self action:@selector(handlePublishPostButton) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationBar setRightBarButton:publishPostButton];
 }
 
@@ -85,6 +88,9 @@
     self.postTextView.font = FONT(14);
     self.postTextView.delegate = self;
     self.postTextView.tintColor = Color_Green1;
+    if (self.postTitle) {
+        self.postTextView.text = [NSString stringWithFormat:@"#%@#", self.postTitle];
+    }
     [self.containerView addSubview:self.postTextView];
     
     self.postImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.addTitleButton.bottom + 10, SCREEN_WIDTH, 100)];
@@ -101,7 +107,18 @@
     
 }
 
-- (void)avatarFromSourceType:(UIImagePickerControllerSourceType)sourceType
+- (void)initAMap
+{
+    self.locationManager = [[AMapLocationManager alloc] init];
+    // 带逆地理信息的一次定位（返回坐标和地址信息）
+    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+    // 定位超时时间，可修改，最小2s
+    self.locationManager.locationTimeout = 3;
+    // 逆地理请求超时时间，可修改，最小2s
+    self.locationManager.reGeocodeTimeout = 3;
+}
+
+- (void)imageFromSourceType:(UIImagePickerControllerSourceType)sourceType
 {
     if ([UIImagePickerController isSourceTypeAvailable:sourceType]) {
         UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
@@ -134,48 +151,68 @@
 
 - (void)publishPost
 {
-    //TODO: 参数待实装
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setSafeObject:@"120.121806" forKey:@"longitude"];
-    [params setSafeObject:@"30.274818" forKey:@"latitude"];
-    [params setSafeObject:@"中国" forKey:@"country"];
-    [params setSafeObject:@"浙江" forKey:@"province"];
-    [params setSafeObject:@"杭州" forKey:@"city"];
-    [params setSafeObject:@"通向天国的阶梯" forKey:@"street"];
-    [params setSafeObject:@"天上人间" forKey:@"aoi"];
-    [params setSafeObject:[TTUserService sharedService].id forKey:@"userId"];
-//    title
-    [params setSafeObject:self.postTextView.text forKey:@"content"];
-    [params setSafeObject:self.postImageKey forKey:@"imageUrl"];
-    
     weakify(self);
-
-    [PostRequest publishPostWithParams:params success:^(PostPublishResultModel *resultModel) {
-
-        strongify(self);
-
-        [self showNotice:@"发布成功"];
-
-    } failure:^(StatusModel *status) {
-
-        DBG(@"%@", status);
-
+    [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+        
         strongify(self);
         
-        [self showNotice:status.msg];
+        if (error)
+        {
+            // TODO: 错误消息待优化
+            [self showAlert:@"定位失败！"];
+            DBG(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+            return;
+            
+        }
+        
+        DBG(@"location:%@", location);
+        
+        if (regeocode)
+        {
+            DBG(@"reGeocode:%@", regeocode);
+        }
+        
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        [params setSafeObject:@(location.coordinate.longitude) forKey:@"longitude"];
+        [params setSafeObject:@(location.coordinate.latitude) forKey:@"latitude"];
+        [params setSafeObject:regeocode.country forKey:@"country"];
+        [params setSafeObject:regeocode.province forKey:@"province"];
+        [params setSafeObject:regeocode.city forKey:@"city"];
+        [params setSafeObject:regeocode.street forKey:@"street"];
+        [params setSafeObject:regeocode.AOIName forKey:@"aoi"];
+        [params setSafeObject:[TTUserService sharedService].id forKey:@"userId"];
+        [params setSafeObject:self.postTextView.text forKey:@"content"];
+        [params setSafeObject:self.postImageKey forKey:@"imageUrl"];
+        
+        [PostRequest publishPostWithParams:params success:^(PostPublishResultModel *resultModel) {
+            
+            // TODO: 发布完，刷新列表
+            [self showNotice:@"发布成功"];
+            
+        } failure:^(StatusModel *status) {
+            
+            DBG(@"%@", status);
+            
+            strongify(self);
+            
+            [self showNotice:status.msg];
+            
+        }];
         
     }];
+    
 }
 
 #pragma mark - Event Response
 
 - (void)addTitle
 {
-    
+    [self.view endEditing:YES];
 }
 
 - (void)addImage
 {
+    [self.view endEditing:YES];
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"请选择图片来源" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照", @"从手机相册选取", nil];
     [actionSheet showInView:self.view];
 }
@@ -186,7 +223,7 @@
     [self hideImage];
 }
 
-- (void)addPost
+- (void)handlePublishPostButton
 {
     DBG(@"publishPost");
     
@@ -232,11 +269,11 @@
 {
     switch (buttonIndex) {
         case 0: // 拍照
-            [self avatarFromSourceType:UIImagePickerControllerSourceTypeCamera];
+            [self imageFromSourceType:UIImagePickerControllerSourceTypeCamera];
             break;
             
         case 1: // 从手机相册选取
-            [self avatarFromSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
+            [self imageFromSourceType:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
             break;
             
         default:

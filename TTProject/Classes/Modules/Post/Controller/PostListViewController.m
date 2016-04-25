@@ -15,6 +15,11 @@
 
 @property (nonatomic, strong) NSMutableDictionary *textCellHeightCache;
 @property (nonatomic, strong) NSMutableArray<PostModel> *posts;
+@property (nonatomic, strong) AMapLocationManager *locationManager;
+
+@property (nonatomic, assign) CLLocationDegrees latitude;
+@property (nonatomic, assign) CLLocationDegrees longitude;
+@property (nonatomic, strong) NSString *country;
 
 @end
 
@@ -26,10 +31,23 @@
 {
     [super viewDidLoad];
     
+    [self initAMap];
+    
     [self initData];
 }
 
 #pragma mark - Private Methods
+
+- (void)initAMap
+{
+    self.locationManager = [[AMapLocationManager alloc] init];
+    // 带逆地理信息的一次定位（返回坐标和地址信息）
+    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+    // 定位超时时间，可修改，最小2s
+    self.locationManager.locationTimeout = 3;
+    // 逆地理请求超时时间，可修改，最小2s
+    self.locationManager.reGeocodeTimeout = 3;
+}
 
 - (void)initData
 {
@@ -44,16 +62,49 @@
 
 - (void)loadData
 {
+
+    if ( LoadingTypeLoadMore != self.loadingType ) {
+        
+        weakify(self);
+        [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+            
+            strongify(self);
+            
+            if (error)
+            {
+                // TODO: 错误消息待优化
+                [self showAlert:@"定位失败！"];
+                DBG(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+                return;
+                
+            }
+            
+            DBG(@"location:%@", location);
+            
+            self.latitude = location.coordinate.latitude;
+            self.longitude = location.coordinate.longitude;
+            
+            if (regeocode)
+            {
+                DBG(@"reGeocode:%@", regeocode);
+                self.country = regeocode.country;
+                
+            } else {
+                self.country = @"中国";
+            }
+            
+            [self requestData];
+        }];
+        
+    } else {
+        
+        [self requestData];
+    }
     
-//    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-//    
-//    if ( LoadingTypeLoadMore == self.loadingType ) {
-//        
-//        
-//    } else {
-//        
-//        
-//    }
+}
+
+- (void) requestData
+{
     
 }
 

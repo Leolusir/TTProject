@@ -11,7 +11,7 @@
 #import "TTNavigationService.h"
 #import "TTNavigationController.h"
 #import "PostPublishViewController.h"
-
+#import "TitlePostListViewController.h"
 #import "SignInUpViewController.h"
 
 @implementation AppModuleEntrance
@@ -37,6 +37,8 @@
     // 发Post
     [[TTNavigationService sharedService] registerModule:self withScheme:APP_SCHEME host:@"post_publish"];
     
+    // 话题Post列表
+    [[TTNavigationService sharedService] registerModule:self withScheme:APP_SCHEME host:@"title_post"];
     
 }
 
@@ -76,6 +78,13 @@
         } else if([url.host isEqualToString:@"post_publish"]) {
             
             PostPublishViewController *vc = [[PostPublishViewController alloc] init];
+            vc.postTitle = urlParams[@"title"];
+            [navigationController pushViewController:vc animated:YES];
+            
+        } else if([url.host isEqualToString:@"title_post"]) {
+            
+            TitlePostListViewController *vc = [[TitlePostListViewController alloc] init];
+            vc.title = urlParams[@"title"];
             [navigationController pushViewController:vc animated:YES];
             
         }

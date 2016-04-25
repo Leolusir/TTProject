@@ -8,4 +8,6 @@
 
 @interface PostPublishViewController : BaseViewController
 
+@property (nonatomic, strong) NSString *postTitle;
+
 @end

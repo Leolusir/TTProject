@@ -11,6 +11,10 @@
 
 @interface PostListViewController : BaseTableViewController
 
+@property (nonatomic, assign, readonly) CLLocationDegrees latitude;
+@property (nonatomic, assign, readonly) CLLocationDegrees longitude;
+@property (nonatomic, strong, readonly) NSString *country;
+
 - (void)addPosts:(NSArray *)posts;
 - (void)cleanUpPosts;
 

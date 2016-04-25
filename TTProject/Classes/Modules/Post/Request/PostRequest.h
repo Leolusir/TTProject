@@ -8,6 +8,7 @@
 
 #import "BaseRequest.h"
 #import "PostPublishResultModel.h"
+#import "PostListResultModel.h"
 
 @interface PostRequest : BaseRequest
 
@@ -16,5 +17,7 @@
 + (void)publishPostWithParams:(NSDictionary *)params success:(void(^)(PostPublishResultModel *resultModel))success failure:(void(^)(StatusModel *status))failure;
 
 + (void)getQiniuTokenWithSuccess:(void(^)(NSString *token))success failure:(void(^)(StatusModel *status))failure;
+
++ (void)getTitlePostsWithParams:(NSDictionary *)params success:(void(^)(PostListResultModel *resultModel))success failure:(void(^)(StatusModel *status))failure;
 
 @end

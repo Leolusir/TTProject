@@ -10,7 +10,7 @@
 #import "TTMDTextField.h"
 #import "UserRequest.h"
 
-@interface SignInUpViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface SignInUpViewController () <UIPickerViewDelegate, UIPickerViewDataSource, TTMDTextFieldDelegate>
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 @property (nonatomic, strong) UIButton *signUpButton;
@@ -38,6 +38,8 @@
 @property (nonatomic, strong) NSString *gender;
 
 @property (nonatomic, assign) BOOL isSignIn;
+@property (nonatomic, assign) CGFloat cursorHeight;
+@property (nonatomic, assign) CGFloat spacingWithKeyboardAndCursor;
 
 @end
 
@@ -55,6 +57,16 @@
     
     [self render];
     
+    //增加监听，当键盘出现或改变时收出消息
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    //增加监听，当键退出时收出消息
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
 }
 
 #pragma mark - Private Methods
@@ -127,6 +139,7 @@
         [_maskView bk_whenTapped:^{
             self.maskView.hidden = YES;
             self.formBgView.hidden = YES;
+            [self.view endEditing:YES];
         }];
     }
     
@@ -136,10 +149,11 @@
 - (UIView *)formBgView
 {
     if ( !_formBgView ) {
-        _formBgView = [[UIView alloc] initWithFrame:CGRectMake(20, 165, SCREEN_WIDTH - 20 * 2, 225)];
+        _formBgView = [[UIView alloc] initWithFrame:CGRectMake(20, 0, SCREEN_WIDTH - 20 * 2, 225)];
         _formBgView.backgroundColor = Color_White;
         _formBgView.layer.cornerRadius = 5;
         _formBgView.hidden = YES;
+        _formBgView.centerY = SCREEN_HEIGHT / 2;
     }
     
     return _formBgView;
@@ -150,6 +164,7 @@
     if ( !_phoneTextField ) {
         _phoneTextField = [[TTMDTextField alloc] initWithFrame:CGRectMake(30, 30, SCREEN_WIDTH - 100, 40) normalColor:Color_Green1 errorColor:Color_Red1 disabledColor:Color_Gray1 textColor:Color_Gray2 placeholderTextColor:Color_Gray3 titleFontSize:10 textFontSize:14];
         _phoneTextField.placeholder = @"手机号";
+        _phoneTextField.delegate = self;
     }
     
     return _phoneTextField;
@@ -160,6 +175,7 @@
     if ( !_captchaTextField ) {
         _captchaTextField = [[TTMDTextField alloc] initWithFrame:CGRectMake(30, self.phoneTextField.bottom + 30, SCREEN_WIDTH - 200, 40) normalColor:Color_Green1 errorColor:Color_Red1 disabledColor:Color_Gray1 textColor:Color_Gray2 placeholderTextColor:Color_Gray3 titleFontSize:10 textFontSize:14];
         _captchaTextField.placeholder = @"验证码";
+        _captchaTextField.delegate = self;
     }
     
     return _captchaTextField;
@@ -258,19 +274,23 @@
     
     NSDictionary *params = @{@"phone":phoneText,@"type":[NSString stringWithFormat:@"%ld", (long)[self getCaptchaType]]};
     
+    self.captchaButton.enabled = NO;
+    [self.captchaButton setTitle:@"60s" forState:UIControlStateDisabled];
+    
     weakify(self);
+    
     [UserRequest getCaptchaWithParams:params success:^{
         
         strongify(self);
         
-        self.captchaButton.enabled = NO;
-        [self.captchaButton setTitle:@"60s" forState:UIControlStateDisabled];
         self.time = 59;
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleTimer) userInfo:nil repeats:YES];
         [self.timer fire];
         
     } failure:^(StatusModel *status) {
         
+        self.captchaButton.enabled = YES
+        ;
         [self showAlert:status.msg];
         
     }];
@@ -289,9 +309,51 @@
     self.time--;
 }
 
-#pragma mark - UITextFieldDelegate
+#pragma mark - TTMDTextFieldDelegate
 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    
+    if ([textField isEqual:self.phoneTextField]) {
+        self.cursorHeight = self.view.height - self.formBgView.top - textField.bottom;
+    } else if ([textField isEqual:self.captchaTextField]) {
+        self.cursorHeight = self.view.height - self.formBgView.top - textField.bottom;
+    }
+    
+    return YES;
+}
 
+#pragma mark - Observing Methods
+
+//当键盘出现或改变时调用
+- (void)keyboardWillShow:(NSNotification *)notification {
+    
+    //获取键盘的高度
+    NSDictionary *userInfo = [notification userInfo];
+    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    CGFloat keyboardHeight = keyboardRect.size.height;
+    self.spacingWithKeyboardAndCursor = keyboardHeight - self.cursorHeight;
+    if (self.spacingWithKeyboardAndCursor > 0) {
+        weakify(self);
+        [UIView animateWithDuration:0.2f animations:^{
+            //将视图的Y坐标向上移动offset个单位，以使下面腾出地方用于软键盘的显示
+            strongify(self);
+            self.view.frame = CGRectMake(0.0f, -(self.spacingWithKeyboardAndCursor + 5.0f), self.view.frame.size.width, self.view.frame.size.height);
+        }];
+    }
+}
+//当键退出时调用
+- (void)keyboardWillHide:(NSNotification *)notification {
+    
+    if (self.spacingWithKeyboardAndCursor > 0) {
+        weakify(self);
+        [UIView animateWithDuration:0.2f animations:^{
+            strongify(self);
+            //将视图的Y坐标向上移动offset个单位，以使下面腾出地方用于软键盘的显示
+            self.view.frame = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height);
+        }];
+    }
+}
 
 #pragma mark - UIPickerViewDelegate
 #pragma mark - UIPickerViewDataSource

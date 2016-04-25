@@ -13,9 +13,18 @@
 
 #import "TitleCell.h"
 
+#import <YYText/YYText.h>
+
 @interface TitleListViewController ()
 
 @property (nonatomic, strong) NSMutableArray<TitleModel> *titles;
+@property (nonatomic, strong) NSArray<TitleModel> *hotTitles;
+
+@property (nonatomic, strong) AMapLocationManager *locationManager;
+
+@property (nonatomic, assign) CLLocationDegrees latitude;
+@property (nonatomic, assign) CLLocationDegrees longitude;
+@property (nonatomic, strong) NSString *country;
 
 @end
 
@@ -39,6 +48,8 @@
     self.title = @"话题";
     
     [self addNavigationBar];
+    
+    [self initAMap];
     
     [self initData];
 }
@@ -70,11 +81,23 @@
 
 #pragma mark - Private Methods
 
+- (void)initAMap
+{
+    self.locationManager = [[AMapLocationManager alloc] init];
+    // 带逆地理信息的一次定位（返回坐标和地址信息）
+    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+    // 定位超时时间，可修改，最小2s
+    self.locationManager.locationTimeout = 3;
+    // 逆地理请求超时时间，可修改，最小2s
+    self.locationManager.reGeocodeTimeout = 3;
+}
+
 - (void)initData
 {
     self.loadingType = LoadingTypeInit;
     
     self.titles = [NSMutableArray<TitleModel> array];
+    self.hotTitles = [[NSArray<TitleModel> alloc] init];
     
     [self loadData];
 }
@@ -85,12 +108,53 @@
         return;
     }
     
-    //TODO: 参数待实装
+    if ( LoadingTypeLoadMore != self.loadingType ) {
+        
+        weakify(self);
+        [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
+            
+            strongify(self);
+            
+            if (error)
+            {
+                // TODO: 错误消息待优化
+                [self showAlert:@"定位失败！"];
+                DBG(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+                return;
+                
+            }
+            
+            DBG(@"location:%@", location);
+            
+            self.latitude = location.coordinate.latitude;
+            self.longitude = location.coordinate.longitude;
+            
+            if (regeocode)
+            {
+                DBG(@"reGeocode:%@", regeocode);
+                self.country = regeocode.country;
+                
+            } else {
+                self.country = @"中国";
+            }
+            
+            [self requestData];
+        }];
+        
+    } else {
+        
+        [self requestData];
+    }
+    
+}
+
+- (void)requestData
+{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setSafeObject:@"120.121806" forKey:@"longitude"];
-    [params setSafeObject:@"30.274818" forKey:@"latitude"];
+    [params setSafeObject:@(self.longitude) forKey:@"longitude"];
+    [params setSafeObject:@(self.latitude) forKey:@"latitude"];
     [params setSafeObject:@"2" forKey:@"distance"];
-    [params setSafeObject:@"中国" forKey:@"country"];
+    [params setSafeObject:self.country forKey:@"country"];
     [params setSafeObject:[TTUserService sharedService].id forKey:@"userId"];
     
     
@@ -115,6 +179,7 @@
             } else {
                 [self finishRefresh];
                 [self.titles removeAllObjects];
+                self.hotTitles = resultModel.hotTitles;
             }
             
             [self.titles addObjectsFromArray:resultModel.titles];
@@ -146,24 +211,40 @@
         }
         
     }];
-    
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.titles.count;
+    if ( 0 == section ) {
+        return self.hotTitles.count;
+    } else {
+        return self.titles.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TitleModel *topic = [self.titles safeObjectAtIndex:indexPath.row];
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
+    
+    TitleModel *topic = nil;
+    
+    if ( 0 == section ) {
+        
+        topic = [self.hotTitles safeObjectAtIndex:row];
+        
+    } else {
+        
+        topic = [self.titles safeObjectAtIndex:row];
+        
+    }
     
     if (topic) {
         
@@ -181,11 +262,52 @@
 
 #pragma mark - UITableViewDelegate
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 44;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    YYLabel *headerLabel = [[YYLabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    
+    NSString *title = @"";
+    if ( 0 == section ) {
+        title = @"最热话题";
+    } else {
+        title = @"最新话题";
+    }
+    
+    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:title];
+    attributedText.yy_font = BOLD_FONT(16);
+    attributedText.yy_color = Color_Green1;
+    attributedText.yy_firstLineHeadIndent = 20;
+    
+    headerLabel.attributedText = attributedText;
+    
+    [headerLabel sizeToFit];
+    
+    return headerLabel;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TitleModel *topic = [self.titles safeObjectAtIndex:indexPath.row];
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
     
     CGFloat height = 0;
+    
+    TitleModel *topic = nil;
+    
+    if ( 0 == section ) {
+        
+        topic = [self.hotTitles safeObjectAtIndex:row];
+        
+    } else {
+        
+        topic = [self.titles safeObjectAtIndex:row];
+        
+    }
     
     if ( topic ) {
         
@@ -198,11 +320,28 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    TitleModel *topic = [self.titles safeObjectAtIndex:indexPath.row];
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
+    
+    TitleModel *topic = nil;
+    
+    if ( 0 == section ) {
+        
+        topic = [self.hotTitles safeObjectAtIndex:row];
+        
+    } else {
+        
+        topic = [self.titles safeObjectAtIndex:row];
+        
+    }
     
     if ( topic ) {
+        
         DBG(@"Post:%@ Click", topic.id);
+        [[TTNavigationService sharedService] openUrl:[NSString stringWithFormat:@"jump://title_post?title=%@", topic.id]];
+        
     }
+    
 }
 
 #pragma mark - TTErrorTipsViewDelegate
