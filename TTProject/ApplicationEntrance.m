@@ -12,7 +12,7 @@
 
 #import "DiscoverViewController.h"
 #import "TitleListViewController.h"
-#import "MessageViewController.h"
+#import "RecordViewController.h"
 #import "MeViewController.h"
 
 #import "SignInUpViewController.h"
@@ -134,7 +134,7 @@
                             @[
                               [[DiscoverViewController alloc] init],
                               [[TitleListViewController alloc] init],
-                              [[MessageViewController alloc] init],
+                              [[RecordViewController alloc] init],
                               [[MeViewController alloc] init]
                               ]
                             ];

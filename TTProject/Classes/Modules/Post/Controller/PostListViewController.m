@@ -14,7 +14,9 @@
 @interface PostListViewController ()
 
 @property (nonatomic, strong) NSMutableDictionary *textCellHeightCache;
+@property (nonatomic, strong) NSMutableDictionary *postIds;
 @property (nonatomic, strong) NSMutableArray<PostModel> *posts;
+
 @property (nonatomic, strong) AMapLocationManager *locationManager;
 
 @property (nonatomic, assign) CLLocationDegrees latitude;
@@ -55,6 +57,7 @@
     
     self.posts = [NSMutableArray<PostModel> array];
     self.textCellHeightCache = [NSMutableDictionary dictionary];
+    self.postIds = [NSMutableDictionary dictionary];
     self.wp = @"0";
     
     [self loadData];
@@ -75,14 +78,15 @@
                 // TODO: 错误消息待优化
                 [self showAlert:@"定位失败！"];
                 DBG(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
-                return;
+//                return;
                 
             }
             
             DBG(@"location:%@", location);
             
-            self.latitude = location.coordinate.latitude;
-            self.longitude = location.coordinate.longitude;
+            // TODO: 去除测试数据
+            self.latitude = 30.274818;//location.coordinate.latitude;
+            self.longitude = 120.121806;//location.coordinate.longitude;
             
             if (regeocode)
             {
@@ -127,12 +131,21 @@
 
 - (void)addPosts:(NSArray *)posts
 {
-    [self.posts addObjectsFromArray:posts];
+    for (PostModel *post in posts) {
+        
+        if (![self.postIds objectForKey:post.id]) {
+            
+            [self.posts addSafeObject:post];
+            [self.postIds setSafeObject:post.id forKey:post.id];
+        }
+    }
+    
 }
 
 - (void)cleanUpPosts
 {
     [self.posts removeAllObjects];
+    [self.postIds removeAllObjects];
     [self.textCellHeightCache removeAllObjects];
 }
 
@@ -212,6 +225,9 @@
         TTNavigationController *navigationController = [[ApplicationEntrance shareEntrance] currentNavigationController];
         PostViewController *vc = [[PostViewController alloc] init];
         vc.post = post;
+        vc.postId = post.id;
+        vc.userIdOne = post.userId;
+        vc.userIdTwo = [TTUserService sharedService].id;
         
         [navigationController pushViewController:vc animated:YES];
     }

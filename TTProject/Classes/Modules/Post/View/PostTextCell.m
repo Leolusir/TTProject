@@ -70,7 +70,7 @@
         CGFloat contentHeight = ceil(textLayout.textBoundingSize.height) + 10 + 12;
         
         CGFloat cellHeight = 10 + ( contentHeight < 55 ? 55 : contentHeight ) + 15;
-        self.countLabel.text = [NSString stringWithFormat:@"%@    %ld条评论    %ld人参与",post.createTime, (long)post.commentCount, (long)post.member];//@"10分钟前   10条评论   100人参与";
+        self.countLabel.text = [NSString stringWithFormat:@"%@    %ld人参与",post.createTime, (long)post.member];//@"10分钟前 100人参与";
         [self.countLabel sizeToFit];
         self.countLabel.bottom = cellHeight - 15;
         
@@ -85,21 +85,25 @@
 
 + (CGFloat)heightForCell:(id)cellData {
     
-    PostModel *post = (PostModel *)cellData;
+    if ( cellData ) {
+        PostModel *post = (PostModel *)cellData;
+        
+        NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:post.content];
+        attributedText.yy_font = FONT(14);
+        attributedText.yy_color = Color_Gray2;
+        attributedText.yy_lineSpacing = LINESPACE;
+        
+        YYTextContainer *container = [YYTextContainer new];
+        container.size = CGSizeMake(SCREEN_WIDTH - PADDING - 90, CGFLOAT_MAX);
+        container.maximumNumberOfRows = 0;
+        YYTextLayout *layout = [YYTextLayout layoutWithContainer:container text:attributedText];
+        
+        CGFloat contentHeight = ceil(layout.textBoundingSize.height) + 10 + 12;
+        
+        return 10 + ( contentHeight < 55 ? 55 : contentHeight ) + 15;
+    }
     
-    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:post.content];
-    attributedText.yy_font = FONT(14);
-    attributedText.yy_color = Color_Gray2;
-    attributedText.yy_lineSpacing = LINESPACE;
-    
-    YYTextContainer *container = [YYTextContainer new];
-    container.size = CGSizeMake(SCREEN_WIDTH - PADDING - 90, CGFLOAT_MAX);
-    container.maximumNumberOfRows = 0;
-    YYTextLayout *layout = [YYTextLayout layoutWithContainer:container text:attributedText];
-    
-    CGFloat contentHeight = ceil(layout.textBoundingSize.height) + 10 + 12;
-    
-    return 10 + ( contentHeight < 55 ? 55 : contentHeight ) + 15;
+    return 0;
 }
 
 #pragma mark - Getters And Setters
@@ -145,7 +149,11 @@
 
 - (void)highlightTapWithContainerView:(UIView *)containerView text:(NSAttributedString *)text range:(NSRange)range rect:(CGRect)rect
 {
-    DBG(@"highlightTap");
+    DBG(@"highlightTap %@ %ld %ld", text.string, range.length, range.location);
+    
+    NSString *title = [[text.string substringWithRange:range] stringByReplacingOccurrencesOfString:@"#" withString:@""];
+    
+    [[TTNavigationService sharedService] openUrl:[NSString stringWithFormat:@"jump://title_post?title=%@", title]];
 }
 
 @end

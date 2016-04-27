@@ -175,91 +175,38 @@
                  success:(void (^)(NSDictionary *result))success
                  failure:(void (^)(StatusModel *status))failure {
     
-    if (IS_IOS8) {
+    parameters = [self addSystemParameters:parameters];
+    DBG(@"POST URL:%@",URLString);
+    DBG(@"Parameters:%@",parameters);
+    
+    [self postFormDataWithUrl:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
-        parameters = [self addSystemParameters:parameters];
-        DBG(@"POST URL:%@",URLString);
-        DBG(@"Parameters:%@",parameters);
+        NSData *imageData = UIImageJPEGRepresentation(image, 1);
         
-        [self postFormDataWithUrl:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-            
-            NSData *imageData = UIImageJPEGRepresentation(image, 1);
-            
-            [formData appendPartWithFileData:imageData
-                                        name:@"image"
-                                    fileName:@"image.jpg" mimeType:@"image/jpeg"];
-            
-        } progress:^(NSProgress *uploadProgress) {
-            
-            DBG(@"downloadProgress:%@", uploadProgress);
-            if (progress) {
-                progress(uploadProgress);
-            }
-            
-        } success:^(NSDictionary *result) {
-            
-            if (success) {
-                success(result);
-            }
-            
-        } failure:^(StatusModel *status) {
-            
-            if (failure) {
-                failure(status);
-            }
-            
-        }];
+        [formData appendPartWithFileData:imageData
+                                    name:@"image"
+                                fileName:@"image.jpg" mimeType:@"image/jpeg"];
         
-    } else {
+    } progress:^(NSProgress *uploadProgress) {
         
-        NSString* tmpFilename = [NSString stringWithFormat:@"%f", [NSDate timeIntervalSinceReferenceDate]];
-        NSURL* tmpFileUrl = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:tmpFilename]];
+        DBG(@"downloadProgress:%@", uploadProgress);
+        if (progress) {
+            progress(uploadProgress);
+        }
         
-        // Create a multipart form request.
-        NSMutableURLRequest *multipartRequest = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST"
-                                                                                                           URLString:[NSString stringWithFormat:@"http://app.hoyaoo.com%@", URLString]
-                                                                                                          parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData)
-                                                 {
-                                                     NSData *imageData = UIImageJPEGRepresentation(image, 1);
-                                                     [formData appendPartWithFileData:imageData
-                                                                                 name:@"image"
-                                                                             fileName:@"image.jpg" mimeType:@"image/jpeg"];
-                                                 } error:nil];
+    } success:^(NSDictionary *result) {
         
-        // Dump multipart request into the temporary file.
-        [[AFHTTPRequestSerializer serializer] requestWithMultipartFormRequest:multipartRequest
-                                                  writingStreamContentsToFile:tmpFileUrl
-                                                            completionHandler:^(NSError *error) {
-                           
-                                                                AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-                                   
-                                                                NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithRequest:multipartRequest
-                                                                                                                           fromFile:tmpFileUrl
-                                                                                                                           progress:progress
-                                                                                                                  completionHandler:^(NSURLResponse *response, id responseObject, NSError *error)
-                                                                                                      {
-                                                                                                          // Cleanup: remove temporary file.
-                                                                                                          [[NSFileManager defaultManager] removeItemAtURL:tmpFileUrl error:nil];
-                                                                                                          
-                                                                                                          // Do something with the result.
-                                                                                                          if (error) {
-                                                                                                              
-                                                                                                              if (failure) {
-                                                                                                                  [self requestFailure:failure data:error];
-                                                                                                              }
-                                                                                                              
-                                                                                                          } else {
-                                                                                                             
-                                                                                                              if ( success && failure ) {
-                                                                                                                  [self requestSuccess:success failure:failure data:responseObject];
-                                                                                                              }
-                                                                                                          }
-                                                                                                      }];
-                                                                
-                                                                [uploadTask resume];
-                                                            }];
+        if (success) {
+            success(result);
+        }
         
-    }
+    } failure:^(StatusModel *status) {
+        
+        if (failure) {
+            failure(status);
+        }
+        
+    }];
 }
 
 - (void)postImagesWithUrl:(NSString *)URLString

@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C387A441CC6768A0054D404 /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C387A431CC6768A0054D404 /* CommentModel.m */; };
-		2C387A471CC677170054D404 /* CommentListResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C387A461CC677170054D404 /* CommentListResultModel.m */; };
+		2C068B111CCFEF2300F0A675 /* RecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C068B101CCFEF2300F0A675 /* RecordModel.m */; };
+		2C068B141CCFEF3400F0A675 /* RecordListResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C068B131CCFEF3400F0A675 /* RecordListResultModel.m */; };
+		2C068B171CCFF02200F0A675 /* MessageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C068B161CCFF02200F0A675 /* MessageRequest.m */; };
+		2C068B1A1CCFF0D000F0A675 /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C068B191CCFF0D000F0A675 /* RecordViewController.m */; };
+		2C068B1D1CCFF30D00F0A675 /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C068B1C1CCFF30D00F0A675 /* RecordCell.m */; };
 		2C387A4A1CC678940054D404 /* PostRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C387A491CC678940054D404 /* PostRequest.m */; };
 		2C3C910A1CC90362004DB793 /* TTGalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C91081CC90362004DB793 /* TTGalleryView.m */; };
 		2C3C910D1CC90E86004DB793 /* PostPublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C910C1CC90E86004DB793 /* PostPublishViewController.m */; };
@@ -99,6 +102,10 @@
 		2C8ECFA41CB8D2B900A294AB /* WebModuleEntrance.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8ECF9B1CB8D2B900A294AB /* WebModuleEntrance.m */; };
 		2C8ECFA51CB8D2B900A294AB /* TTCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8ECF9E1CB8D2B900A294AB /* TTCacheService.m */; };
 		2C8ECFA61CB8D2B900A294AB /* TTNavigationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8ECFA11CB8D2B900A294AB /* TTNavigationService.m */; };
+		2CB04A841CD0A3550029B9C2 /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB04A831CD0A3550029B9C2 /* MessageModel.m */; };
+		2CB04A871CD0A3E00029B9C2 /* MessageResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB04A861CD0A3E00029B9C2 /* MessageResultModel.m */; };
+		2CB04A8A1CD0E6120029B9C2 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB04A891CD0E6120029B9C2 /* MessageCell.m */; };
+		2CB04A8D1CD10A870029B9C2 /* MessageSendResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB04A8C1CD10A870029B9C2 /* MessageSendResultModel.m */; };
 		2CE574E01CBD497900F2AC04 /* TTUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE574DF1CBD497900F2AC04 /* TTUserService.m */; };
 		2CE574FC1CBD4D4400F2AC04 /* SignInUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE574FB1CBD4D4400F2AC04 /* SignInUpViewController.m */; };
 		2CE574FF1CBD4D8400F2AC04 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE574FE1CBD4D8400F2AC04 /* DiscoverViewController.m */; };
@@ -110,10 +117,16 @@
 
 /* Begin PBXFileReference section */
 		0360BCC909B1F192B326897D /* Pods-TTProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TTProject/Pods-TTProject.debug.xcconfig"; sourceTree = "<group>"; };
-		2C387A421CC6768A0054D404 /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
-		2C387A431CC6768A0054D404 /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
-		2C387A451CC677170054D404 /* CommentListResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentListResultModel.h; sourceTree = "<group>"; };
-		2C387A461CC677170054D404 /* CommentListResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentListResultModel.m; sourceTree = "<group>"; };
+		2C068B0F1CCFEF2300F0A675 /* RecordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordModel.h; sourceTree = "<group>"; };
+		2C068B101CCFEF2300F0A675 /* RecordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordModel.m; sourceTree = "<group>"; };
+		2C068B121CCFEF3400F0A675 /* RecordListResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordListResultModel.h; sourceTree = "<group>"; };
+		2C068B131CCFEF3400F0A675 /* RecordListResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordListResultModel.m; sourceTree = "<group>"; };
+		2C068B151CCFF02200F0A675 /* MessageRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageRequest.h; sourceTree = "<group>"; };
+		2C068B161CCFF02200F0A675 /* MessageRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageRequest.m; sourceTree = "<group>"; };
+		2C068B181CCFF0D000F0A675 /* RecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordViewController.h; sourceTree = "<group>"; };
+		2C068B191CCFF0D000F0A675 /* RecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordViewController.m; sourceTree = "<group>"; };
+		2C068B1B1CCFF30D00F0A675 /* RecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordCell.h; sourceTree = "<group>"; };
+		2C068B1C1CCFF30D00F0A675 /* RecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordCell.m; sourceTree = "<group>"; };
 		2C387A481CC678940054D404 /* PostRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostRequest.h; sourceTree = "<group>"; };
 		2C387A491CC678940054D404 /* PostRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostRequest.m; sourceTree = "<group>"; };
 		2C3C91081CC90362004DB793 /* TTGalleryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGalleryView.m; sourceTree = "<group>"; };
@@ -303,6 +316,14 @@
 		2C8ECF9E1CB8D2B900A294AB /* TTCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTCacheService.m; sourceTree = "<group>"; };
 		2C8ECFA01CB8D2B900A294AB /* TTNavigationService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTNavigationService.h; sourceTree = "<group>"; };
 		2C8ECFA11CB8D2B900A294AB /* TTNavigationService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTNavigationService.m; sourceTree = "<group>"; };
+		2CB04A821CD0A3550029B9C2 /* MessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
+		2CB04A831CD0A3550029B9C2 /* MessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
+		2CB04A851CD0A3E00029B9C2 /* MessageResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageResultModel.h; sourceTree = "<group>"; };
+		2CB04A861CD0A3E00029B9C2 /* MessageResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageResultModel.m; sourceTree = "<group>"; };
+		2CB04A881CD0E6120029B9C2 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		2CB04A891CD0E6120029B9C2 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		2CB04A8B1CD10A870029B9C2 /* MessageSendResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageSendResultModel.h; sourceTree = "<group>"; };
+		2CB04A8C1CD10A870029B9C2 /* MessageSendResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageSendResultModel.m; sourceTree = "<group>"; };
 		2CE574DE1CBD497900F2AC04 /* TTUserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTUserService.h; sourceTree = "<group>"; };
 		2CE574DF1CBD497900F2AC04 /* TTUserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTUserService.m; sourceTree = "<group>"; };
 		2CE574FA1CBD4D4400F2AC04 /* SignInUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInUpViewController.h; sourceTree = "<group>"; };
@@ -389,10 +410,6 @@
 				2C8312C11CC231A3005E11AB /* PostListResultModel.m */,
 				2C8312C31CC2325D005E11AB /* PostModel.h */,
 				2C8312C41CC2325D005E11AB /* PostModel.m */,
-				2C387A421CC6768A0054D404 /* CommentModel.h */,
-				2C387A431CC6768A0054D404 /* CommentModel.m */,
-				2C387A451CC677170054D404 /* CommentListResultModel.h */,
-				2C387A461CC677170054D404 /* CommentListResultModel.m */,
 				2CFD2D141CCB511500229DC3 /* PostPublishResultModel.h */,
 				2CFD2D151CCB511500229DC3 /* PostPublishResultModel.m */,
 			);
@@ -976,6 +993,8 @@
 			children = (
 				2CE575031CBD4DBF00F2AC04 /* MessageViewController.h */,
 				2CE575041CBD4DBF00F2AC04 /* MessageViewController.m */,
+				2C068B181CCFF0D000F0A675 /* RecordViewController.h */,
+				2C068B191CCFF0D000F0A675 /* RecordViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -983,6 +1002,16 @@
 		2CE574ED1CBD4BF200F2AC04 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2C068B0F1CCFEF2300F0A675 /* RecordModel.h */,
+				2C068B101CCFEF2300F0A675 /* RecordModel.m */,
+				2C068B121CCFEF3400F0A675 /* RecordListResultModel.h */,
+				2C068B131CCFEF3400F0A675 /* RecordListResultModel.m */,
+				2CB04A821CD0A3550029B9C2 /* MessageModel.h */,
+				2CB04A831CD0A3550029B9C2 /* MessageModel.m */,
+				2CB04A851CD0A3E00029B9C2 /* MessageResultModel.h */,
+				2CB04A861CD0A3E00029B9C2 /* MessageResultModel.m */,
+				2CB04A8B1CD10A870029B9C2 /* MessageSendResultModel.h */,
+				2CB04A8C1CD10A870029B9C2 /* MessageSendResultModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -990,6 +1019,8 @@
 		2CE574EE1CBD4BF200F2AC04 /* Request */ = {
 			isa = PBXGroup;
 			children = (
+				2C068B151CCFF02200F0A675 /* MessageRequest.h */,
+				2C068B161CCFF02200F0A675 /* MessageRequest.m */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -997,6 +1028,10 @@
 		2CE574EF1CBD4BF200F2AC04 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2C068B1B1CCFF30D00F0A675 /* RecordCell.h */,
+				2C068B1C1CCFF30D00F0A675 /* RecordCell.m */,
+				2CB04A881CD0E6120029B9C2 /* MessageCell.h */,
+				2CB04A891CD0E6120029B9C2 /* MessageCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1188,8 +1223,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C88E2E01CCDE09900646D9A /* TitleRequest.m in Sources */,
-				2C387A471CC677170054D404 /* CommentListResultModel.m in Sources */,
 				2C8312D71CC24EE9005E11AB /* PostTextCell.m in Sources */,
+				2CB04A8D1CD10A870029B9C2 /* MessageSendResultModel.m in Sources */,
 				2C8ECF5A1CB8CCBA00A294AB /* NSURL+TT.m in Sources */,
 				2C88E2DC1CCDE09900646D9A /* TitleGroupViewController.m in Sources */,
 				2C8ECFA61CB8D2B900A294AB /* TTNavigationService.m in Sources */,
@@ -1211,6 +1246,7 @@
 				2C8ECF641CB8CCBA00A294AB /* UIScrollView+SVPullToRefresh.m in Sources */,
 				2C8ECF851CB8CCBA00A294AB /* TTAppLaunchView.m in Sources */,
 				2C8ECF561CB8CCBA00A294AB /* NSMutableArray+NullCheck.m in Sources */,
+				2C068B111CCFEF2300F0A675 /* RecordModel.m in Sources */,
 				2C8ECF5C1CB8CCBA00A294AB /* UIColor+TT.m in Sources */,
 				2C8ECF6A1CB8CCBA00A294AB /* BaseWallViewController.m in Sources */,
 				2C8ECF881CB8CCBA00A294AB /* TTNavigationBar.m in Sources */,
@@ -1234,10 +1270,11 @@
 				2C8312A51CC205E4005E11AB /* UserModel.m in Sources */,
 				2C8ECF611CB8CCBA00A294AB /* UIView+TT.m in Sources */,
 				2C8ECF8A1CB8CCBA00A294AB /* WallItemCell.m in Sources */,
+				2CB04A871CD0A3E00029B9C2 /* MessageResultModel.m in Sources */,
 				2CE574FF1CBD4D8400F2AC04 /* DiscoverViewController.m in Sources */,
 				2C8ECFA31CB8D2B900A294AB /* TTModuleEntrance.m in Sources */,
 				2C88E2791CCCC18D00646D9A /* SKTopicParser.m in Sources */,
-				2C387A441CC6768A0054D404 /* CommentModel.m in Sources */,
+				2C068B1A1CCFF0D000F0A675 /* RecordViewController.m in Sources */,
 				2C8ECF551CB8CCBA00A294AB /* NSArray+NullCheck.m in Sources */,
 				2C8312D61CC24EE9005E11AB /* PostImageCell.m in Sources */,
 				2C8ECF591CB8CCBA00A294AB /* NSString+TT.m in Sources */,
@@ -1251,6 +1288,7 @@
 				2C88E2DE1CCDE09900646D9A /* TitleListResultModel.m in Sources */,
 				2C8ECF6F1CB8CCBA00A294AB /* BaseRequest.m in Sources */,
 				2C8ECF861CB8CCBA00A294AB /* TTEmptyTipsView.m in Sources */,
+				2CB04A841CD0A3550029B9C2 /* MessageModel.m in Sources */,
 				2C8ECF701CB8CCBA00A294AB /* BaseCollectionSectionHeaderView.m in Sources */,
 				2C8312A21CC2059F005E11AB /* SignInResultModel.m in Sources */,
 				2C8ECF671CB8CCBA00A294AB /* BaseCollectionViewController.m in Sources */,
@@ -1267,9 +1305,11 @@
 				2C8312BF1CC22F76005E11AB /* PostListViewController.m in Sources */,
 				2C83129A1CC1F4A8005E11AB /* TTHighlightTextView.m in Sources */,
 				2C88E2DD1CCDE09900646D9A /* TitleListViewController.m in Sources */,
+				2C068B1D1CCFF30D00F0A675 /* RecordCell.m in Sources */,
 				2C3C910D1CC90E86004DB793 /* PostPublishViewController.m in Sources */,
 				2C8ECF5E1CB8CCBA00A294AB /* UIImageView+TT.m in Sources */,
 				2C8ECFA41CB8D2B900A294AB /* WebModuleEntrance.m in Sources */,
+				2C068B141CCFEF3400F0A675 /* RecordListResultModel.m in Sources */,
 				2C8ECFA21CB8D2B900A294AB /* AppModuleEntrance.m in Sources */,
 				2C8ECF8D1CB8CCBA00A294AB /* TTTabbarItem.m in Sources */,
 				2C83129B1CC1F4A8005E11AB /* TTMDTextField.m in Sources */,
@@ -1280,6 +1320,8 @@
 				2C8ECF801CB8CCBA00A294AB /* DefaultRefreshView.m in Sources */,
 				2C8ECF8B1CB8CCBA00A294AB /* TTTabbarController.m in Sources */,
 				2C8ECF631CB8CCBA00A294AB /* UIScrollView+SVInfiniteScrolling.m in Sources */,
+				2C068B171CCFF02200F0A675 /* MessageRequest.m in Sources */,
+				2CB04A8A1CD0E6120029B9C2 /* MessageCell.m in Sources */,
 				2C8ECF831CB8CCBA00A294AB /* TTActivityIndicatorView.m in Sources */,
 				2CE574FC1CBD4D4400F2AC04 /* SignInUpViewController.m in Sources */,
 			);

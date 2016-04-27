@@ -13,4 +13,8 @@
 
 @property (nonatomic, strong) PostModel *post;
 
+@property (nonatomic, strong) NSString *postId;
+@property (nonatomic, strong) NSString *userIdOne;
+@property (nonatomic, strong) NSString *userIdTwo;
+
 @end

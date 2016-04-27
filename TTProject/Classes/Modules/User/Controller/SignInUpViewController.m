@@ -283,7 +283,7 @@
         
         strongify(self);
         
-        self.time = 59;
+        self.time = 60;
         self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(handleTimer) userInfo:nil repeats:YES];
         [self.timer fire];
         
