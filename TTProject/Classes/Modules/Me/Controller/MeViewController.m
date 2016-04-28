@@ -96,7 +96,7 @@
     NSInteger row = indexPath.row;
     
     if ( 0 == section ) {
-        
+        // TODO: 个人信息实装
         UserInfoCell *cell = [UserInfoCell dequeueReusableCellForTableView:tableView];
         cell.cellData = @{@"gender":[TTUserService sharedService].gender, @"astro":@"天蝎座", @"age":[NSString stringWithFormat:@"%.2f岁", [TTUserService sharedService].age]};
         [cell reloadData];

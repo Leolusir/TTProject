@@ -37,6 +37,9 @@
     
     [self addNavigationBar];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userSignIn) name:kNOTIFY_APP_USER_SIGNIN object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userSignOut) name:kNOTIFY_APP_USER_SIGNOUT object:nil];
+    
 }
 
 #pragma mark - Override Methods
@@ -137,6 +140,20 @@
 - (void)handleAddPostButton
 {
     [[TTNavigationService sharedService] openUrl:@"jump://post_publish"];
+}
+
+#pragma mark - Notification Methods
+
+- (void)userSignIn
+{
+    [self initData];
+}
+
+- (void)userSignOut
+{
+    [self cleanUpPosts];
+    self.wp = @"0";
+    [self reloadData];
 }
 
 @end

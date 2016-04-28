@@ -51,18 +51,6 @@
     self.locationManager.reGeocodeTimeout = 3;
 }
 
-- (void)initData
-{
-    self.loadingType = LoadingTypeInit;
-    
-    self.posts = [NSMutableArray<PostModel> array];
-    self.textCellHeightCache = [NSMutableDictionary dictionary];
-    self.postIds = [NSMutableDictionary dictionary];
-    self.wp = @"0";
-    
-    [self loadData];
-}
-
 - (void)loadData
 {
 
@@ -130,6 +118,18 @@
 }
 
 #pragma mark - Custom Methods
+
+- (void)initData
+{
+    self.loadingType = LoadingTypeInit;
+    
+    self.posts = [NSMutableArray<PostModel> array];
+    self.textCellHeightCache = [NSMutableDictionary dictionary];
+    self.postIds = [NSMutableDictionary dictionary];
+    self.wp = @"0";
+    
+    [self loadData];
+}
 
 - (void)addPosts:(NSArray *)posts
 {

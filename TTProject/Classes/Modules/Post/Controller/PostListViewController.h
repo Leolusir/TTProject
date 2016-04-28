@@ -16,6 +16,7 @@
 @property (nonatomic, strong, readonly) NSString *country;
 @property (nonatomic, assign) BOOL needLocation;
 
+- (void)initData;
 - (void)addPosts:(NSArray *)posts;
 - (void)cleanUpPosts;
 

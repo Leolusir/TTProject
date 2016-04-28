@@ -18,7 +18,7 @@
 @interface TitleListViewController ()
 
 @property (nonatomic, strong) NSMutableArray<TitleModel> *titles;
-@property (nonatomic, strong) NSArray<TitleModel> *hotTitles;
+@property (nonatomic, strong) NSMutableArray<TitleModel> *hotTitles;
 
 @property (nonatomic, strong) AMapLocationManager *locationManager;
 
@@ -52,6 +52,9 @@
     [self initAMap];
     
     [self initData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userSignIn) name:kNOTIFY_APP_USER_SIGNIN object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userSignOut) name:kNOTIFY_APP_USER_SIGNOUT object:nil];
 }
 
 #pragma mark - Override Methods
@@ -97,7 +100,7 @@
     self.loadingType = LoadingTypeInit;
     
     self.titles = [NSMutableArray<TitleModel> array];
-    self.hotTitles = [[NSArray<TitleModel> alloc] init];
+    self.hotTitles = [NSMutableArray<TitleModel> array];
     
     [self loadData];
 }
@@ -179,7 +182,8 @@
             } else {
                 [self finishRefresh];
                 [self.titles removeAllObjects];
-                self.hotTitles = resultModel.hotTitles;
+                [self.hotTitles removeAllObjects];
+                [self.hotTitles addObjectsFromSafeArray:resultModel.hotTitles];
             }
             
             [self.titles addObjectsFromArray:resultModel.titles];
@@ -361,6 +365,20 @@
 - (void)handleSearchButton
 {
     DBG(@"handleSearchButton");
+}
+
+#pragma mark - Notification Methods
+
+- (void)userSignIn
+{
+    [self initData];
+}
+
+- (void)userSignOut
+{
+    [self.titles removeAllObjects];
+    [self.hotTitles removeAllObjects];
+    [self reloadData];
 }
 
 @end

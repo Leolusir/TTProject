@@ -45,6 +45,7 @@
 
 - (void)initData
 {
+    // TODO: 功能等待实装
     self.menu = @[
                   @{@"type":@"item", @"key":@"1", @"title":@"推送开关", @"link":@"", @"line":@YES, @"arrow":@YES},
                   @{@"type":@"item", @"key":@"2", @"title":@"检查更新", @"link":@"", @"line":@YES, @"arrow":@YES},
