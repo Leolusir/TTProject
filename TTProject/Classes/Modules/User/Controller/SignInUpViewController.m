@@ -23,6 +23,7 @@
 @property (nonatomic, strong) UIImageView *maleImageView;
 @property (nonatomic, strong) UIImageView *femaleImageView;
 @property (nonatomic, strong) UIPickerView *datePickerView;
+@property (nonatomic, strong) UIButton *dateConfirmButton;
 @property (nonatomic, strong) UIButton *captchaButton;
 @property (nonatomic, strong) UIButton *doSignInButton;
 @property (nonatomic, strong) UIButton *doSignUpButton;
@@ -32,6 +33,7 @@
 
 @property (nonatomic, strong) NSString *phone;
 @property (nonatomic, strong) NSString *captcha;
+
 @property (nonatomic, strong) NSString *birthYear;
 @property (nonatomic, strong) NSString *birthMonth;
 @property (nonatomic, strong) NSString *birthDay;
@@ -40,6 +42,11 @@
 @property (nonatomic, assign) BOOL isSignIn;
 @property (nonatomic, assign) CGFloat cursorHeight;
 @property (nonatomic, assign) CGFloat spacingWithKeyboardAndCursor;
+
+@property (nonatomic, strong) NSCalendar *calendar;
+@property (nonatomic, strong) NSDate *startDate;
+@property (nonatomic, strong) NSDate *endDate;
+@property (nonatomic, strong) NSDateComponents *selectedDateComponets;
 
 @end
 
@@ -54,6 +61,15 @@
     self.view.backgroundColor = Color_White;
     
     self.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    
+    self.calendar = [NSCalendar currentCalendar];
+    self.startDate = [NSDate dateWithTimeIntervalSince1970:0];
+    self.endDate = [NSDate dateWithTimeIntervalSince1970:1451577600];
+    self.selectedDateComponets = [[NSDateComponents alloc] init];
+    self.selectedDateComponets.calendar = self.calendar;
+    self.selectedDateComponets.year = 1970;
+    self.selectedDateComponets.month = 1;
+    self.selectedDateComponets.day = 1;
     
     [self render];
     
@@ -82,10 +98,47 @@
 
 - (void)addSignInComponentToForm
 {
+    [self.formBgView removeAllSubviews];
     [self.formBgView addSubview:self.phoneTextField];
     [self.formBgView addSubview:self.captchaTextField];
     [self.formBgView addSubview:self.captchaButton];
     [self.formBgView addSubview:self.doSignInButton];
+    self.phoneTextField.text = @"";
+    self.captchaTextField.text = @"";
+    self.captchaButton.enabled = YES;
+    [self.captchaButton setTitle:@"发送验证码" forState:UIControlStateNormal];
+    
+}
+
+- (void)addSignUpComponentToFormStep1
+{
+    [self.formBgView removeAllSubviews];
+    [self.formBgView addSubview:self.maleImageView];
+    [self.formBgView addSubview:self.femaleImageView];
+}
+
+- (void)addSignUpComponentToFormStep2
+{
+    [self.formBgView removeAllSubviews];
+    [self.formBgView addSubview:self.datePickerView];
+    [self.formBgView addSubview:self.dateConfirmButton];
+    
+    ((UIView *)[self.datePickerView.subviews objectAtIndex:1]).hidden = YES;
+    ((UIView *)[self.datePickerView.subviews objectAtIndex:2]).hidden = YES;
+
+}
+
+- (void)addSignUpComponentToFormStep3
+{
+    [self.formBgView removeAllSubviews];
+    [self.formBgView addSubview:self.phoneTextField];
+    [self.formBgView addSubview:self.captchaTextField];
+    [self.formBgView addSubview:self.captchaButton];
+    [self.formBgView addSubview:self.doSignUpButton];
+    self.phoneTextField.text = @"";
+    self.captchaTextField.text = @"";
+    self.captchaButton.enabled = YES;
+    [self.captchaButton setTitle:@"发送验证码" forState:UIControlStateNormal];
 }
 
 -(NSInteger)getCaptchaType
@@ -136,7 +189,9 @@
         _maskView.hidden = YES;
         _maskView.userInteractionEnabled = YES;
         _maskView.opaque = NO;
+        weakify(self);
         [_maskView bk_whenTapped:^{
+            strongify(self);
             self.maskView.hidden = YES;
             self.formBgView.hidden = YES;
             [self.view endEditing:YES];
@@ -154,6 +209,11 @@
         _formBgView.layer.cornerRadius = 5;
         _formBgView.hidden = YES;
         _formBgView.centerY = SCREEN_HEIGHT / 2;
+        weakify(self);
+        [_formBgView bk_whenTapped:^{
+            strongify(self);
+            [self.view endEditing:YES];
+        }];
     }
     
     return _formBgView;
@@ -203,6 +263,74 @@
     return _doSignInButton;
 }
 
+- (UIButton *)doSignUpButton
+{
+    if ( !_doSignUpButton ) {
+        _doSignUpButton = [UIButton buttonWithTitle:@"注册" font:FONT(18) color:Color_Green1 highlightedColor:Color_Green1 target:self action:@selector(doSignUp) forControlEvents:UIControlEventTouchUpInside];
+        _doSignUpButton.right = self.formBgView.width - 30;
+        _doSignUpButton.bottom = self.formBgView.height - 10;
+    }
+    
+    return _doSignUpButton;
+}
+
+- (UIImageView *)maleImageView {
+    
+    if ( !_maleImageView ) {
+        _maleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_signup_boy"]];
+        _maleImageView.centerY = self.formBgView.height / 2;
+        _maleImageView.centerX = 10 + ( self.formBgView.width - 20 ) / 4;
+        _maleImageView.userInteractionEnabled = YES;
+        weakify(self);
+        [_maleImageView bk_whenTapped:^{
+            strongify(self);
+            self.gender = @"m";
+            [self addSignUpComponentToFormStep2];
+        }];
+    }
+    return _maleImageView;
+}
+
+- (UIImageView *)femaleImageView {
+    
+    if ( !_femaleImageView ) {
+        _femaleImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_signup_girl"]];
+        _femaleImageView.centerY = self.formBgView.height / 2;
+        _femaleImageView.centerX = 10 + ( self.formBgView.width - 20 ) / 4 * 3;
+        _femaleImageView.userInteractionEnabled = YES;
+        weakify(self);
+        [_femaleImageView bk_whenTapped:^{
+            strongify(self);
+            self.gender = @"f";
+            [self addSignUpComponentToFormStep2];
+        }];
+    }
+    return _femaleImageView;
+}
+
+- (UIPickerView *)datePickerView
+{
+    if ( !_datePickerView ) {
+        _datePickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 0, self.formBgView.width - 20, 150)];
+        _datePickerView.delegate = self;
+        _datePickerView.dataSource = self;
+        _datePickerView.centerX = self.formBgView.width / 2;
+        _datePickerView.centerY = self.formBgView.height / 2 - 20;
+    }
+    return _datePickerView;
+}
+
+- (UIButton *)dateConfirmButton
+{
+    if ( !_dateConfirmButton ) {
+        _dateConfirmButton = [UIButton buttonWithTitle:@"确定" font:FONT(18) color:Color_Green1 highlightedColor:Color_Green1 target:self action:@selector(dateConfirm) forControlEvents:UIControlEventTouchUpInside];
+        _dateConfirmButton.right = self.formBgView.width - 30;
+        _dateConfirmButton.bottom = self.formBgView.height - 10;
+    }
+    
+    return _dateConfirmButton;
+}
+
 #pragma mark - Event Response
 
 - (void)showSignInView
@@ -211,7 +339,6 @@
     self.maskView.hidden = NO;
     self.formBgView.hidden = NO;
     self.isSignIn = YES;
-    [self.formBgView removeAllSubviews];
     [self addSignInComponentToForm];
     
 }
@@ -222,7 +349,18 @@
     self.maskView.hidden = NO;
     self.formBgView.hidden = NO;
     self.isSignIn = NO;
-    [self.formBgView removeAllSubviews];
+    [self addSignUpComponentToFormStep1];
+}
+
+- (void)dateConfirm
+{
+    DBG(@"dateConfirm: %@ %ld", self.selectedDateComponets, self.datePickerView.subviews.count);
+    
+    self.birthYear = [NSString stringWithFormat:@"%ld", self.selectedDateComponets.year];
+    self.birthMonth = [NSString stringWithFormat:@"%ld", self.selectedDateComponets.month];
+    self.birthDay = [NSString stringWithFormat:@"%ld", self.selectedDateComponets.day];
+    
+    [self addSignUpComponentToFormStep3];
 }
 
 - (void)doSignIn
@@ -235,7 +373,7 @@
     
     weakify(self);
     
-    [UserRequest loginWithParams:params success:^(SignInResultModel *resultModel) {
+    [UserRequest signInWithParams:params success:^(SignInUpResultModel *resultModel) {
         
         strongify(self);
         
@@ -254,6 +392,44 @@
             [self showNotice:status.msg];
         } else {
             [self showNotice:@"登录失败"];
+        }
+        
+    }];
+}
+
+- (void)doSignUp
+{
+    DBG(@"doSignUp %@ %@", self.phoneTextField.text, self.captchaTextField.text);
+    
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    [params setSafeObject:[self.phoneTextField.text trim] forKey:@"phone"];
+    [params setSafeObject:self.captchaTextField.text forKey:@"verCode"];
+    [params setSafeObject:self.birthYear forKey:@"birthYear"];
+    [params setSafeObject:self.birthMonth forKey:@"birthMonth"];
+    [params setSafeObject:self.birthDay forKey:@"birthDay"];
+    [params setSafeObject:self.gender forKey:@"gender"];
+    
+    weakify(self);
+    
+    [UserRequest signUpWithParams:params success:^(SignInUpResultModel *resultModel) {
+        
+        strongify(self);
+        
+        [[TTUserService sharedService] saveUserInfo:resultModel.user token:resultModel.token];
+        
+        [self showNotice:@"注册成功"];
+        
+        [self bk_performBlock:^(id obj) {
+            [[TTNavigationService sharedService] openUrl:@"jump://discover"];
+        } afterDelay:1.f];
+        
+    } failure:^(StatusModel *status) {
+        
+        if( status ) {
+            strongify(self);
+            [self showNotice:status.msg];
+        } else {
+            [self showNotice:@"注册失败"];
         }
         
     }];
@@ -289,9 +465,11 @@
         
     } failure:^(StatusModel *status) {
         
-        self.captchaButton.enabled = YES
-        ;
-        [self showAlert:status.msg];
+        strongify(self);
+        
+        self.captchaButton.enabled = YES;
+        [self.captchaButton setTitle:@"发送验证码" forState:UIControlStateNormal];
+        [self showNotice:status.msg];
         
     }];
 }
@@ -301,7 +479,7 @@
     if (self.time <= 1) {
         [self.timer invalidate];
         self.captchaButton.enabled = YES;
-        [_captchaButton setTitle:@"重发验证码" forState:UIControlStateNormal];
+        [self.captchaButton setTitle:@"重发验证码" forState:UIControlStateNormal];
         return;
     }
     
@@ -355,7 +533,116 @@
     }
 }
 
-#pragma mark - UIPickerViewDelegate
 #pragma mark - UIPickerViewDataSource
+
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 3;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    switch (component) { // component是栏目index，从0开始，后面的row也一样是从0开始
+        case 0: { // 第一栏为年，这里startDate和endDate为起始时间和截止时间，请自行指定
+            NSDateComponents *startCpts = [self.calendar components:NSCalendarUnitYear
+                                                           fromDate:self.startDate];
+            NSDateComponents *endCpts = [self.calendar components:NSCalendarUnitYear
+                                                         fromDate:self.endDate];
+            return [endCpts year] - [startCpts year] + 1;
+        }
+        case 1: // 第二栏为月份
+            return 12;
+        case 2: { // 第三栏为对应月份的天数
+            NSRange dayRange = [self.calendar rangeOfUnit:NSCalendarUnitDay
+                                                   inUnit:NSCalendarUnitMonth
+                                                  forDate:[self.selectedDateComponets date]];
+            return dayRange.length;
+        }
+        default:
+            return 0;
+    }
+}
+
+#pragma mark - UIPickerViewDelegate
+
+- (UIView *)pickerView:(UIPickerView *)pickerView
+            viewForRow:(NSInteger)row
+          forComponent:(NSInteger)component
+           reusingView:(UIView *)view
+{
+    UILabel *dateLabel = (UILabel *)view;
+    if (!dateLabel) {
+        dateLabel = [[UILabel alloc] init];
+        [dateLabel setFont:FONT(24)];
+        [dateLabel setTextColor:Color_Green1];
+        [dateLabel setBackgroundColor:[UIColor clearColor]];
+    }
+    
+    switch (component) {
+        case 0: {
+            NSDateComponents *components = [self.calendar components:NSCalendarUnitYear
+                                                            fromDate:self.startDate];
+            NSString *currentYear = [NSString stringWithFormat:@"%ld", [components year] + row];
+            [dateLabel setText:currentYear];
+            dateLabel.textAlignment = NSTextAlignmentRight;
+            break;
+        }
+        case 1: {
+            // 返回月份可以用DateFormatter，这样可以支持本地化
+//            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//            formatter.locale = [NSLocale currentLocale];
+//            NSArray *monthSymbols = [formatter monthSymbols];
+//            
+            NSString *currentMonth = [NSString stringWithFormat:@"%02lu",row + 1];
+            [dateLabel setText:currentMonth];
+            dateLabel.textAlignment = NSTextAlignmentCenter;
+            break;
+        }
+        case 2: {
+            NSRange dateRange = [self.calendar rangeOfUnit:NSCalendarUnitDay
+                                                    inUnit:NSCalendarUnitMonth
+                                                   forDate:[self.selectedDateComponets date]];
+            NSString *currentDay = [NSString stringWithFormat:@"%02lu", (row + 1) % (dateRange.length + 1)];
+            [dateLabel setText:currentDay];
+            dateLabel.textAlignment = NSTextAlignmentLeft;
+            break;
+        }
+        default:
+            break;
+    }
+    
+    return dateLabel;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    switch (component) {
+        case 0: {
+            NSDateComponents *indicatorComponents = [self.calendar components:NSCalendarUnitYear
+                                                                     fromDate:self.startDate];
+            NSInteger year = [indicatorComponents year] + row;
+            [self.selectedDateComponets setYear:year];
+            [pickerView selectRow:0 inComponent:1 animated:YES];
+            break;
+        }
+        case 1: {
+            [self.selectedDateComponets setMonth:row + 1];
+            [pickerView selectRow:0 inComponent:2 animated:YES];
+            break;
+        }
+        case 2: {
+            [self.selectedDateComponets setDay:row + 1];
+            break;
+        }
+        default:
+            break;
+    }
+    [pickerView reloadAllComponents]; // 注意，这一句不能掉，否则选择后每一栏的数据不会重载，其作用与UITableView中的reloadData相似
+}
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+    return 40;
+}
 
 @end

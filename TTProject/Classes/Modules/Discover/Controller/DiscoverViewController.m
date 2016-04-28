@@ -28,6 +28,9 @@
 
 - (void)viewDidLoad
 {
+    
+    self.needLocation = YES;
+    
     [super viewDidLoad];
     
     self.title = @"发现";

@@ -9,17 +9,37 @@
 #import "UserRequest.h"
 
 #define USER_GET_CAPTCHA_REQUEST_URL                    @"/api/v1/user/code"
-#define USER_LOGIN_REQUEST_URL                          @"/api/v1/user/login"
+#define USER_SIGNUP_REQUEST_URL                          @"/api/v1/user"
+#define USER_SIGNIN_REQUEST_URL                          @"/api/v1/user/login"
 
 @implementation UserRequest
 
-+ (void)loginWithParams:(NSDictionary *)params success:(void(^)(SignInResultModel *resultModel))success failure:(void(^)(StatusModel *status))failure
++ (void)signUpWithParams:(NSDictionary *)params success:(void(^)(SignInUpResultModel *resultModel))success failure:(void(^)(StatusModel *status))failure
 {
-    [[TTNetworkManager sharedInstance] postWithUrl:USER_LOGIN_REQUEST_URL parameters:params success:^(NSDictionary *result) {
+    [[TTNetworkManager sharedInstance] postWithUrl:USER_SIGNUP_REQUEST_URL parameters:params success:^(NSDictionary *result) {
         
         NSError *err = [[NSError alloc] init];
         
-        SignInResultModel *resultModel = [[SignInResultModel alloc] initWithDictionary:result error:&err];
+        SignInUpResultModel *resultModel = [[SignInUpResultModel alloc] initWithDictionary:result error:&err];
+        
+        if (success) {
+            success(resultModel);
+        }
+        
+    } failure:^(StatusModel *status) {
+        if (failure) {
+            failure(status);
+        }
+    }];
+}
+
++ (void)signInWithParams:(NSDictionary *)params success:(void(^)(SignInUpResultModel *resultModel))success failure:(void(^)(StatusModel *status))failure
+{
+    [[TTNetworkManager sharedInstance] postWithUrl:USER_SIGNIN_REQUEST_URL parameters:params success:^(NSDictionary *result) {
+        
+        NSError *err = [[NSError alloc] init];
+        
+        SignInUpResultModel *resultModel = [[SignInUpResultModel alloc] initWithDictionary:result error:&err];
         
         if (success) {
             success(resultModel);

@@ -13,6 +13,8 @@
 #import "PostPublishViewController.h"
 #import "TitlePostListViewController.h"
 #import "SignInUpViewController.h"
+#import "SettingViewController.h"
+#import "MyPostViewController.h"
 
 @implementation AppModuleEntrance
 
@@ -40,6 +42,12 @@
     // 话题Post列表
     [[TTNavigationService sharedService] registerModule:self withScheme:APP_SCHEME host:@"title_post"];
     
+    // 设置
+    [[TTNavigationService sharedService] registerModule:self withScheme:APP_SCHEME host:@"setting"];
+    
+    // 我发表的
+    [[TTNavigationService sharedService] registerModule:self withScheme:APP_SCHEME host:@"my_post"];
+    
 }
 
 - (void)handleOpenUrl:(NSString *)urlString userInfo:(NSDictionary *)userInfo from:(id)from complete:(void (^)())complete
@@ -65,7 +73,7 @@
                 [navigationController pushViewController:vc animated:NO];
             }
             
-        } else if([url.host isEqualToString:@"discover"]) {
+        } else if ([url.host isEqualToString:@"discover"]) {
             
             if( [navigationController.childViewControllers count] > 1 ){
                 [navigationController popToRootViewControllerAnimated:NO onCompletion:^{
@@ -75,16 +83,26 @@
                 [[ApplicationEntrance shareEntrance].tabbarController selectAtIndex:0];
             }
             
-        } else if([url.host isEqualToString:@"post_publish"]) {
+        } else if ([url.host isEqualToString:@"post_publish"]) {
             
             PostPublishViewController *vc = [[PostPublishViewController alloc] init];
             vc.postTitle = urlParams[@"title"];
             [navigationController pushViewController:vc animated:YES];
             
-        } else if([url.host isEqualToString:@"title_post"]) {
+        } else if ([url.host isEqualToString:@"title_post"]) {
             
             TitlePostListViewController *vc = [[TitlePostListViewController alloc] init];
             vc.title = urlParams[@"title"];
+            [navigationController pushViewController:vc animated:YES];
+            
+        } else if ([url.host isEqualToString:@"setting"]) {
+
+            SettingViewController *vc = [[SettingViewController alloc] init];
+            [navigationController pushViewController:vc animated:YES];
+            
+        } else if ([url.host isEqualToString:@"my_post"]) {
+            
+            MyPostViewController *vc = [[MyPostViewController alloc] init];
             [navigationController pushViewController:vc animated:YES];
             
         }

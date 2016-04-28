@@ -135,9 +135,9 @@
 //    [self hideDefaultView];
     [self hideNotice];
     
-    _noticeView = [[MBProgressHUD alloc] initWithView:self.view.window];
+    _noticeView = [[MBProgressHUD alloc] initWithView:[ApplicationEntrance shareEntrance].window];
     _noticeView.color = RGBA(39, 212, 178, 0.8);
-    [self.view.window addSubview:_noticeView];
+    [[ApplicationEntrance shareEntrance].window addSubview:_noticeView];
     
     _noticeView.customView = [[UIImageView alloc] initWithImage:nil];
     // Set custom view mode

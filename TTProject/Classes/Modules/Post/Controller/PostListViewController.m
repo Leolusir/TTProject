@@ -66,7 +66,7 @@
 - (void)loadData
 {
 
-    if ( LoadingTypeLoadMore != self.loadingType ) {
+    if ( LoadingTypeLoadMore != self.loadingType && self.needLocation) {
         
         weakify(self);
         [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
@@ -84,6 +84,8 @@
             
             DBG(@"location:%@", location);
             
+            self.latitude = location.coordinate.latitude;
+            self.longitude = location.coordinate.longitude;
             // TODO: 去除测试数据
             self.latitude = 30.274818;//location.coordinate.latitude;
             self.longitude = 120.121806;//location.coordinate.longitude;

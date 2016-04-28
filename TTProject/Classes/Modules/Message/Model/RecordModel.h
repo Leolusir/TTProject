@@ -24,5 +24,6 @@
 @property (nonatomic, strong) NSString *age;
 @property (nonatomic, strong) NSString *gender;
 @property (nonatomic, strong) NSString *createTime;
+@property (nonatomic, assign) NSInteger status;
 
 @end

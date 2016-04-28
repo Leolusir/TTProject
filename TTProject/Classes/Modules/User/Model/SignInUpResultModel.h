@@ -9,11 +9,11 @@
 #import "BaseModel.h"
 #import "UserModel.h"
 
-@protocol SignInResultModel
+@protocol SignInUpResultModel
 
 @end
 
-@interface SignInResultModel : BaseModel
+@interface SignInUpResultModel : BaseModel
 
 @property (nonatomic, strong) UserModel *user;
 @property (nonatomic, strong) NSString *token;

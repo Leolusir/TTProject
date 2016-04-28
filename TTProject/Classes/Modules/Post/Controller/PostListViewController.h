@@ -14,6 +14,7 @@
 @property (nonatomic, assign, readonly) CLLocationDegrees latitude;
 @property (nonatomic, assign, readonly) CLLocationDegrees longitude;
 @property (nonatomic, strong, readonly) NSString *country;
+@property (nonatomic, assign) BOOL needLocation;
 
 - (void)addPosts:(NSArray *)posts;
 - (void)cleanUpPosts;

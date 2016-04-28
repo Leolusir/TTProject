@@ -6,8 +6,8 @@
 //  Copyright © 2016年 ivan. All rights reserved.
 //
 
-#import "SignInResultModel.h"
+#import "SignInUpResultModel.h"
 
-@implementation SignInResultModel
+@implementation SignInUpResultModel
 
 @end

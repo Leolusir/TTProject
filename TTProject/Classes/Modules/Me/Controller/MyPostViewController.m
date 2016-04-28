@@ -1,23 +1,38 @@
 //
-//  TitlePostListViewController.m
+//  MyPostViewController.m
 //  TTProject
 //
-//  Created by Ivan on 16/4/25.
+//  Created by Ivan on 16/4/29.
 //  Copyright © 2016年 ivan. All rights reserved.
 //
 
-#import "TitlePostListViewController.h"
-#import "PostRequest.h"
+#import "MyPostViewController.h"
+#import "MeRequest.h"
 
-@implementation TitlePostListViewController
+@interface MyPostViewController ()
+
+@end
+
+@implementation MyPostViewController
 
 #pragma mark - Life Cycle
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.tabbarItem = [[TTTabbarItem alloc] initWithTitle:@"发现" titleColor:Color_Gray1 selectedTitleColor:Color_Green1 icon:[UIImage imageNamed:@"icon_tabbar_discover_normal"] selectedIcon:[UIImage imageNamed:@"icon_tabbar_discover_selected"]];
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
-    self.needLocation = YES;
+    self.needLocation = NO;
     
     [super viewDidLoad];
+    
+    self.title = @"我发表的";
     
     [self addNavigationBar];
     
@@ -30,7 +45,7 @@
     [super addTableView];
     
     self.tableView.top = NAVBAR_HEIGHT;
-    self.tableView.height = SCREEN_HEIGHT - NAVBAR_HEIGHT - TABBAR_HEIGHT;
+    self.tableView.height = SCREEN_HEIGHT - NAVBAR_HEIGHT;
     
 }
 
@@ -52,12 +67,8 @@
     }
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setSafeObject:@(self.longitude) forKey:@"longitude"];
-    [params setSafeObject:@(self.latitude) forKey:@"latitude"];
-    [params setSafeObject:@"2" forKey:@"distance"];
-    [params setSafeObject:self.country forKey:@"country"];
     [params setSafeObject:[TTUserService sharedService].id forKey:@"userId"];
-    [params setSafeObject:self.title forKey:@"title"];
+    
     
     if ( LoadingTypeLoadMore == self.loadingType ) {
         [params setSafeObject:self.wp forKey:@"wp"];
@@ -67,7 +78,7 @@
     
     weakify(self);
     
-    [PostRequest getTitlePostsWithParams:params success:^(PostListResultModel *resultModel) {
+    [MeRequest getMyPostsWithParams:params success:^(PostListResultModel *resultModel) {
         
         strongify(self);
         
@@ -120,7 +131,7 @@
 
 - (void)handleAddPostButton
 {
-    [[TTNavigationService sharedService] openUrl:[NSString stringWithFormat:@"jump://post_publish?title=%@", self.title]];
+    [[TTNavigationService sharedService] openUrl:@"jump://post_publish"];
 }
 
 @end

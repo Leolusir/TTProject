@@ -124,7 +124,7 @@
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFY_APP_USER_SIGNOUT object:nil];
     
-    [[TTNavigationService sharedService] openUrl:@"jump://sign"];
+    [[TTNavigationService sharedService] openUrl:@"jump://sign_in_up"];
 }
 
 @end
