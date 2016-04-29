@@ -84,6 +84,9 @@
 
 - (void)loadData
 {
+    if ( IsEmptyString(self.userIdOne) || IsEmptyString(self.userIdTwo) || [self.userIdOne isEqualToString:self.userIdTwo]) {
+        return;
+    }
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setSafeObject:self.postId forKey:@"postId"];
@@ -324,6 +327,10 @@
         return;
     }
     
+    [self.view endEditing:YES];
+    
+    self.replyButton.enabled = NO;
+    
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     [params setSafeObject:self.postId forKey:@"postId"];
     [params setSafeObject:self.userIdOne forKey:@"userIdTwo"];
@@ -335,16 +342,21 @@
     
     [MessageRequest sendMessagesWithParams:params success:^(MessageSendResultModel *resultModel) {
         
+        strongify(self);
         // TODO: 刷新record列表
         [self.messages insertObject:resultModel.message atIndex:0];
         self.replyTextView.text = @"";
         [self reloadData];
+        
+        self.replyButton.enabled = YES;
         
     } failure:^(StatusModel *status) {
         
         DBG(@"%@", status);
         
         strongify(self);
+        
+        self.replyButton.enabled = YES;
         
         [self showNotice:status.msg];
         

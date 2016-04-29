@@ -18,6 +18,7 @@
 
 - (void)initData;
 - (void)addPosts:(NSArray *)posts;
+- (void)insertPost:(PostModel *)post atIndex:(NSInteger)index;
 - (void)cleanUpPosts;
 
 @end

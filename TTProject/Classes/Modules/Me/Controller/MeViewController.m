@@ -70,7 +70,7 @@
                   @{@"type":@"item", @"key":@"1", @"title":@"我发布的", @"link":@"jump://my_post", @"line":@YES, @"arrow":@YES},
                   @{@"type":@"item", @"key":@"2", @"title":@"我参与的", @"link":@"", @"line":@NO, @"arrow":@YES},
                   @{@"type":@"empty",},
-                  @{@"type":@"item", @"key":@"3", @"title":@"退出", @"link":@"", @"line":@NO, @"arrow":@NO},
+                  @{@"type":@"item", @"key":@"3", @"title":@"登出", @"link":@"", @"line":@NO, @"arrow":@NO},
                   ];
 }
 

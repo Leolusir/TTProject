@@ -25,6 +25,7 @@
 @property (nonatomic, strong) UIImage *postImage;
 @property (nonatomic, strong) NSString *postImageKey;
 @property (nonatomic, strong) UIButton *deleteImageButton;
+@property (nonatomic, strong) UIButton *publishPostButton;
 
 @property (nonatomic, strong) AMapLocationManager *locationManager;
 
@@ -53,8 +54,8 @@
     [super addNavigationBar];
     
     UIImage *publishImage = [UIImage imageNamed:@"icon_nav_publish"];
-    UIButton *publishPostButton = [UIButton rightBarButtonWithImage:publishImage highlightedImage:publishImage target:self action:@selector(handlePublishPostButton) forControlEvents:UIControlEventTouchUpInside];
-    [self.navigationBar setRightBarButton:publishPostButton];
+    self.publishPostButton = [UIButton rightBarButtonWithImage:publishImage highlightedImage:publishImage target:self action:@selector(handlePublishPostButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationBar setRightBarButton:self.publishPostButton];
 }
 
 - (void)addContainerView
@@ -161,6 +162,9 @@
             // TODO: 错误消息待优化
             [self showAlert:@"定位失败！"];
             DBG(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+            
+            self.publishPostButton.enabled = YES;
+            
             return;
             
         }
@@ -186,14 +190,20 @@
         
         [PostRequest publishPostWithParams:params success:^(PostPublishResultModel *resultModel) {
             
-            // TODO: 发布完，刷新列表
             [self showNotice:@"发布成功"];
+            
+            self.publishPostButton.enabled = YES;
+            
+            NSDictionary *userInfo = @{@"post" : resultModel.post};
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFY_APP_POST_PUBLISH_SUCCESS object:nil userInfo:userInfo];
+            
+            [self clickback];
             
         } failure:^(StatusModel *status) {
             
             DBG(@"%@", status);
             
-            strongify(self);
+            self.publishPostButton.enabled = YES;
             
             [self showNotice:status.msg];
             
@@ -227,6 +237,12 @@
 {
     DBG(@"publishPost");
     
+    [self.view endEditing:YES];
+    
+    self.publishPostButton.enabled = NO;
+    
+    // TODO: 添加Loading，遮盖整个界面
+    
     if ( self.postImage ) {
         
         weakify(self);
@@ -253,6 +269,8 @@
             DBG(@"%@", status);
             
             strongify(self);
+            
+            self.publishPostButton.enabled = YES;
             
             [self showNotice:status.msg];
             

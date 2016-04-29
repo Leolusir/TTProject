@@ -75,8 +75,8 @@
             self.latitude = location.coordinate.latitude;
             self.longitude = location.coordinate.longitude;
             // TODO: 去除测试数据
-            self.latitude = 30.274818;//location.coordinate.latitude;
-            self.longitude = 120.121806;//location.coordinate.longitude;
+//            self.latitude = 30.274818;//location.coordinate.latitude;
+//            self.longitude = 120.121806;//location.coordinate.longitude;
             
             if (regeocode)
             {
@@ -142,6 +142,12 @@
         }
     }
     
+}
+
+- (void)insertPost:(PostModel *)post atIndex:(NSInteger)index
+{
+    [self.posts insertObject:post atIndex:index];
+    [self.postIds setSafeObject:post.id forKey:post.id];
 }
 
 - (void)cleanUpPosts

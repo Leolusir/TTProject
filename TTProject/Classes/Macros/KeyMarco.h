@@ -17,4 +17,7 @@
 #define kNOTIFY_APP_USER_SIGNIN         @"kNOTIFY_APP_USER_SIGNIN"
 #define kNOTIFY_APP_USER_SIGNOUT        @"kNOTIFY_APP_USER_SIGNOUT"
 
+// Post Publish Success
+#define kNOTIFY_APP_POST_PUBLISH_SUCCESS         @"kNOTIFY_APP_POST_PUBLISH_SUCCESS"
+
 #endif /* KeyMarco_h */

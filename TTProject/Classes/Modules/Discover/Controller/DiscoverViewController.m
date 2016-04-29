@@ -39,6 +39,8 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userSignIn) name:kNOTIFY_APP_USER_SIGNIN object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userSignOut) name:kNOTIFY_APP_USER_SIGNOUT object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postSuccess:) name:kNOTIFY_APP_POST_PUBLISH_SUCCESS object:nil];
+
     
 }
 
@@ -154,6 +156,17 @@
     [self cleanUpPosts];
     self.wp = @"0";
     [self reloadData];
+}
+
+- (void)postSuccess:(NSNotification *)notification {
+    
+    NSDictionary *userInfo = [notification userInfo];
+    PostModel *post = [userInfo objectForKey:@"post"];
+    
+    if ( post ) {
+        [self insertPost:post atIndex:0];
+        [self reloadData];
+    }
 }
 
 @end

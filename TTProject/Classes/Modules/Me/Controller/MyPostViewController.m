@@ -36,6 +36,8 @@
     
     [self addNavigationBar];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postSuccess:) name:kNOTIFY_APP_POST_PUBLISH_SUCCESS object:nil];
+    
 }
 
 #pragma mark - Override Methods
@@ -132,6 +134,19 @@
 - (void)handleAddPostButton
 {
     [[TTNavigationService sharedService] openUrl:@"jump://post_publish"];
+}
+
+#pragma mark - Notification Methods
+
+- (void)postSuccess:(NSNotification *)notification {
+    
+    NSDictionary *userInfo = [notification userInfo];
+    PostModel *post = [userInfo objectForKey:@"post"];
+    
+    if ( post ) {
+        [self insertPost:post atIndex:0];
+        [self reloadData];
+    }
 }
 
 @end
