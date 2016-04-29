@@ -20,4 +20,9 @@
 // Post Publish Success
 #define kNOTIFY_APP_POST_PUBLISH_SUCCESS         @"kNOTIFY_APP_POST_PUBLISH_SUCCESS"
 
+// Post Vote Success
+#define kNOTIFY_APP_POST_VOTE_SUCCESS         @"kNOTIFY_APP_POST_VOTE_SUCCESS"
+
+
+
 #endif /* KeyMarco_h */

@@ -143,7 +143,8 @@
         
         [self refresh];
         
-        //TODO: 同步vote信息 以及参数人数
+        NSDictionary *userInfo = @{@"postId" : self.postId, @"vote":@(self.vote), @"voteUp":@(self.voteUp), @"voteDown":@(self.voteDown)};
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFY_APP_POST_VOTE_SUCCESS object:nil userInfo:userInfo];
         
     } failure:^(StatusModel *status) {
         
@@ -189,7 +190,8 @@
         
         [self refresh];
         
-        //TODO: 同步vote信息 以及参数人数
+        NSDictionary *userInfo = @{@"postId" : self.postId, @"vote":@(self.vote), @"voteUp":@(self.voteUp), @"voteDown":@(self.voteDown)};
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFY_APP_POST_VOTE_SUCCESS object:nil userInfo:userInfo];
         
     } failure:^(StatusModel *status) {
         

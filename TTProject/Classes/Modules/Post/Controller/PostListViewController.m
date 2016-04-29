@@ -36,6 +36,8 @@
     [self initAMap];
     
     [self initData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postVoteSuccess:) name:kNOTIFY_APP_POST_VOTE_SUCCESS object:nil];
 }
 
 #pragma mark - Private Methods
@@ -246,6 +248,29 @@
 - (void) errorTipsViewBeginRefresh:(TTErrorTipsView *)tipsView
 {
     [self initData];
+}
+
+#pragma mark - Notification Methods
+
+- (void)postVoteSuccess:(NSNotification *)notification {
+
+    NSDictionary *userInfo = [notification userInfo];
+    NSString *postId = [userInfo objectForKey:@"postId"];
+    NSInteger vote = [[userInfo objectForKey:@"vote"] integerValue];
+    NSInteger voteUp = [[userInfo objectForKey:@"voteUp"] integerValue];
+    NSInteger voteDown = [[userInfo objectForKey:@"voteDown"] integerValue];
+    
+    if ( postId && [self.postIds objectForKey:postId] ) {
+        for (PostModel *post in self.posts) {
+            if ( [postId isEqualToString:post.id] ) {
+                post.vote = vote;
+                post.voteUp = voteUp;
+                post.voteDown = voteDown;
+                [self reloadData];
+                break;
+            }
+        }
+    }
 }
 
 @end
