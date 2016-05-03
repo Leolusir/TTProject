@@ -61,12 +61,11 @@
     
     self.tableView.height = SCREEN_HEIGHT - NAVBAR_HEIGHT - 60;
     
-    weakify(self);
-    [self.tableView bk_whenTapped:^{
-        strongify(self);
-        [self.view endEditing:YES];
-    }];
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenKeyboard)];
+    [self.tableView addGestureRecognizer:gesture];
     
+    gesture.cancelsTouchesInView = NO;
+
 }
 
 #pragma mark - Private Methods
@@ -315,6 +314,11 @@
 }
 
 #pragma mark - Event Response
+
+- (void)hiddenKeyboard
+{
+    [self.view endEditing:YES];
+}
 
 - (void)handleReplyButton
 {

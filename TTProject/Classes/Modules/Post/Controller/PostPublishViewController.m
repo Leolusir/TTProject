@@ -19,6 +19,7 @@
 
 @property (nonatomic, strong) UIButton *addTitleButton;
 @property (nonatomic, strong) UIButton *addImageButton;
+@property (nonatomic, strong) UIView *editToolView;
 
 @property (nonatomic, strong) UIImageView *postImageView;
 @property (nonatomic, strong) YYTextView *postTextView;
@@ -45,6 +46,17 @@
     [self addContainerView];
     [self addEditZone];
     [self initAMap];
+    
+    //增加监听，当键盘出现或改变时收出消息
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    //增加监听，当键退出时收出消息
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
 }
 
 #pragma mark - Private Methods
@@ -70,19 +82,9 @@
 
 - (void)addEditZone
 {
-    self.addTitleButton = [UIButton buttonWithImage:[UIImage imageNamed:@"icon_pub_title"] target:self action:@selector(addTitle) forControlEvents:UIControlEventTouchUpInside];
-    self.addTitleButton.top = 10;
-    self.addTitleButton.left = 10;
-    
-    self.addImageButton = [UIButton buttonWithImage:[UIImage imageNamed:@"icon_pub_image"] target:self action:@selector(addImage) forControlEvents:UIControlEventTouchUpInside];
-    self.addImageButton.top = 10;
-    self.addImageButton.left = self.addTitleButton.right + 10;
-    [self.containerView addSubview:self.addTitleButton];
-    [self.containerView addSubview:self.addImageButton];
     
     SKTopicParser *topicParser = [SKTopicParser new];
-    
-    self.postTextView = [[YYTextView alloc] initWithFrame:CGRectMake(10, self.addTitleButton.bottom + 10, SCREEN_WIDTH - 20, self.containerView.height - self.addTitleButton.bottom - 10)];
+    self.postTextView = [[YYTextView alloc] initWithFrame:CGRectMake(10, 10, SCREEN_WIDTH - 20, self.containerView.height - 10)];
 //    @"#[^#]+?#"
     self.postTextView.textParser = topicParser;
     self.postTextView.textColor = Color_Gray2;
@@ -94,7 +96,7 @@
     }
     [self.containerView addSubview:self.postTextView];
     
-    self.postImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.addTitleButton.bottom + 10, SCREEN_WIDTH, 100)];
+    self.postImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 100)];
     self.postImageView.contentMode = UIViewContentModeScaleAspectFill;
     self.postImageView.hidden = YES;
     self.postImageView.layer.masksToBounds = YES;
@@ -105,6 +107,40 @@
     self.deleteImageButton.top = 0;
     self.deleteImageButton.right = SCREEN_WIDTH;
     [self.postImageView addSubview:self.deleteImageButton];
+    
+    self.editToolView = [[UIView alloc] initWithFrame:CGRectMake(0, self.containerView.height - 44, SCREEN_WIDTH, 44)];
+    [self.containerView addSubview:self.editToolView];
+    
+    self.addTitleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.addTitleButton setTitle:@"插入话题" forState:UIControlStateNormal];
+    [self.addTitleButton setTitleColor:Color_Green1 forState:UIControlStateNormal];
+    [self.addTitleButton setImage:[UIImage imageNamed:@"icon_pub_title"] forState:UIControlStateNormal];
+    self.addTitleButton.titleLabel.font = FONT(14);
+    self.addTitleButton.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+    self.addTitleButton.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
+    [self.addTitleButton addTarget:self action:@selector(addTitle) forControlEvents:UIControlEventTouchUpInside];
+    [self.addTitleButton sizeToFit];
+    self.addTitleButton.height = 44;
+    self.addTitleButton.width = self.addTitleButton.width + 12;
+    self.addTitleButton.left = 20;
+    self.addTitleButton.top = 0;
+    
+    self.addImageButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.addImageButton setTitle:@"插入图片" forState:UIControlStateNormal];
+    [self.addImageButton setTitleColor:Color_Green1 forState:UIControlStateNormal];
+    [self.addImageButton setImage:[UIImage imageNamed:@"icon_pub_image"] forState:UIControlStateNormal];
+    self.addImageButton.titleLabel.font = FONT(14);
+    self.addImageButton.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 0);
+    self.addImageButton.imageEdgeInsets = UIEdgeInsetsMake(0, -5, 0, 0);
+    [self.addImageButton addTarget:self action:@selector(addImage) forControlEvents:UIControlEventTouchUpInside];
+    [self.addImageButton sizeToFit];
+    self.addImageButton.height = 44;
+    self.addImageButton.width = self.addImageButton.width + 12;
+    self.addImageButton.left = self.addTitleButton.right + 20;
+    self.addImageButton.top = 0;
+    
+    [self.editToolView addSubview:self.addTitleButton];
+    [self.editToolView addSubview:self.addImageButton];
     
 }
 
@@ -146,8 +182,8 @@
     
     self.postImageKey = nil;
     
-    self.postTextView.top = self.addTitleButton.bottom + 10;
-    self.postTextView.height = self.containerView.height - self.addTitleButton.bottom - 10;
+    self.postTextView.top = 10;
+    self.postTextView.height = self.containerView.height - 10;
 }
 
 - (void)publishPost
@@ -319,7 +355,35 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - YYTextViewDelegate
+#pragma mark - Notification Methods
+
+//当键盘出现或改变时调用
+- (void)keyboardWillShow:(NSNotification *)notification {
+    
+    //获取键盘的高度
+    NSDictionary *userInfo = [notification userInfo];
+    NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
+    CGRect keyboardRect = [aValue CGRectValue];
+    CGFloat keyboardHeight = keyboardRect.size.height;
+    
+    weakify(self);
+    [UIView animateWithDuration:0.2f animations:^{
+        //将视图的Y坐标向上移动offset个单位，以使下面腾出地方用于软键盘的显示
+        strongify(self);
+        self.editToolView.bottom = self.containerView.height - keyboardHeight;
+    }];
+    
+}
+//当键退出时调用
+- (void)keyboardWillHide:(NSNotification *)notification {
+    
+    weakify(self);
+    [UIView animateWithDuration:0.2f animations:^{
+        strongify(self);
+        //将视图的Y坐标向上移动offset个单位，以使下面腾出地方用于软键盘的显示
+        self.editToolView.bottom = self.containerView.height;
+    }];
+}
 
 
 
