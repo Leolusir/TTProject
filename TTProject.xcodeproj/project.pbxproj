@@ -111,6 +111,7 @@
 		2CB04A871CD0A3E00029B9C2 /* MessageResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB04A861CD0A3E00029B9C2 /* MessageResultModel.m */; };
 		2CB04A8A1CD0E6120029B9C2 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB04A891CD0E6120029B9C2 /* MessageCell.m */; };
 		2CB04A8D1CD10A870029B9C2 /* MessageSendResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB04A8C1CD10A870029B9C2 /* MessageSendResultModel.m */; };
+		2CCA24921CD9A4600006D772 /* MyTitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CCA24911CD9A4600006D772 /* MyTitleViewController.m */; };
 		2CE574E01CBD497900F2AC04 /* TTUserService.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE574DF1CBD497900F2AC04 /* TTUserService.m */; };
 		2CE574FC1CBD4D4400F2AC04 /* SignInUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE574FB1CBD4D4400F2AC04 /* SignInUpViewController.m */; };
 		2CE574FF1CBD4D8400F2AC04 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE574FE1CBD4D8400F2AC04 /* DiscoverViewController.m */; };
@@ -339,6 +340,8 @@
 		2CB04A891CD0E6120029B9C2 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		2CB04A8B1CD10A870029B9C2 /* MessageSendResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageSendResultModel.h; sourceTree = "<group>"; };
 		2CB04A8C1CD10A870029B9C2 /* MessageSendResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageSendResultModel.m; sourceTree = "<group>"; };
+		2CCA24901CD9A4600006D772 /* MyTitleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTitleViewController.h; sourceTree = "<group>"; };
+		2CCA24911CD9A4600006D772 /* MyTitleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTitleViewController.m; sourceTree = "<group>"; };
 		2CE574DE1CBD497900F2AC04 /* TTUserService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTUserService.h; sourceTree = "<group>"; };
 		2CE574DF1CBD497900F2AC04 /* TTUserService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTUserService.m; sourceTree = "<group>"; };
 		2CE574FA1CBD4D4400F2AC04 /* SignInUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInUpViewController.h; sourceTree = "<group>"; };
@@ -971,6 +974,8 @@
 				2C3B71221CD26F4500D461E2 /* SettingViewController.m */,
 				2C3B712A1CD2813400D461E2 /* MyPostViewController.h */,
 				2C3B712B1CD2813400D461E2 /* MyPostViewController.m */,
+				2CCA24901CD9A4600006D772 /* MyTitleViewController.h */,
+				2CCA24911CD9A4600006D772 /* MyTitleViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1288,6 +1293,7 @@
 				2C8312C51CC2325D005E11AB /* PostModel.m in Sources */,
 				2C8312991CC1F4A8005E11AB /* TTHighlightTextStorage.m in Sources */,
 				2C8ECE6E1CB8C8F700A294AB /* ViewController.m in Sources */,
+				2CCA24921CD9A4600006D772 /* MyTitleViewController.m in Sources */,
 				2C8ECFA51CB8D2B900A294AB /* TTCacheService.m in Sources */,
 				2C8ECF741CB8CCBA00A294AB /* TTGalleryViewController.m in Sources */,
 				2C83129F1CC1FECE005E11AB /* UserRequest.m in Sources */,

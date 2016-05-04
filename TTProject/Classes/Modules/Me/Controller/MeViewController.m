@@ -67,8 +67,8 @@
 {
     self.menu = @[
                   @{@"type":@"empty",},
-                  @{@"type":@"item", @"key":@"1", @"title":@"我发布的", @"link":@"jump://my_post", @"line":@YES, @"arrow":@YES},
-                  @{@"type":@"item", @"key":@"2", @"title":@"我参与的", @"link":@"", @"line":@NO, @"arrow":@YES},
+                  @{@"type":@"item", @"key":@"1", @"title":@"我的动态", @"link":@"jump://my_post", @"line":@YES, @"arrow":@YES},
+                  @{@"type":@"item", @"key":@"2", @"title":@"我的话题", @"link":@"jump://my_title", @"line":@NO, @"arrow":@YES},
                   @{@"type":@"empty",},
                   @{@"type":@"item", @"key":@"3", @"title":@"登出", @"link":@"", @"line":@NO, @"arrow":@NO},
                   ];
@@ -98,7 +98,6 @@
     if ( 0 == section ) {
         // TODO: 个人信息实装
         UserInfoCell *cell = [UserInfoCell dequeueReusableCellForTableView:tableView];
-        cell.cellData = @{@"gender":[TTUserService sharedService].gender, @"astro":@"天蝎座", @"age":[NSString stringWithFormat:@"%.2f岁", [TTUserService sharedService].age]};
         [cell reloadData];
         return cell;
         

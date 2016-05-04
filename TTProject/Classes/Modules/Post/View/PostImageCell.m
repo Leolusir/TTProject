@@ -8,7 +8,7 @@
 
 #import "PostImageCell.h"
 
-#define IMAGE_HEIGHT 100
+#define IMAGE_HEIGHT SCREEN_WIDTH
 
 @interface PostImageCell ()
 

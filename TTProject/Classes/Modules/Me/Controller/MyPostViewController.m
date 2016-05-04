@@ -17,22 +17,13 @@
 
 #pragma mark - Life Cycle
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        self.tabbarItem = [[TTTabbarItem alloc] initWithTitle:@"发现" titleColor:Color_Gray1 selectedTitleColor:Color_Green1 icon:[UIImage imageNamed:@"icon_tabbar_discover_normal"] selectedIcon:[UIImage imageNamed:@"icon_tabbar_discover_selected"]];
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     self.needLocation = NO;
     
     [super viewDidLoad];
     
-    self.title = @"我发表的";
+    self.title = @"我的动态";
     
     [self addNavigationBar];
     

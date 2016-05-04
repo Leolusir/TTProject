@@ -10,6 +10,4 @@
 
 @interface TitleListViewController : BaseTableViewController
 
-@property (nonatomic, assign) NSInteger sort;
-
 @end

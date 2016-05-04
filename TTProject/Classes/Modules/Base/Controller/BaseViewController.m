@@ -228,7 +228,7 @@
 
 - (void)showAlert:(NSString *)message {
     
-    TTAlertView *alertView = [[TTAlertView alloc] initWithTitle:nil message:message containerView:nil delegate:self confirmButtonTitle:@"确定" otherButtonTitles:nil];
+    TTAlertView *alertView = [[TTAlertView alloc] initWithTitle:nil message:message containerView:nil delegate:nil confirmButtonTitle:@"确定" otherButtonTitles:nil];
     [alertView show];
     
 }
@@ -237,32 +237,5 @@
 {
     //    self.view.height = FULL_HEIGHT;
 }
-
-//- (void)requestNetworkFailed:(StatusEntity *)error
-//{
-//    if (error && !IsEmptyString(error.msg)) {
-//        [self showNotice:error.msg];
-//    }
-//}
-
-#pragma mark - Default View
-//#warning 目前没有图片
-//- (void)showDefaultView
-//{
-//    if(!self.defaultView){
-//        self.defaultView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"twiitter_default"]];
-//        self.defaultView.centerX = FULL_WIDTH/2.0f;
-//        self.defaultView.centerY = FULL_HEIGHT/2.0f - 50;
-//    }
-//    if(!self.defaultView.superview){
-//        [self.view insertSubview:self.defaultView atIndex:0];
-//    }
-//    [self.defaultView setHidden:NO];
-//}
-//
-//- (void)hideDefaultView
-//{
-//    [self.defaultView setHidden:YES];
-//}
 
 @end

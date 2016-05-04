@@ -17,6 +17,7 @@
 @interface RecordViewController ()
 
 @property (nonatomic, strong) NSMutableArray<RecordModel> *records;
+@property (nonatomic, strong) NSString *recordIdForDelete;
 
 @end
 
@@ -55,6 +56,10 @@
     
     self.tableView.top = NAVBAR_HEIGHT;
     self.tableView.height = SCREEN_HEIGHT - NAVBAR_HEIGHT - TABBAR_HEIGHT;
+    
+    UILongPressGestureRecognizer * longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(cellLongPress:)];
+    longPress.minimumPressDuration = 1.0;
+    [self.tableView addGestureRecognizer:longPress];
     
 }
 
@@ -132,6 +137,32 @@
         
     }];
     
+}
+
+#pragma mark - Event Response
+
+-(void)cellLongPress:(UILongPressGestureRecognizer *)gesture
+{
+    
+    if( gesture.state == UIGestureRecognizerStateBegan )
+    {
+        CGPoint point = [gesture locationInView:self.tableView];
+        
+        NSIndexPath * indexPath = [self.tableView indexPathForRowAtPoint:point];
+        
+        if(indexPath == nil) return ;
+        
+        RecordModel *record = [self.records safeObjectAtIndex:indexPath.row];
+        
+        if (record) {
+            
+            DBG(@"%@", record);
+            self.recordIdForDelete = record.id;
+            TTAlertView *alertView = [[TTAlertView alloc] initWithTitle:nil message:@"删除对话并拉黑对方" containerView:nil delegate:self confirmButtonTitle:@"确定" otherButtonTitles:@[@"取消"]];
+            [alertView show];
+        }
+        
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -223,6 +254,48 @@
 {
     [self.records removeAllObjects];
     [self reloadData];
+}
+
+#pragma mark - TTAlertViewDelegate
+
+- (void)alertView:(TTAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    DBG(@"%ld", (long)buttonIndex);
+    
+    if ( 0 == buttonIndex ) {
+        
+        DBG(@"删删删");
+        
+        weakify(self);
+        
+        [MessageRequest deleteRecordWithId:self.recordIdForDelete success:^{
+            
+            strongify(self);
+            
+            for (RecordModel *record in self.records) {
+                
+                if ( [self.recordIdForDelete isEqualToString:record.id] ) {
+                    [self.records removeObject:record];
+                    [self reloadData];
+                    break;
+                }
+                
+            }
+            
+            self.recordIdForDelete = @"";
+            
+        } failure:^(StatusModel *status) {
+            
+            strongify(self);
+            
+            self.recordIdForDelete = @"";
+            
+            [self showNotice:@"删除失败"];
+            
+        }];
+        
+    }
+    
 }
 
 @end

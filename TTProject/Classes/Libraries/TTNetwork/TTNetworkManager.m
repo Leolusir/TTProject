@@ -256,6 +256,31 @@
     }];
 }
 
+- (void)deleteWithUrl:(NSString *)URLString
+           parameters:(NSDictionary *)parameters
+              success:(void (^)(NSDictionary *result))success
+              failure:(void (^)(StatusModel *status))failure
+{
+    parameters = [self addSystemParameters:parameters];
+    DBG(@"POST URL:%@",URLString);
+    DBG(@"Parameters:%@",parameters);
+    
+    [self DELETE:URLString parameters:parameters success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        if ( success && failure ) {
+            [self requestSuccess:success failure:failure data:responseObject];
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        if (failure) {
+            [self requestFailure:failure data:error];
+        }
+        
+    }];
+    
+}
+
 #pragma mark - Private Methods
 
 - (void)requestSuccess:(void (^)(NSDictionary *result))success failure:(void (^)(StatusModel *status))failure data:(id) data {

@@ -45,12 +45,32 @@
 
 - (void)initData
 {
+    
+    NSString *pushStatus = @"";
+    
+    UIUserNotificationType notificationType;
+    if ([[UIApplication sharedApplication] isRegisteredForRemoteNotifications]) {
+        notificationType = [[UIApplication sharedApplication] currentUserNotificationSettings].types;
+    } else {
+        notificationType = UIUserNotificationTypeNone;
+    }
+    
+    if (notificationType == UIUserNotificationTypeNone) {
+        pushStatus = @"已关闭";
+    } else {
+        pushStatus = @"已打开";
+    }
+    
     // TODO: 功能等待实装
     self.menu = @[
-                  @{@"type":@"item", @"key":@"1", @"title":@"推送开关", @"link":@"", @"line":@YES, @"arrow":@YES},
-                  @{@"type":@"item", @"key":@"2", @"title":@"检查更新", @"link":@"", @"line":@YES, @"arrow":@YES},
-                  @{@"type":@"item", @"key":@"3", @"title":@"关于", @"link":@"", @"line":@YES, @"arrow":@YES},
-                  @{@"type":@"item", @"key":@"4", @"title":@"拉朋友一起玩", @"link":@"", @"line":@NO, @"arrow":@YES}
+                  @{@"type":@"item", @"key":@"1", @"title":@"应用名称", @"link":@"", @"line":@YES, @"arrow":@NO, @"value":@"Seek"},
+                  @{@"type":@"item", @"key":@"2", @"title":@"版本信息", @"link":@"", @"line":@NO, @"arrow":@NO, @"value":@"1.0.0.0 beta"},
+                  @{@"type":@"empty",},
+                  @{@"type":@"item", @"key":@"3", @"title":@"推送开关", @"link":@"", @"line":@NO, @"arrow":@NO, @"value":pushStatus},
+                  @{@"type":@"empty",},
+                  @{@"type":@"item", @"key":@"4", @"title":@"Devils小队", @"link":@"", @"line":@YES, @"arrow":@NO, @"value":@"一群野生开发者"},
+                  @{@"type":@"item", @"key":@"5", @"title":@"市场联系", @"link":@"", @"line":@YES, @"arrow":@NO, @"value":@"devils.team@outlook.com"},
+                  @{@"type":@"item", @"key":@"6", @"title":@"意见交流", @"link":@"", @"line":@NO, @"arrow":@NO, @"value":@"QQ:3275149780"}
                   ];
 }
 
@@ -118,6 +138,12 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSDictionary *itemData = [self.menu safeObjectAtIndex:indexPath.row];
+    
+    if ( [@"3" isEqualToString:[itemData objectForKey:@"key"]] ) {
+        [self showAlert:@"如果你要关闭或开启Seek的新消息推送，请在iPhone的 \"设置 - 通知\" 功能中，找到应用程序 \"Seek\" 进行更改。"];
+    }
     
 }
 

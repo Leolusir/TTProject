@@ -15,6 +15,7 @@
 #import "SignInUpViewController.h"
 #import "SettingViewController.h"
 #import "MyPostViewController.h"
+#import "MyTitleViewController.h"
 
 @implementation AppModuleEntrance
 
@@ -45,8 +46,10 @@
     // 设置
     [[TTNavigationService sharedService] registerModule:self withScheme:APP_SCHEME host:@"setting"];
     
-    // 我发表的
+    // 我发表的Post
     [[TTNavigationService sharedService] registerModule:self withScheme:APP_SCHEME host:@"my_post"];
+    // 我发表的Title
+    [[TTNavigationService sharedService] registerModule:self withScheme:APP_SCHEME host:@"my_title"];
     
 }
 
@@ -103,6 +106,11 @@
         } else if ([url.host isEqualToString:@"my_post"]) {
             
             MyPostViewController *vc = [[MyPostViewController alloc] init];
+            [navigationController pushViewController:vc animated:YES];
+            
+        } else if ([url.host isEqualToString:@"my_title"]) {
+            
+            MyTitleViewController *vc = [[MyTitleViewController alloc] init];
             [navigationController pushViewController:vc animated:YES];
             
         }

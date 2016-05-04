@@ -8,7 +8,7 @@
 
 #import "MessageRequest.h"
 
-#define MESSAGE_RECORD_LIST                     @"/api/v1/message/record"
+#define MESSAGE_RECORD                          @"/api/v1/message/record"
 #define MESSAGE_LIST                            @"/api/v1/message"
 #define MESSAGE_SEND                            @"/api/v1/message"
 
@@ -16,7 +16,7 @@
 
 + (void)getRecordsWithParams:(NSDictionary *)params success:(void(^)(RecordListResultModel *resultModel))success failure:(void(^)(StatusModel *status))failure
 {
-    [[TTNetworkManager sharedInstance] getWithUrl:MESSAGE_RECORD_LIST parameters:params success:^(NSDictionary *result) {
+    [[TTNetworkManager sharedInstance] getWithUrl:MESSAGE_RECORD parameters:params success:^(NSDictionary *result) {
         
         NSError *err = [[NSError alloc] init];
         
@@ -24,6 +24,22 @@
         
         if (success) {
             success(resultModel);
+        }
+        
+    } failure:^(StatusModel *status) {
+        if (failure) {
+            failure(status);
+        }
+    }];
+}
+
++ (void)deleteRecordWithId:(NSString *)recordId success:(void(^)())success failure:(void(^)(StatusModel *status))failure
+{
+    
+    [[TTNetworkManager sharedInstance] deleteWithUrl:[NSString stringWithFormat:@"%@/%@",MESSAGE_RECORD, recordId] parameters:nil success:^(NSDictionary *result) {
+        
+        if (success) {
+            success();
         }
         
     } failure:^(StatusModel *status) {

@@ -11,6 +11,7 @@
 @interface MenuItemCell ()
 
 @property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *valueLabel;
 @property (nonatomic, strong) UIView *lineView;
 @property (nonatomic, strong) UIImageView *moreImageView;
 
@@ -24,6 +25,7 @@
     [self addSubview:self.lineView];
     [self addSubview:self.moreImageView];
     [self addSubview:self.titleLabel];
+    [self addSubview:self.valueLabel];
     
 }
 
@@ -33,7 +35,19 @@
         
         NSDictionary *data = (NSDictionary *)self.cellData;
         
-        self.titleLabel.text = data[@"title"];
+        if ( [data objectForKey:@"title"] ) {
+            self.titleLabel.hidden = NO;
+            self.titleLabel.text = data[@"title"];
+        } else {
+            self.titleLabel.hidden = YES;
+        }
+        
+        if ( [data objectForKey:@"value"] ) {
+            self.valueLabel.hidden = NO;
+            self.valueLabel.text = data[@"value"];
+        } else {
+            self.valueLabel.hidden = YES;
+        }
         
         if ( [data[@"line"] boolValue] ) {
             self.lineView.hidden = NO;
@@ -43,8 +57,10 @@
         
         if ( [data[@"arrow"] boolValue] ) {
             self.moreImageView.hidden = NO;
+            self.valueLabel.right = self.moreImageView.left - 10;
         } else {
             self.moreImageView.hidden = YES;
+            self.valueLabel.right = SCREEN_WIDTH - 20;
         }
         
     }
@@ -89,6 +105,18 @@
     }
     
     return _titleLabel;
+}
+
+- (UILabel *)valueLabel
+{
+    if ( !_valueLabel ) {
+        _valueLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, SCREEN_WIDTH - 60, 60)];
+        _valueLabel.textColor = Color_Gray3;
+        _valueLabel.font = FONT(14);
+        _valueLabel.textAlignment = NSTextAlignmentRight;
+    }
+    
+    return _valueLabel;
 }
 
 @end

@@ -17,6 +17,6 @@
 
 @property (nonatomic, assign) BOOL isEnd;
 @property (nonatomic, strong) NSString *wp;
-@property (nonatomic, strong) NSArray<PostModel> *posts;
+@property (nonatomic, strong) NSArray<PostModel, Optional> *posts;
 
 @end

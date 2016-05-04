@@ -72,11 +72,11 @@
 {
     
     TitleListViewController *newTopicListViewController = [[TitleListViewController alloc] init];
-    newTopicListViewController.sort = 0;
+//    newTopicListViewController.sort = 0;
     [self addChildViewController:newTopicListViewController];
     
     TitleListViewController *hotTopicListViewController = [[TitleListViewController alloc] init];
-    hotTopicListViewController.sort = 1;
+//    hotTopicListViewController.sort = 1;
     [self addChildViewController:hotTopicListViewController];
     
     self.viewControllers = @[newTopicListViewController, hotTopicListViewController];

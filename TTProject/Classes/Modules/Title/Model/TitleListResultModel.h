@@ -17,7 +17,7 @@
 
 @property (nonatomic, assign) BOOL isEnd;
 @property (nonatomic, strong) NSString *wp;
-@property (nonatomic, strong) NSArray<TitleModel> *titles;
+@property (nonatomic, strong) NSArray<TitleModel, Optional> *titles;
 @property (nonatomic, strong) NSArray<TitleModel, Optional> *hotTitles;
 
 @end

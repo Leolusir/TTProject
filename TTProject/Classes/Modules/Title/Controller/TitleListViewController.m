@@ -75,10 +75,10 @@
 //    UIImage *searchImage = [UIImage imageNamed:@"icon_nav_search"];
 //    UIButton *searchButton = [UIButton leftBarButtonWithImage:searchImage highlightedImage:searchImage target:self action:@selector(handleSearchButton) forControlEvents:UIControlEventTouchUpInside];
 //    [self.navigationBar setLeftBarButton:searchButton];
-//    
-//    UIImage *addImage = [UIImage imageNamed:@"icon_nav_add"];
-//    UIButton *addTopicButton = [UIButton rightBarButtonWithImage:addImage highlightedImage:addImage target:self action:@selector(handleAddTopicButton) forControlEvents:UIControlEventTouchUpInside];
-//    [self.navigationBar setRightBarButton:addTopicButton];
+    
+    UIImage *addImage = [UIImage imageNamed:@"icon_nav_add"];
+    UIButton *addTopicButton = [UIButton rightBarButtonWithImage:addImage highlightedImage:addImage target:self action:@selector(handleAddTopicButton) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationBar setRightBarButton:addTopicButton];
     
 }
 

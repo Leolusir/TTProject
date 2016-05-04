@@ -57,4 +57,9 @@
                   success:(void (^)(NSDictionary *result))success
                   failure:(void (^)(StatusModel *status))failure;
 
+- (void)deleteWithUrl:(NSString *)URLString
+         parameters:(NSDictionary *)parameters
+            success:(void (^)(NSDictionary *result))success
+            failure:(void (^)(StatusModel *status))failure;
+
 @end
