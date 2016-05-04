@@ -23,6 +23,7 @@
 // Post Vote Success
 #define kNOTIFY_APP_POST_VOTE_SUCCESS         @"kNOTIFY_APP_POST_VOTE_SUCCESS"
 
-
+// Post Reply Success
+#define kNOTIFY_APP_MESSAGE_REPLY_SUCCESS         @"kNOTIFY_APP_MESSAGE_REPLY_SUCCESS"
 
 #endif /* KeyMarco_h */

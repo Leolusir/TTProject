@@ -12,6 +12,7 @@
 		2C068B171CCFF02200F0A675 /* MessageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C068B161CCFF02200F0A675 /* MessageRequest.m */; };
 		2C068B1A1CCFF0D000F0A675 /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C068B191CCFF0D000F0A675 /* RecordViewController.m */; };
 		2C068B1D1CCFF30D00F0A675 /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C068B1C1CCFF30D00F0A675 /* RecordCell.m */; };
+		2C28234B1CDA306900B69E8D /* TitleAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C28234A1CDA306900B69E8D /* TitleAddViewController.m */; };
 		2C387A4A1CC678940054D404 /* PostRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C387A491CC678940054D404 /* PostRequest.m */; };
 		2C3B71231CD26F4500D461E2 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B71221CD26F4500D461E2 /* SettingViewController.m */; };
 		2C3B71261CD2722500D461E2 /* UserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B71251CD2722500D461E2 /* UserInfoCell.m */; };
@@ -132,6 +133,8 @@
 		2C068B191CCFF0D000F0A675 /* RecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordViewController.m; sourceTree = "<group>"; };
 		2C068B1B1CCFF30D00F0A675 /* RecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordCell.h; sourceTree = "<group>"; };
 		2C068B1C1CCFF30D00F0A675 /* RecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordCell.m; sourceTree = "<group>"; };
+		2C2823491CDA306900B69E8D /* TitleAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleAddViewController.h; sourceTree = "<group>"; };
+		2C28234A1CDA306900B69E8D /* TitleAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleAddViewController.m; sourceTree = "<group>"; };
 		2C387A481CC678940054D404 /* PostRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostRequest.h; sourceTree = "<group>"; };
 		2C387A491CC678940054D404 /* PostRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostRequest.m; sourceTree = "<group>"; };
 		2C3B71211CD26F4500D461E2 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
@@ -474,6 +477,8 @@
 				2C88E2CE1CCDE09900646D9A /* TitleGroupViewController.m */,
 				2C88E2CF1CCDE09900646D9A /* TitleListViewController.h */,
 				2C88E2D01CCDE09900646D9A /* TitleListViewController.m */,
+				2C2823491CDA306900B69E8D /* TitleAddViewController.h */,
+				2C28234A1CDA306900B69E8D /* TitleAddViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1347,6 +1352,7 @@
 				2C3B712F1CD281A800D461E2 /* MeRequest.m in Sources */,
 				2C068B141CCFEF3400F0A675 /* RecordListResultModel.m in Sources */,
 				2C8ECFA21CB8D2B900A294AB /* AppModuleEntrance.m in Sources */,
+				2C28234B1CDA306900B69E8D /* TitleAddViewController.m in Sources */,
 				2C8ECF8D1CB8CCBA00A294AB /* TTTabbarItem.m in Sources */,
 				2C83129B1CC1F4A8005E11AB /* TTMDTextField.m in Sources */,
 				2C8ECF5D1CB8CCBA00A294AB /* UIDevice+TT.m in Sources */,

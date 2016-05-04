@@ -11,6 +11,7 @@
 #import "PostViewController.h"
 
 #import "RecordModel.h"
+#import "MessageModel.h"
 #import "MessageRequest.h"
 #import "RecordCell.h"
 
@@ -46,6 +47,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userSignIn) name:kNOTIFY_APP_USER_SIGNIN object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userSignOut) name:kNOTIFY_APP_USER_SIGNOUT object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageReplySuccess:) name:kNOTIFY_APP_MESSAGE_REPLY_SUCCESS object:nil];
 }
 
 #pragma mark - Override Methods
@@ -232,6 +234,9 @@
         
         [navigationController pushViewController:vc animated:YES];
         
+        record.status = 0;
+        [self reloadData];
+        
     }
     
 }
@@ -254,6 +259,39 @@
 {
     [self.records removeAllObjects];
     [self reloadData];
+}
+
+- (void)messageReplySuccess:(NSNotification *)notification
+{
+    NSDictionary *userInfo = [notification userInfo];
+    MessageModel *message = [userInfo objectForKey:@"message"];
+    
+    RecordModel *newRecord = nil;
+    
+    if ( message ) {
+        
+        for (RecordModel *record in self.records) {
+            
+            if ( [record.postId isEqualToString:message.postId]) {
+                
+                [self.records removeObject:record];
+                newRecord = record;
+                break;
+            }
+            
+        }
+        
+        if ( newRecord ) {
+            newRecord.content = message.content;
+            newRecord.createTime = @"刚刚";
+            [self.records insertObject:newRecord atIndex:0];
+            
+            [self reloadData];
+        }
+        
+    }
+    
+    
 }
 
 #pragma mark - TTAlertViewDelegate

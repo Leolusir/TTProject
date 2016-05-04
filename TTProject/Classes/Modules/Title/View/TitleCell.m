@@ -69,7 +69,7 @@
 {
     if ( !_countLabel ) {
         _countLabel = [[UILabel alloc] initWithFrame:CGRectMake(PADDING, self.titleLabel.bottom + 2, SCREEN_WIDTH - PADDING * 2, 0)];
-        _countLabel.textColor = Color_Gray1;
+        _countLabel.textColor = Color_Gray3;
         _countLabel.font = FONT(10);
         _countLabel.textAlignment = NSTextAlignmentCenter;
         _countLabel.text = @"0条内容";

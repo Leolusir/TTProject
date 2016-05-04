@@ -347,12 +347,15 @@
     [MessageRequest sendMessagesWithParams:params success:^(MessageSendResultModel *resultModel) {
         
         strongify(self);
-        // TODO: 刷新record列表
+        
         [self.messages insertObject:resultModel.message atIndex:0];
         self.replyTextView.text = @"";
         [self reloadData];
         
         self.replyButton.enabled = YES;
+        
+        NSDictionary *userInfo = @{@"message" : resultModel.message};
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFY_APP_MESSAGE_REPLY_SUCCESS object:nil userInfo:userInfo];
         
     } failure:^(StatusModel *status) {
         

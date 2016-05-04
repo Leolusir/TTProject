@@ -7,6 +7,7 @@
 //
 
 #import "PostPublishViewController.h"
+#import "TitleAddViewController.h"
 #import "TTHighlightTextView.h"
 #import "PostRequest.h"
 #import <QiniuSDK.h>
@@ -254,6 +255,17 @@
 - (void)addTitle
 {
     [self.view endEditing:YES];
+    
+    TitleAddViewController *vc = [[TitleAddViewController alloc] init];
+    weakify(self);
+    vc.callback = ^(NSString *title) {
+        DBG(@"title:%@", title);
+        strongify(self);
+        self.postTextView.text = [NSString stringWithFormat:@"#%@# %@", title, self.postTextView.text];
+    };
+    
+    TTNavigationController *navigationController = [[ApplicationEntrance shareEntrance] currentNavigationController];
+    [navigationController pushViewController:vc animated:YES];
 }
 
 - (void)addImage

@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UILabel *infoLabel;
 @property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) UIImageView *avatarImageView;
+@property (nonatomic, strong) UIView *unreadMarkView;
 
 @end
 
@@ -27,6 +28,8 @@
     [self addSubview:self.infoLabel];
     [self addSubview:self.timeLabel];
     [self addSubview:self.contentLabel];
+    [self addSubview:self.unreadMarkView];
+    
     
 }
 
@@ -40,6 +43,8 @@
         self.infoLabel.text = [NSString stringWithFormat:@"%@    %@岁", [record.gender isEqualToString:@"m"] ? @"男" : @"女", record.age];
         self.contentLabel.text = record.content;
         self.timeLabel.text = record.createTime;
+        
+        self.unreadMarkView.hidden = record.status ? NO : YES;
         
     }
     
@@ -108,6 +113,16 @@
     }
     
     return _contentLabel;
+}
+
+- (UIView *)unreadMarkView
+{
+    if ( !_unreadMarkView ) {
+        _unreadMarkView = [[UIView alloc] initWithFrame:CGRectMake(7, 37, 6, 6)];
+        _unreadMarkView.backgroundColor = Color_Green1;
+        _unreadMarkView.layer.cornerRadius = 3;
+    }
+    return _unreadMarkView;
 }
 
 @end

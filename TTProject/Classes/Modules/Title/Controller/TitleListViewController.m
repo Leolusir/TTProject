@@ -7,7 +7,7 @@
 //
 
 #import "TitleListViewController.h"
-
+#import "TitleAddViewController.h"
 #import "TitleRequest.h"
 #import "TitleModel.h"
 
@@ -360,6 +360,15 @@
 - (void)handleAddTopicButton
 {
     DBG(@"handleAddTopicButton");
+    
+    TitleAddViewController *vc = [[TitleAddViewController alloc] init];
+    vc.callback = ^(NSString *title) {
+        DBG(@"title:%@", title);
+        [[TTNavigationService sharedService] openUrl:[NSString stringWithFormat:@"jump://post_publish?title=%@", title]];
+    };
+    
+    TTNavigationController *navigationController = [[ApplicationEntrance shareEntrance] currentNavigationController];
+    [navigationController pushViewController:vc animated:YES];
 }
 
 - (void)handleSearchButton

@@ -16,9 +16,6 @@
 
 @interface MessageSendResultModel : BaseModel
 
-@property (nonatomic, strong) NSString *link;
 @property (nonatomic, strong) MessageModel *message;
-@property (nonatomic, strong) NSString *msg;
-@property (nonatomic, strong) NSString *title;
 
 @end
