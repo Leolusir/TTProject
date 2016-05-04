@@ -37,7 +37,7 @@
     [super addTableView];
     
     self.tableView.top = NAVBAR_HEIGHT;
-    self.tableView.height = SCREEN_HEIGHT - NAVBAR_HEIGHT - TABBAR_HEIGHT;
+    self.tableView.height = SCREEN_HEIGHT - NAVBAR_HEIGHT;
     
 }
 

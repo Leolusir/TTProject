@@ -55,8 +55,8 @@
 {
     [super addNavigationBar];
 
-    UIImage *addImage = [UIImage imageNamed:@"icon_nav_setting"];
-    UIButton *settingButton = [UIButton rightBarButtonWithImage:addImage highlightedImage:addImage target:self action:@selector(handleSettingButton) forControlEvents:UIControlEventTouchUpInside];
+    UIImage *settingImage = [UIImage imageNamed:@"icon_nav_setting"];
+    UIButton *settingButton = [UIButton rightBarButtonWithImage:settingImage highlightedImage:settingImage target:self action:@selector(handleSettingButton) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationBar setRightBarButton:settingButton];
     
 }

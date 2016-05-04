@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - AMap2DMap (3.3.0)
   - AMapLocation (1.2.2)
   - BlocksKit (2.2.5):
     - BlocksKit/All (= 2.2.5)
@@ -30,6 +31,7 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
+  - GTSDK (1.4.2)
   - HappyDNS (0.2.3)
   - JSONModel (1.0.2)
   - leveldb-library (1.18.2)
@@ -50,8 +52,10 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - AMap2DMap
   - AMapLocation
   - BlocksKit (~> 2.2.5)
+  - GTSDK
   - JSONModel (~> 1.0.2)
   - MBProgressHUD (~> 0.9)
   - Objective-LevelDB (~> 2.1.4)
@@ -75,8 +79,10 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  AMap2DMap: e53461cdc345375e514579db17dbd721ff9ed9eb
   AMapLocation: 5412fbf0385716d4d481e39a95929057cddc093f
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
+  GTSDK: 51a12836895312a872f75a2fe0f2e788dee75b19
   HappyDNS: 6d85942e64c28b4fa61f8c76580398f52d6d1d11
   JSONModel: 6ffcb4ffa3659c9e9a2e5d45d6c7705bab187c03
   leveldb-library: ef0453697c0fda3a9e550e5650e52976e6724548
@@ -90,4 +96,6 @@ SPEC CHECKSUMS:
   Toast: 0773b8fc0e97352ca6054517bec7ebdd4110029d
   YYText: ac09660c9ccd9b817f409a20caa6f5587444d2ae
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 10b4bdbfdd9e431f094f7c68afad1ea2948baa23
+
+COCOAPODS: 1.0.0.rc.1
