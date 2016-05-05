@@ -16,5 +16,7 @@
 #import "FunctionMacro.h"
 #import "KeyMarco.h"
 #import "CommonMacro.h"
+#import "VendorMacro.h"
+#import "AppMacro.h"
 
 #endif /* Macros_h */

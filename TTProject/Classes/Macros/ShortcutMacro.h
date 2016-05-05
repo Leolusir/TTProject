@@ -45,13 +45,4 @@ _Pragma("clang diagnostic ignored \"-Wshadow\"") \
 __attribute__((objc_ownership(strong))) __typeof__(x) x = __weak_##x##__; \
 _Pragma("clang diagnostic pop")
 
-//IM
-#define SuppressPerformSelectorLeakWarning(Stuff) \
-do { \
-_Pragma("clang diagnostic push") \
-_Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
-Stuff; \
-_Pragma("clang diagnostic pop") \
-} while (0)
-
 #endif /* ShortcutMacro_h */

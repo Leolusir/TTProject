@@ -79,5 +79,13 @@
     
 }
 
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler
+{
+    [[ApplicationEntrance shareEntrance] applicationPerformFetchWithCompletionHandler:completionHandler];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler {
+    [[ApplicationEntrance shareEntrance] applicationDidReceiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];
+}
 
 @end

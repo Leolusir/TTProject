@@ -18,7 +18,12 @@
 #import "SignInUpViewController.h"
 #import "TTUserService.h"
 
-@interface ApplicationEntrance ()
+#import "GeTuiSdk.h"
+
+@interface ApplicationEntrance () <GeTuiSdkDelegate>
+
+@property (nonatomic, strong) NSDictionary *remoteInfo;
+@property (nonatomic, strong) NSString *clientId;
 
 @end
 
@@ -39,6 +44,7 @@
     
     self.window = mainWindow;
     
+    // 注册推送
     [self registerAPNs];
     
     //主页面初始化
@@ -47,8 +53,11 @@
     //应用初始化
     [self appInit];
     
+    // 个推初始化
+    [GeTuiSdk startSdkWithAppId:GETUI_APP_ID appKey:GETUI_APP_KEY appSecret:GETUI_APP_SECRET delegate:self];
+    
     // 高德
-    [AMapLocationServices sharedServices].apiKey = @"b53d77dabc08fbee9b3741bbddf88a53";
+    [AMapLocationServices sharedServices].apiKey = AMAP_API_KEY;
     
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
     
@@ -63,6 +72,7 @@
 
 - (void)applicationActive
 {
+    [self handleRemoteInfo];
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
 
@@ -78,17 +88,28 @@
 
 - (void)applicationRegisterDeviceToken:(NSData*)deviceToken
 {
+    NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     
+    token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    DBG(@"applicationRegisterDeviceToken: %@", token);
+    
+    // [3]:向个推服务器注册deviceToken
+    [GeTuiSdk registerDeviceToken:token];
 }
 
 - (void)applicationFailToRegisterDeviceToken:(NSError*)error
 {
     
+    DBG(@"applicationFailToRegisterDeviceToken: %@", [error localizedDescription]);
+    
 }
 
 - (void)applicationReceiveNotifaction:(NSDictionary*)userInfo
 {
+    DBG(@"applicationReceiveNotifaction: %@", userInfo);
     
+    self.remoteInfo = userInfo;
 }
 
 - (BOOL)applicationOpenURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
@@ -103,17 +124,51 @@
     
 }
 
+- (void)applicationPerformFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler
+{
+    [GeTuiSdk resume];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+
+- (void)applicationDidReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult result))completionHandler
+{
+    DBG(@"\n>>>[Receive RemoteNotification - Background Fetch]:%@\n\n",userInfo);
+    self.remoteInfo = userInfo;
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+#pragma mark - Private Methods
+
+- (BOOL)handleRemoteInfo
+{
+    if (self.remoteInfo && [[self.remoteInfo allKeys] containsObject:@"payload"]) {
+        
+        NSString *url = [NSString stringWithFormat:@"%@",[self.remoteInfo objectForKey:@"payload"]];
+        
+        [self handleOpenURL:url];
+        
+        self.remoteInfo = nil;
+        
+        return YES;
+        
+    } else {
+        
+        self.remoteInfo = nil;
+        
+        return NO;
+        
+    }
+    
+}
+
 // 初始化数据
 - (void)appInit
 {
     
     if ( ![TTUserService sharedService].isLogin ) {
-        
         [[TTNavigationService sharedService] openUrl:@"jump://sign_in_up"];
     }
-//    [TTAppLaunchView sharedInstance];
-//    
-//    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFY_APP_LAUNCH_LOADING object:nil];
     
 }
 
@@ -172,6 +227,7 @@
 }
 
 #pragma mark - TTTabBarDelegate
+
 - (BOOL)tabBarController:(TTTabbarController *)tabBarController shouldSelectViewController:(BaseViewController *)viewController atIndex:(NSInteger)index
 {
     return YES;
@@ -180,6 +236,54 @@
 - (void)tabBarController:(TTTabbarController *)tabBarController didSelectViewController:(BaseViewController *)viewController atIndex:(NSInteger)index
 {
 
+}
+
+#pragma mark - GeTuiSdkDelegate
+
+//个推SDK已注册，返回clientId
+- (void)GeTuiSdkDidRegisterClient:(NSString *)clientId {
+    DBG(@"\n>>>[GeTuiSdk RegisterClient]:%@\n\n", clientId);
+}
+
+//个推错误报告，集成步骤发生的任何错误都在这里通知，如果集成后，无法正常收到消息，查看这里的通知
+- (void)GeTuiSdkDidOccurError:(NSError *)error {
+    DBG(@"\n>>>[GeTuiSdk error]:%@\n\n", [error localizedDescription]);
+}
+
+/** SDK收到透传消息回调 */
+- (void)GeTuiSdkDidReceivePayloadData:(NSData *)payloadData andTaskId:(NSString *)taskId andMsgId:(NSString *)msgId andOffLine:(BOOL)offLine fromGtAppId:(NSString *)appId {
+    
+    // [4]: 收到个推消息
+    NSString *payloadMsg = nil;
+    if (payloadData) {
+        payloadMsg = [[NSString alloc] initWithBytes:payloadData.bytes length:payloadData.length encoding:NSUTF8StringEncoding];
+    }
+    
+    NSString *msg = [NSString stringWithFormat:@"taskId=%@,messageId:%@,payloadMsg:%@%@", taskId, msgId, payloadMsg, offLine ? @"<离线消息>" : @""];
+    DBG(@"\n>>>[GeTuiSdk ReceivePayload]:%@\n\n", msg);
+}
+
+/** SDK收到sendMessage消息回调 */
+- (void)GeTuiSdkDidSendMessage:(NSString *)messageId result:(int)result {
+    // [4-EXT]:发送上行消息结果反馈
+    NSString *msg = [NSString stringWithFormat:@"sendmessage=%@,result=%d", messageId, result];
+    DBG(@"\n>>>[GeTuiSdk DidSendMessage]:%@\n\n", msg);
+}
+
+/** SDK运行状态通知 */
+- (void)GeTuiSDkDidNotifySdkState:(SdkStatus)aStatus {
+    // [EXT]:通知SDK运行状态
+    DBG(@"\n>>>[GeTuiSdk SdkState]:%u\n\n", aStatus);
+}
+
+/** SDK设置推送模式回调 */
+- (void)GeTuiSdkDidSetPushMode:(BOOL)isModeOff error:(NSError *)error {
+    if (error) {
+        DBG(@"\n>>>[GeTuiSdk SetModeOff Error]:%@\n\n", [error localizedDescription]);
+        return;
+    }
+    
+    DBG(@"\n>>>[GexinSdk SetModeOff]:%@\n\n", isModeOff ? @"开启" : @"关闭");
 }
 
 

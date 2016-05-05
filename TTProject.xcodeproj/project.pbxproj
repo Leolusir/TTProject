@@ -133,6 +133,8 @@
 		2C068B191CCFF0D000F0A675 /* RecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordViewController.m; sourceTree = "<group>"; };
 		2C068B1B1CCFF30D00F0A675 /* RecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordCell.h; sourceTree = "<group>"; };
 		2C068B1C1CCFF30D00F0A675 /* RecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordCell.m; sourceTree = "<group>"; };
+		2C0A92941CDADBE600EA7738 /* VendorMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendorMacro.h; sourceTree = "<group>"; };
+		2C0A92951CDADBE600EA7738 /* AppMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppMacro.h; sourceTree = "<group>"; };
 		2C2823491CDA306900B69E8D /* TitleAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleAddViewController.h; sourceTree = "<group>"; };
 		2C28234A1CDA306900B69E8D /* TitleAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleAddViewController.m; sourceTree = "<group>"; };
 		2C387A481CC678940054D404 /* PostRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostRequest.h; sourceTree = "<group>"; };
@@ -660,6 +662,8 @@
 		2C8ECEAD1CB8CCBA00A294AB /* Macros */ = {
 			isa = PBXGroup;
 			children = (
+				2C0A92941CDADBE600EA7738 /* VendorMacro.h */,
+				2C0A92951CDADBE600EA7738 /* AppMacro.h */,
 				2C8ECEAE1CB8CCBA00A294AB /* ColorMarco.h */,
 				2C8ECEAF1CB8CCBA00A294AB /* CommonMacro.h */,
 				2C8ECEB01CB8CCBA00A294AB /* FunctionMacro.h */,

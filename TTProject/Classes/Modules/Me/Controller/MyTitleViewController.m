@@ -176,9 +176,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSInteger section = indexPath.section;
-    NSInteger row = indexPath.row;
-    
     TitleModel *topic = [self.titles safeObjectAtIndex:indexPath.row];
     
     if ( topic ) {
