@@ -14,7 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - AMap2DMap (3.3.0)
+  - AMap3DMap (3.3.2)
   - AMapLocation (1.2.2)
   - BlocksKit (2.2.5):
     - BlocksKit/All (= 2.2.5)
@@ -47,12 +47,12 @@ PODS:
     - SDWebImage/Core (= 3.7.5)
   - SDWebImage/Core (3.7.5)
   - SwipeView (1.3.2)
-  - Toast (2.4)
+  - UMengAnalytics (3.6.6)
   - YYText (1.0.5)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
-  - AMap2DMap
+  - AMap3DMap
   - AMapLocation
   - BlocksKit (~> 2.2.5)
   - GTSDK
@@ -64,7 +64,7 @@ DEPENDENCIES:
   - Reachability (~> 3.1.1)
   - SDWebImage (~> 3.7)
   - SwipeView (~> 1.3.2)
-  - Toast (~> 2.4)
+  - UMengAnalytics
   - YYText
 
 EXTERNAL SOURCES:
@@ -79,7 +79,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  AMap2DMap: e53461cdc345375e514579db17dbd721ff9ed9eb
+  AMap3DMap: 6315b7489cb60b1c47bb51169b409c20efa5f527
   AMapLocation: 5412fbf0385716d4d481e39a95929057cddc093f
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   GTSDK: 51a12836895312a872f75a2fe0f2e788dee75b19
@@ -93,9 +93,9 @@ SPEC CHECKSUMS:
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SwipeView: bd67cfaf7760c036438446b3ccb28a3b84fce009
-  Toast: 0773b8fc0e97352ca6054517bec7ebdd4110029d
+  UMengAnalytics: 4bf831415146b9c57cb10be65fbd43462ef8cf65
   YYText: ac09660c9ccd9b817f409a20caa6f5587444d2ae
 
-PODFILE CHECKSUM: 10b4bdbfdd9e431f094f7c68afad1ea2948baa23
+PODFILE CHECKSUM: 16e7b3ac865ad561ceae93f9ac07de05495eac56
 
 COCOAPODS: 1.0.0.rc.1

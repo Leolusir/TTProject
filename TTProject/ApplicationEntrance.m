@@ -57,16 +57,12 @@
     [GeTuiSdk startSdkWithAppId:GETUI_APP_ID appKey:GETUI_APP_KEY appSecret:GETUI_APP_SECRET delegate:self];
     
     // 高德
-    [AMapLocationServices sharedServices].apiKey = AMAP_API_KEY;
+    [AMapLocationServices sharedServices].apiKey = AMAP_LOCATION_KEY;
+    [MAMapServices sharedServices].apiKey = AMAP_MAPKIT_KEY;
     
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
     
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-    
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
     
 }
 

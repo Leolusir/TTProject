@@ -18,8 +18,8 @@
 #define GETUI_APP_SECRET                         @""
 
 // 高德
-#define AMAP_API_KEY                             @"b53d77dabc08fbee9b3741bbddf88a53"
-
+#define AMAP_LOCATION_KEY                             @"b53d77dabc08fbee9b3741bbddf88a53"
+#define AMAP_MAPKIT_KEY                               @"b53d77dabc08fbee9b3741bbddf88a53"
 
 #endif /* VendorMacro_h */
 

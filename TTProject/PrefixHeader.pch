@@ -24,5 +24,6 @@
 #import "UIImage+GIF.h"
 
 #import <AMapLocationKit/AMapLocationKit.h>
+#import <MAMapKit/MAMapKit.h>
 
 #endif /* PrefixHeader_pch */

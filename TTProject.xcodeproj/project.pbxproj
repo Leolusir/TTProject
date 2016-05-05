@@ -12,6 +12,7 @@
 		2C068B171CCFF02200F0A675 /* MessageRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C068B161CCFF02200F0A675 /* MessageRequest.m */; };
 		2C068B1A1CCFF0D000F0A675 /* RecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C068B191CCFF0D000F0A675 /* RecordViewController.m */; };
 		2C068B1D1CCFF30D00F0A675 /* RecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C068B1C1CCFF30D00F0A675 /* RecordCell.m */; };
+		2C0A92981CDAE4C300EA7738 /* TTMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0A92971CDAE4C300EA7738 /* TTMapViewController.m */; };
 		2C28234B1CDA306900B69E8D /* TitleAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C28234A1CDA306900B69E8D /* TitleAddViewController.m */; };
 		2C387A4A1CC678940054D404 /* PostRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C387A491CC678940054D404 /* PostRequest.m */; };
 		2C3B71231CD26F4500D461E2 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3B71221CD26F4500D461E2 /* SettingViewController.m */; };
@@ -135,6 +136,8 @@
 		2C068B1C1CCFF30D00F0A675 /* RecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordCell.m; sourceTree = "<group>"; };
 		2C0A92941CDADBE600EA7738 /* VendorMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VendorMacro.h; sourceTree = "<group>"; };
 		2C0A92951CDADBE600EA7738 /* AppMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppMacro.h; sourceTree = "<group>"; };
+		2C0A92961CDAE4C300EA7738 /* TTMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTMapViewController.h; sourceTree = "<group>"; };
+		2C0A92971CDAE4C300EA7738 /* TTMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTMapViewController.m; sourceTree = "<group>"; };
 		2C2823491CDA306900B69E8D /* TitleAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleAddViewController.h; sourceTree = "<group>"; };
 		2C28234A1CDA306900B69E8D /* TitleAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleAddViewController.m; sourceTree = "<group>"; };
 		2C387A481CC678940054D404 /* PostRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostRequest.h; sourceTree = "<group>"; };
@@ -782,6 +785,8 @@
 				2C8ECEDA1CB8CCBA00A294AB /* TTGalleryViewController.m */,
 				2C8ECEDB1CB8CCBA00A294AB /* TTNavigationController.h */,
 				2C8ECEDC1CB8CCBA00A294AB /* TTNavigationController.m */,
+				2C0A92961CDAE4C300EA7738 /* TTMapViewController.h */,
+				2C0A92971CDAE4C300EA7738 /* TTMapViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1304,6 +1309,7 @@
 				2C8ECE6E1CB8C8F700A294AB /* ViewController.m in Sources */,
 				2CCA24921CD9A4600006D772 /* MyTitleViewController.m in Sources */,
 				2C8ECFA51CB8D2B900A294AB /* TTCacheService.m in Sources */,
+				2C0A92981CDAE4C300EA7738 /* TTMapViewController.m in Sources */,
 				2C8ECF741CB8CCBA00A294AB /* TTGalleryViewController.m in Sources */,
 				2C83129F1CC1FECE005E11AB /* UserRequest.m in Sources */,
 				2C8ECF691CB8CCBA00A294AB /* BaseViewController.m in Sources */,

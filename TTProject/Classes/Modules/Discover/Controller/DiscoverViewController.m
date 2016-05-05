@@ -7,9 +7,10 @@
 //
 
 #import "DiscoverViewController.h"
+#import "TTMapViewController.h"
 #import "DiscoverRequest.h"
 
-@interface DiscoverViewController ()
+@interface DiscoverViewController () <TTMapViewDelegate>
 
 @end
 
@@ -152,6 +153,13 @@
 - (void)handleLocationButton
 {
     DBG(@"handleLocationButton");
+    
+    TTMapViewController *vc = [[TTMapViewController alloc] init];
+    vc.delegate = self;
+    
+    TTNavigationController *navigationController = [[ApplicationEntrance shareEntrance] currentNavigationController];
+    [navigationController pushViewController:vc animated:YES];
+    
 }
 
 #pragma mark - Notification Methods

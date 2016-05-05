@@ -19,7 +19,6 @@
 + (ApplicationEntrance*)shareEntrance;
 
 - (void)applicationEntrance:(UIWindow *)mainWindow launchOptions:(NSDictionary *)launchOptions;
-- (void)applicationDidEnterBackground:(UIApplication *)application;
 - (void)applicationActive;
 - (void)applicationEnterBackground;
 - (void)handleOpenURL:(NSString *)aUrl;
