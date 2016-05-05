@@ -48,7 +48,7 @@
     
     self.tableView.top = NAVBAR_HEIGHT;
     self.tableView.height = SCREEN_HEIGHT - NAVBAR_HEIGHT - TABBAR_HEIGHT;
-    
+    self.tableView.scrollEnabled = NO;
 }
 
 - (void)addNavigationBar
@@ -68,9 +68,7 @@
     self.menu = @[
                   @{@"type":@"empty",},
                   @{@"type":@"item", @"key":@"1", @"title":@"我的动态", @"link":@"jump://my_post", @"line":@YES, @"arrow":@YES},
-                  @{@"type":@"item", @"key":@"2", @"title":@"我的话题", @"link":@"jump://my_title", @"line":@NO, @"arrow":@YES},
-                  @{@"type":@"empty",},
-                  @{@"type":@"item", @"key":@"3", @"title":@"登出", @"link":@"", @"line":@NO, @"arrow":@NO},
+                  @{@"type":@"item", @"key":@"2", @"title":@"我的话题", @"link":@"jump://my_title", @"line":@NO, @"arrow":@YES}
                   ];
 }
 
@@ -96,7 +94,6 @@
     NSInteger row = indexPath.row;
     
     if ( 0 == section ) {
-        // TODO: 个人信息实装
         UserInfoCell *cell = [UserInfoCell dequeueReusableCellForTableView:tableView];
         [cell reloadData];
         return cell;

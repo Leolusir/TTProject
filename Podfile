@@ -17,6 +17,7 @@ pod 'Qiniu', :git => 'https://github.com/qiniu/objc-sdk.git', :branch => 'AFNetw
 pod 'YYText'
 pod 'AMapLocation'
 pod 'AMap3DMap'
+pod 'AMapSearch'
 pod 'UMengAnalytics'
 pod 'GTSDK'
 

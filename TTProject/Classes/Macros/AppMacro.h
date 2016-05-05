@@ -20,7 +20,7 @@
 #define APP_NAME                    @"seek"
 
 // 应用ID
-#define APPLEID                     @""
+#define APPLEID                     @"1111117434"
 
 
 //苹果相关的信息

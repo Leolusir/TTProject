@@ -56,9 +56,10 @@
     // 个推初始化
     [GeTuiSdk startSdkWithAppId:GETUI_APP_ID appKey:GETUI_APP_KEY appSecret:GETUI_APP_SECRET delegate:self];
     
+    [self umengInit];
+    
     // 高德
-    [AMapLocationServices sharedServices].apiKey = AMAP_LOCATION_KEY;
-    [MAMapServices sharedServices].apiKey = AMAP_MAPKIT_KEY;
+    [self amapInit];
     
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
     
@@ -135,6 +136,25 @@
 }
 
 #pragma mark - Private Methods
+
+- (void)amapInit
+{
+    [AMapLocationServices sharedServices].apiKey = AMAP_LOCATION_KEY;
+    [MAMapServices sharedServices].apiKey = AMAP_LOCATION_KEY;
+    [AMapSearchServices sharedServices].apiKey = AMAP_SEARCH_KEY;
+}
+
+- (void)umengInit {
+#ifdef DEBUG
+    [MobClick setLogEnabled:YES];  // 打开友盟sdk调试，注意Release发布时需要注释掉此行,减少io消耗
+#endif
+    
+    [MobClick setAppVersion:XcodeAppVersion]; //参数为NSString * 类型,自定义app版本信息，如果不设置，默认从CFBundleVersion里取
+    
+    [MobClick startWithAppkey:UM_APP_KEY reportPolicy:REALTIME channelId:CHANNEL];
+    
+    [MobClick setEncryptEnabled:YES];
+}
 
 - (BOOL)handleRemoteInfo
 {

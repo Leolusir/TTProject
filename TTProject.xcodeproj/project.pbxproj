@@ -23,6 +23,7 @@
 		2C3C910A1CC90362004DB793 /* TTGalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C91081CC90362004DB793 /* TTGalleryView.m */; };
 		2C3C910D1CC90E86004DB793 /* PostPublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C3C910C1CC90E86004DB793 /* PostPublishViewController.m */; };
 		2C5008691CC366A800D0101B /* PostVoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5008681CC366A800D0101B /* PostVoteView.m */; };
+		2C5697B51CDB97DF007672FD /* OverwatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5697B41CDB97DF007672FD /* OverwatchViewController.m */; };
 		2C8312981CC1F4A8005E11AB /* TTAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C83128F1CC1F4A8005E11AB /* TTAlertView.m */; };
 		2C8312991CC1F4A8005E11AB /* TTHighlightTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8312911CC1F4A8005E11AB /* TTHighlightTextStorage.m */; };
 		2C83129A1CC1F4A8005E11AB /* TTHighlightTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8312931CC1F4A8005E11AB /* TTHighlightTextView.m */; };
@@ -158,6 +159,8 @@
 		2C3C910C1CC90E86004DB793 /* PostPublishViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostPublishViewController.m; sourceTree = "<group>"; };
 		2C5008671CC366A800D0101B /* PostVoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostVoteView.h; sourceTree = "<group>"; };
 		2C5008681CC366A800D0101B /* PostVoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostVoteView.m; sourceTree = "<group>"; };
+		2C5697B31CDB97DF007672FD /* OverwatchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverwatchViewController.h; sourceTree = "<group>"; };
+		2C5697B41CDB97DF007672FD /* OverwatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverwatchViewController.m; sourceTree = "<group>"; };
 		2C83128E1CC1F4A8005E11AB /* TTAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTAlertView.h; sourceTree = "<group>"; };
 		2C83128F1CC1F4A8005E11AB /* TTAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTAlertView.m; sourceTree = "<group>"; };
 		2C8312901CC1F4A8005E11AB /* TTHighlightTextStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTHighlightTextStorage.h; sourceTree = "<group>"; };
@@ -941,6 +944,8 @@
 				2CE574FE1CBD4D8400F2AC04 /* DiscoverViewController.m */,
 				2C8312A91CC21B2D005E11AB /* DiscoverGroupViewController.h */,
 				2C8312AA1CC21B2D005E11AB /* DiscoverGroupViewController.m */,
+				2C5697B31CDB97DF007672FD /* OverwatchViewController.h */,
+				2C5697B41CDB97DF007672FD /* OverwatchViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1178,7 +1183,7 @@
 				TargetAttributes = {
 					2C8ECE621CB8C8F700A294AB = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = FZMT527EK9;
+						DevelopmentTeam = 4MYP92V34J;
 					};
 				};
 			};
@@ -1277,6 +1282,7 @@
 				2C8312BC1CC22F66005E11AB /* PostViewController.m in Sources */,
 				2C8ECF601CB8CCBA00A294AB /* UINavigationController+Block.m in Sources */,
 				2C387A4A1CC678940054D404 /* PostRequest.m in Sources */,
+				2C5697B51CDB97DF007672FD /* OverwatchViewController.m in Sources */,
 				2C8312C21CC231A3005E11AB /* PostListResultModel.m in Sources */,
 				2C3B712C1CD2813400D461E2 /* MyPostViewController.m in Sources */,
 				2C8ECF541CB8CCBA00A294AB /* ApplicationEntrance.m in Sources */,
@@ -1419,8 +1425,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: tj_ivan@qq.com (WVXMC7YEW7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: tj_ivan@qq.com (WVXMC7YEW7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: MING LU (X3V47L4HFS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: MING LU (X3V47L4HFS)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1442,7 +1448,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "7aae14a0-dc2a-46cf-8f68-003199961894";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1465,8 +1471,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: tj_ivan@qq.com (WVXMC7YEW7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: tj_ivan@qq.com (WVXMC7YEW7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: MING LU (X3V47L4HFS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: MING LU (X3V47L4HFS)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1481,7 +1487,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "7aae14a0-dc2a-46cf-8f68-003199961894";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1492,15 +1498,15 @@
 			baseConfigurationReference = D3A98496E4A70382C7CD097D /* Pods-TTProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: tj_ivan@qq.com (WVXMC7YEW7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: tj_ivan@qq.com (WVXMC7YEW7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: MING LU (X3V47L4HFS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: MING LU (X3V47L4HFS)";
 				GCC_PREFIX_HEADER = TTProject/PrefixHeader.pch;
 				INFOPLIST_FILE = TTProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.devils.seek;
+				PRODUCT_BUNDLE_IDENTIFIER = com.devils.around;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7aae14a0-dc2a-46cf-8f68-003199961894";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1509,15 +1515,15 @@
 			baseConfigurationReference = 87CA5552EA17FCCAD0A11845 /* Pods-TTProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: tj_ivan@qq.com (WVXMC7YEW7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: tj_ivan@qq.com (WVXMC7YEW7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: MING LU (X3V47L4HFS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: MING LU (X3V47L4HFS)";
 				GCC_PREFIX_HEADER = TTProject/PrefixHeader.pch;
 				INFOPLIST_FILE = TTProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.devils.seek;
+				PRODUCT_BUNDLE_IDENTIFIER = com.devils.around;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "7aae14a0-dc2a-46cf-8f68-003199961894";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

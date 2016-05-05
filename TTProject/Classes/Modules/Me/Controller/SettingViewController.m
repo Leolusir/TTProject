@@ -70,7 +70,9 @@
                   @{@"type":@"empty",},
                   @{@"type":@"item", @"key":@"4", @"title":@"Devils小队", @"link":@"", @"line":@YES, @"arrow":@NO, @"value":@"一群野生开发者"},
                   @{@"type":@"item", @"key":@"5", @"title":@"市场联系", @"link":@"", @"line":@YES, @"arrow":@NO, @"value":@"devils.team@outlook.com"},
-                  @{@"type":@"item", @"key":@"6", @"title":@"意见交流", @"link":@"", @"line":@NO, @"arrow":@NO, @"value":@"QQ:3275149780"}
+                  @{@"type":@"item", @"key":@"6", @"title":@"意见交流", @"link":@"", @"line":@NO, @"arrow":@NO, @"value":@"QQ:3275149780"},
+                  @{@"type":@"empty",},
+                  @{@"type":@"item", @"key":@"7", @"title":@"登出", @"link":@"", @"line":@NO, @"arrow":@NO},
                   ];
 }
 
@@ -143,8 +145,9 @@
     
     if ( [@"3" isEqualToString:[itemData objectForKey:@"key"]] ) {
         [self showAlert:@"如果你要关闭或开启Seek的新消息推送，请在iPhone的 \"设置 - 通知\" 功能中，找到应用程序 \"Seek\" 进行更改。"];
+    } else if ( [@"7" isEqualToString:[itemData objectForKey:@"key"]] ) {
+        [[TTUserService sharedService] logout];
     }
-    
 }
 
 @end

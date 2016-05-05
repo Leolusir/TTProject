@@ -16,6 +16,7 @@ PODS:
     - AFNetworking/NSURLSession
   - AMap3DMap (3.3.2)
   - AMapLocation (1.2.2)
+  - AMapSearch (3.3.0)
   - BlocksKit (2.2.5):
     - BlocksKit/All (= 2.2.5)
   - BlocksKit/All (2.2.5):
@@ -54,6 +55,7 @@ DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - AMap3DMap
   - AMapLocation
+  - AMapSearch
   - BlocksKit (~> 2.2.5)
   - GTSDK
   - JSONModel (~> 1.0.2)
@@ -81,6 +83,7 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   AMap3DMap: 6315b7489cb60b1c47bb51169b409c20efa5f527
   AMapLocation: 5412fbf0385716d4d481e39a95929057cddc093f
+  AMapSearch: cff4faf59c007f7d1f2bae2d7170c3912783981a
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
   GTSDK: 51a12836895312a872f75a2fe0f2e788dee75b19
   HappyDNS: 6d85942e64c28b4fa61f8c76580398f52d6d1d11
@@ -96,6 +99,6 @@ SPEC CHECKSUMS:
   UMengAnalytics: 4bf831415146b9c57cb10be65fbd43462ef8cf65
   YYText: ac09660c9ccd9b817f409a20caa6f5587444d2ae
 
-PODFILE CHECKSUM: 16e7b3ac865ad561ceae93f9ac07de05495eac56
+PODFILE CHECKSUM: 787b43c9240aec5dec17c83ac8b1de9df219b4f1
 
 COCOAPODS: 1.0.0.rc.1

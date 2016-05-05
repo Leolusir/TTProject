@@ -25,5 +25,8 @@
 
 #import <AMapLocationKit/AMapLocationKit.h>
 #import <MAMapKit/MAMapKit.h>
+#import <AMapSearchKit/AMapSearchKit.h>
+
+#import "MobClick.h"
 
 #endif /* PrefixHeader_pch */

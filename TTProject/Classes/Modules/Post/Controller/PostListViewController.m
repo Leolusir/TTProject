@@ -19,10 +19,6 @@
 
 @property (nonatomic, strong) AMapLocationManager *locationManager;
 
-@property (nonatomic, assign) CLLocationDegrees latitude;
-@property (nonatomic, assign) CLLocationDegrees longitude;
-@property (nonatomic, strong) NSString *country;
-
 @end
 
 @implementation PostListViewController
@@ -229,13 +225,13 @@
     if ( post ) {
         DBG(@"Post:%@ Click", post.id);
         
-        TTNavigationController *navigationController = [[ApplicationEntrance shareEntrance] currentNavigationController];
         PostViewController *vc = [[PostViewController alloc] init];
         vc.post = post;
         vc.postId = post.id;
         vc.userIdOne = post.userId;
         vc.userIdTwo = [TTUserService sharedService].id;
         
+        TTNavigationController *navigationController = [[ApplicationEntrance shareEntrance] currentNavigationController];
         [navigationController pushViewController:vc animated:YES];
     }
 }
