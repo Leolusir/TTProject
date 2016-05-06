@@ -107,6 +107,10 @@
             } else {
                 [self finishRefresh];
                 [self cleanUpPosts];
+                
+                if ( !resultModel.posts || resultModel.posts.count == 0 ) {
+                    [self showEmptyTips:self.emptyNotice ownerView:self.tableView];
+                }
             }
             
             [self addPosts:resultModel.posts];

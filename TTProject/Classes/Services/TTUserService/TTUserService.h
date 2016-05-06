@@ -28,4 +28,6 @@
 //退出登录清除信息
 - (void)logout;
 
+- (NSString *)authentication;
+
 @end

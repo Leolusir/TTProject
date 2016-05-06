@@ -98,7 +98,7 @@
 //实现逆地理编码的回调函数
 - (void)onReGeocodeSearchDone:(AMapReGeocodeSearchRequest *)request response:(AMapReGeocodeSearchResponse *)response
 {
-    if(response.regeocode != nil)
+    if(response.regeocode != nil && response.regeocode.aois && response.regeocode.aois.count > 0)
     {
         //通过AMapReGeocodeSearchResponse对象处理搜索结果
         DBG(@"ReGeo: %@", ((AMapAOI *)response.regeocode.aois[0]).name);
@@ -114,6 +114,8 @@
         
         TTNavigationController *navigationController = [[ApplicationEntrance shareEntrance] currentNavigationController];
         [navigationController pushViewController:vc animated:YES];
+    } else {
+        [self showAlert:@"定位失败!"];
     }
 }
 

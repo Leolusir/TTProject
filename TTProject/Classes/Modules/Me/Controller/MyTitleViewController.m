@@ -92,6 +92,10 @@
             } else {
                 [self finishRefresh];
                 [self.titles removeAllObjects];
+                
+                if ( !resultModel.titles || resultModel.titles.count == 0 ) {
+                    [self showEmptyTips:@"还没有发过话题" ownerView:self.tableView];
+                }
             }
             
             [self.titles addObjectsFromArray:resultModel.titles];

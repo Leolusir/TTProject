@@ -7,6 +7,7 @@
 //
 
 #import "TTNetworkManager.h"
+#import "TTUserService.h"
 
 #import "ResponseModel.h"
 
@@ -27,7 +28,7 @@
     
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
         
-//        [config setHTTPAdditionalHeaders:@{ @"User-Agent" : @"TuneStore iOS 1.0"}];
+        [config setHTTPAdditionalHeaders:@{ @"authentication" : [[TTUserService sharedService] authentication]}];
         
         //设置我们的缓存大小 其中内存缓存大小设置10M  磁盘缓存5M
 //        NSURLCache *cache = [[NSURLCache alloc] initWithMemoryCapacity:10 * 1024 * 1024

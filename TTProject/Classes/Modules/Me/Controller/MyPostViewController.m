@@ -23,6 +23,8 @@
     
     [super viewDidLoad];
     
+    self.emptyNotice = @"还没有发过动态";
+    
     self.title = @"我的动态";
     
     [self addNavigationBar];
@@ -84,6 +86,10 @@
             } else {
                 [self finishRefresh];
                 [self cleanUpPosts];
+                
+                if ( !resultModel.posts || resultModel.posts.count == 0 ) {
+                    [self showEmptyTips:self.emptyNotice ownerView:self.tableView];
+                }
             }
             
             [self addPosts:resultModel.posts];

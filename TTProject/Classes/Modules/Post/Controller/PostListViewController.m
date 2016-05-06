@@ -33,6 +33,8 @@
     
     [self initData];
     
+    self.emptyNotice = @"周围冷冷清清";
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postVoteSuccess:) name:kNOTIFY_APP_POST_VOTE_SUCCESS object:nil];
 }
 
@@ -52,6 +54,8 @@
 - (void)loadData
 {
 
+    [self hideEmptyTips];
+    
     if ( LoadingTypeLoadMore != self.loadingType && self.needLocation) {
         
         weakify(self);
@@ -62,9 +66,14 @@
             if (error)
             {
                 // TODO: 错误消息待优化
-                [self showAlert:@"定位失败！"];
+                [self showAlert:@"定位失败!"];
                 DBG(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
-//                return;
+                self.tableView.showsPullToRefresh = YES;
+                [self finishRefresh];
+                
+                [self showEmptyTips:self.emptyNotice ownerView:self.tableView];
+                
+                return;
                 
             }
             
@@ -128,12 +137,14 @@
 
 - (void)addPosts:(NSArray *)posts
 {
-    for (PostModel *post in posts) {
-        
-        if (![self.postIds objectForKey:post.id]) {
+    if ( posts && posts.count > 0 ) {
+        for (PostModel *post in posts) {
             
-            [self.posts addSafeObject:post];
-            [self.postIds setSafeObject:post.id forKey:post.id];
+            if (![self.postIds objectForKey:post.id]) {
+                
+                [self.posts addSafeObject:post];
+                [self.postIds setSafeObject:post.id forKey:post.id];
+            }
         }
     }
     

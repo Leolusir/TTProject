@@ -127,4 +127,13 @@
     [[TTNavigationService sharedService] openUrl:@"jump://sign_in_up"];
 }
 
+- (NSString *)authentication
+{
+    NSString *auth = [NSString stringWithFormat:@"%@_%@", self.id, self.token];
+    
+    NSString *authBase64Encoded = [[auth dataUsingEncoding:NSUTF8StringEncoding] base64EncodedStringWithOptions:0];
+    
+    return authBase64Encoded;
+}
+
 @end

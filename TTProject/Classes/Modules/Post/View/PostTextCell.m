@@ -100,6 +100,8 @@
         
         CGFloat contentHeight = ceil(layout.textBoundingSize.height) + 10 + 12;
         
+        DBG(@"文本%@ 行数%ld", post.content, layout.rowCount);
+        
         return 10 + ( contentHeight < 55 ? 55 : contentHeight ) + 15;
     }
     

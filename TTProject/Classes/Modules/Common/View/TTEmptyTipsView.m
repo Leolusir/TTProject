@@ -22,8 +22,8 @@
         
         self.userInteractionEnabled = NO;
         
-        UILabel *_tipsLabel = [UILabel labelWithText:tips color:Color_Gray3 align:NSTextAlignmentCenter font:FONT(14) background:[UIColor clearColor] frame:CGRectMake(0, 100.f, self.width, 15.f)];
-        [self addSubview:_tipsLabel];
+        UILabel *tipsLabel = [UILabel labelWithText:tips color:Color_Gray3 align:NSTextAlignmentCenter font:FONT(14) background:[UIColor clearColor] frame:CGRectMake(0, 100.f, self.width, 15.f)];
+        [self addSubview:tipsLabel];
     }
     
     return self;
