@@ -120,6 +120,7 @@
 		2CE574FF1CBD4D8400F2AC04 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE574FE1CBD4D8400F2AC04 /* DiscoverViewController.m */; };
 		2CE575051CBD4DBF00F2AC04 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE575041CBD4DBF00F2AC04 /* MessageViewController.m */; };
 		2CE575081CBD4DDF00F2AC04 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE575071CBD4DDF00F2AC04 /* MeViewController.m */; };
+		2CE94CBE1CDD9FDC00E8519B /* PostManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE94CBD1CDD9FDC00E8519B /* PostManager.m */; };
 		2CFD2D161CCB511500229DC3 /* PostPublishResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CFD2D151CCB511500229DC3 /* PostPublishResultModel.m */; };
 		B48F94164A872B6052C97989 /* libPods-TTProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA48561C30BAE97F6A4871E1 /* libPods-TTProject.a */; };
 /* End PBXBuildFile section */
@@ -362,6 +363,8 @@
 		2CE575041CBD4DBF00F2AC04 /* MessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageViewController.m; sourceTree = "<group>"; };
 		2CE575061CBD4DDF00F2AC04 /* MeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeViewController.h; sourceTree = "<group>"; };
 		2CE575071CBD4DDF00F2AC04 /* MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
+		2CE94CBC1CDD9FDC00E8519B /* PostManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostManager.h; sourceTree = "<group>"; };
+		2CE94CBD1CDD9FDC00E8519B /* PostManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostManager.m; sourceTree = "<group>"; };
 		2CFD2D141CCB511500229DC3 /* PostPublishResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostPublishResultModel.h; sourceTree = "<group>"; };
 		2CFD2D151CCB511500229DC3 /* PostPublishResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostPublishResultModel.m; sourceTree = "<group>"; };
 		87CA5552EA17FCCAD0A11845 /* Pods-TTProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-TTProject/Pods-TTProject.release.xcconfig"; sourceTree = "<group>"; };
@@ -878,6 +881,7 @@
 		2C8ECF531CB8CCBA00A294AB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				2CE94CBB1CDD9FD500E8519B /* PostManager */,
 				2CE574DD1CBD496700F2AC04 /* TTUserService */,
 				2C8ECF951CB8D2B900A294AB /* ModuleEntrance */,
 				2C8ECF9C1CB8D2B900A294AB /* TTCacheService */,
@@ -1132,6 +1136,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		2CE94CBB1CDD9FD500E8519B /* PostManager */ = {
+			isa = PBXGroup;
+			children = (
+				2CE94CBC1CDD9FDC00E8519B /* PostManager.h */,
+				2CE94CBD1CDD9FDC00E8519B /* PostManager.m */,
+			);
+			path = PostManager;
+			sourceTree = "<group>";
+		};
 		6B5CF41EBBC4847BACF684AF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1360,6 +1373,7 @@
 				2C8ECE681CB8C8F700A294AB /* main.m in Sources */,
 				2C8312BF1CC22F76005E11AB /* PostListViewController.m in Sources */,
 				2C83129A1CC1F4A8005E11AB /* TTHighlightTextView.m in Sources */,
+				2CE94CBE1CDD9FDC00E8519B /* PostManager.m in Sources */,
 				2C88E2DD1CCDE09900646D9A /* TitleListViewController.m in Sources */,
 				2C068B1D1CCFF30D00F0A675 /* RecordCell.m in Sources */,
 				2C3C910D1CC90E86004DB793 /* PostPublishViewController.m in Sources */,

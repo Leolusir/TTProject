@@ -120,9 +120,15 @@
             
             if (error)
             {
-                // TODO: 错误消息待优化
                 [self showAlert:@"定位失败！"];
                 DBG(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
+                
+                self.tableView.showsPullToRefresh = YES;
+                
+                [self finishRefresh];
+                
+                [self showEmptyTips:@"想和周围人一起聊点什么呢" ownerView:self.tableView];
+                
                 return;
                 
             }
@@ -268,6 +274,16 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    if ( 0 == section ) {
+        if (self.hotTitles.count == 0) {
+            return 0;
+        }
+    } else {
+        if (self.titles.count == 0) {
+            return 0;
+        }
+    }
+    
     return 44;
 }
 

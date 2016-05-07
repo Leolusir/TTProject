@@ -61,7 +61,6 @@
         pushStatus = @"已打开";
     }
     
-    // TODO: 功能等待实装
     self.menu = @[
                   @{@"type":@"item", @"key":@"1", @"title":@"应用名称", @"link":@"", @"line":@YES, @"arrow":@NO, @"value":@"Seek"},
                   @{@"type":@"item", @"key":@"2", @"title":@"版本信息", @"link":@"", @"line":@NO, @"arrow":@NO, @"value":@"1.0.0.0 beta"},

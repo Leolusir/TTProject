@@ -230,7 +230,7 @@
         } else if ( 1 == indexPath.row) {
             
             PostTextCell *cell = [PostTextCell dequeueReusableCellForTableView:tableView];
-            cell.cellData = self.post;
+            cell.cellData = @{@"post":self.post, @"rowLimit":@NO};
             [cell reloadData];
             return cell;
             
@@ -272,7 +272,7 @@
             
         } else if ( 1 == indexPath.row) {
             
-            height = [PostTextCell heightForCell:self.post];
+            height = [PostTextCell heightForCell:@{@"post":self.post, @"rowLimit":@NO}];
             
         }
         

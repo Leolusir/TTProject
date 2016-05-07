@@ -8,18 +8,21 @@
 
 #import "PostTextCell.h"
 #import "PostModel.h"
-#import <YYText/YYText.h>
 #import "PostVoteView.h"
+#import "PostManager.h"
 
 #define LINESPACE 4.f
 #define PADDING 20.f
 #define SINGLE_LINE_HEIGHT 22.f
+#define CONTENT_WIDTH SCREEN_WIDTH - PADDING - 70
+#define MORE_HEIGHT 28
 
 @interface PostTextCell ()<UITextViewDelegate>
 
 @property (nonatomic, strong) YYLabel *contentLabel;
 @property (nonatomic, strong) UILabel *countLabel;
 @property (nonatomic, strong) PostVoteView *postVoteView;
+@property (nonatomic, strong) UILabel *readMoreLabel;
 
 @end
 
@@ -31,6 +34,7 @@
     [self addSubview:self.contentLabel];
     [self addSubview:self.countLabel];
     [self addSubview:self.postVoteView];
+    [self addSubview:self.readMoreLabel];
     
 }
 
@@ -38,17 +42,17 @@
     
     if ( self.cellData ) {
         
-        PostModel *post = (PostModel *)self.cellData;
+        NSDictionary *data = (NSDictionary *)self.cellData;
+        
+        PostModel *post = (PostModel *)[data objectForKey:@"post"];
+        BOOL rowLimit = [[data objectForKey:@"rowLimit"] boolValue];
         
         NSRange range = NSMakeRange(0, post.content.length);
         
         NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:@"#[^#]+?#" options:NSRegularExpressionCaseInsensitive error:nil];
         NSRange matchRange = [regularExpression rangeOfFirstMatchInString:post.content options:0 range:range];
         
-        NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:post.content];
-        attributedText.yy_font = FONT(14);
-        attributedText.yy_color = Color_Gray2;
-        attributedText.yy_lineSpacing = LINESPACE;
+        NSMutableAttributedString *attributedText = [PostTextCell builtContentAttributedString:post.content];
         
         if ( matchRange.location == 0 ) {
             [attributedText yy_setColor:Color_Green1 range:matchRange];
@@ -58,18 +62,27 @@
             [attributedText yy_setTextHighlight:highlight range:matchRange];
         }
         
-        self.contentLabel.attributedText = attributedText;
+        YYTextLayout *textLayout = [PostTextCell builtTextLayout:attributedText withMaxRow:rowLimit ? 10 : 0];
         
-        YYTextContainer *container = [YYTextContainer new];
-        container.size = CGSizeMake(SCREEN_WIDTH - PADDING - 90, CGFLOAT_MAX);
-        container.maximumNumberOfRows = 0;
-        YYTextLayout *textLayout = [YYTextLayout layoutWithContainer:container text:attributedText];
+        self.contentLabel.attributedText = attributedText;
         self.contentLabel.textLayout = textLayout;
         self.contentLabel.size = textLayout.textBoundingSize;
         
         CGFloat contentHeight = ceil(textLayout.textBoundingSize.height) + 10 + 12;
         
         CGFloat cellHeight = 10 + ( contentHeight < 55 ? 55 : contentHeight ) + 15;
+        
+        if (rowLimit && 10 == textLayout.rowCount ) {
+            YYTextLayout *noRowLimitLayout = [PostTextCell builtTextLayout:attributedText withMaxRow:0];
+            if ( noRowLimitLayout.rowCount > 10 ) {
+                cellHeight += MORE_HEIGHT;
+                self.readMoreLabel.hidden = NO;
+                self.readMoreLabel.top = self.contentLabel.bottom + 10;
+            }
+        } else {
+            self.readMoreLabel.hidden = YES;
+        }
+        
         self.countLabel.text = [NSString stringWithFormat:@"%@    %ld人参与",post.createTime, (long)post.member];//@"10分钟前 100人参与";
         [self.countLabel sizeToFit];
         self.countLabel.bottom = cellHeight - 15;
@@ -86,23 +99,30 @@
 + (CGFloat)heightForCell:(id)cellData {
     
     if ( cellData ) {
-        PostModel *post = (PostModel *)cellData;
         
-        NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:post.content];
-        attributedText.yy_font = FONT(14);
-        attributedText.yy_color = Color_Gray2;
-        attributedText.yy_lineSpacing = LINESPACE;
+        NSDictionary *data = (NSDictionary *)cellData;
         
-        YYTextContainer *container = [YYTextContainer new];
-        container.size = CGSizeMake(SCREEN_WIDTH - PADDING - 90, CGFLOAT_MAX);
-        container.maximumNumberOfRows = 0;
-        YYTextLayout *layout = [YYTextLayout layoutWithContainer:container text:attributedText];
+        PostModel *post = (PostModel *)[data objectForKey:@"post"];
+        BOOL rowLimit = [[data objectForKey:@"rowLimit"] boolValue];
         
-        CGFloat contentHeight = ceil(layout.textBoundingSize.height) + 10 + 12;
+        NSMutableAttributedString *attributedText = [self builtContentAttributedString:post.content];
         
-        DBG(@"文本%@ 行数%ld", post.content, layout.rowCount);
+        YYTextLayout *textLayout = [PostTextCell builtTextLayout:attributedText withMaxRow:rowLimit ? 10 : 0];
         
-        return 10 + ( contentHeight < 55 ? 55 : contentHeight ) + 15;
+        CGFloat contentHeight = ceil(textLayout.textBoundingSize.height) + 10 + 12;
+        
+        CGFloat height = 10 + ( contentHeight < 55 ? 55 : contentHeight ) + 15;
+        
+        if (rowLimit && 10 == textLayout.rowCount ) {
+            YYTextLayout *noRowLimitLayout = [PostTextCell builtTextLayout:attributedText withMaxRow:0];
+            DBG(@"文本%@ 行数%ld 无限制行数%ld", post.content, textLayout.rowCount, noRowLimitLayout.rowCount);
+            
+            if ( noRowLimitLayout.rowCount > 10 ) {
+                height += MORE_HEIGHT;
+            }
+        }
+        
+        return height;
     }
     
     return 0;
@@ -147,6 +167,20 @@
     return _postVoteView;
 }
 
+- (UILabel *)readMoreLabel
+{
+    if ( !_readMoreLabel ) {
+        _readMoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(PADDING, 0, 0, 0)];
+        _readMoreLabel.textColor = Color_Gray3;
+        _readMoreLabel.font = FONT(12);
+        _readMoreLabel.text = @"查看更多";
+        [_readMoreLabel sizeToFit];
+        _readMoreLabel.hidden = YES;
+    }
+    
+    return _readMoreLabel;
+}
+
 #pragma mark - Private Methods
 
 - (void)highlightTapWithContainerView:(UIView *)containerView text:(NSAttributedString *)text range:(NSRange)range rect:(CGRect)rect
@@ -156,6 +190,28 @@
     NSString *title = [[text.string substringWithRange:range] stringByReplacingOccurrencesOfString:@"#" withString:@""];
     
     [[TTNavigationService sharedService] openUrl:[NSString stringWithFormat:@"jump://title_post?title=%@", title]];
+}
+
+#pragma mark - Custom Methods
+
++ (NSMutableAttributedString *)builtContentAttributedString:(NSString *)content
+{
+    NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:content];
+    attributedText.yy_font = FONT(14);
+    attributedText.yy_color = Color_Gray2;
+    attributedText.yy_lineSpacing = LINESPACE;
+    
+    return attributedText;
+}
+
++ (YYTextLayout *)builtTextLayout:(NSMutableAttributedString *)attributedString withMaxRow:(NSInteger)maxRow
+{
+    YYTextContainer *container = [YYTextContainer new];
+    container.size = CGSizeMake(CONTENT_WIDTH, CGFLOAT_MAX);
+    container.maximumNumberOfRows = maxRow;
+    YYTextLayout *textLayout = [YYTextLayout layoutWithContainer:container text:attributedString];
+    
+    return textLayout;
 }
 
 @end

@@ -65,7 +65,6 @@
             
             if (error)
             {
-                // TODO: 错误消息待优化
                 [self showAlert:@"定位失败!"];
                 DBG(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
                 self.tableView.showsPullToRefresh = YES;
@@ -114,7 +113,7 @@
     if ( [self.textCellHeightCache objectForKey:post.id] ) {
         height = [[self.textCellHeightCache objectForKey:post.id] floatValue];
     } else {
-        height = [PostTextCell heightForCell:post];
+        height = [PostTextCell heightForCell:@{@"post":post, @"rowLimit":@YES}];
         [self.textCellHeightCache setSafeObject:@(height) forKey:post.id];
     }
     
@@ -191,7 +190,7 @@
         } else if ( 1 == indexPath.row) {
 
             PostTextCell *cell = [PostTextCell dequeueReusableCellForTableView:tableView];
-            cell.cellData = post;
+            cell.cellData = @{@"post":post, @"rowLimit":@YES};
             [cell reloadData];
             return cell;
 

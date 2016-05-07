@@ -36,7 +36,7 @@
         
         MessageModel *message = (MessageModel *)self.cellData;
         
-        [self.avatarImageView setOnlineImage:message.avatar];
+        
         
         self.contentLabel.text = message.content;
         [self.contentLabel sizeToFit];
@@ -48,10 +48,16 @@
         
         if ( [message.userId isEqualToString:[TTUserService sharedService].id] ) {
             
+            UIImage *avatarImage = [UIImage imageNamed:[@"m" isEqualToString:[TTUserService sharedService].gender] ? @"seek_boy_s" : @"seek_girl_s"];
+            
+            self.avatarImageView.image = avatarImage;
+            
             self.infoLabel.text = @"我";
             self.infoLabel.textColor = Color_Green1;
             
         } else {
+            [self.avatarImageView setOnlineImage:message.avatar];
+            
             self.infoLabel.text = [NSString stringWithFormat:@"%@    %@岁", [message.gender isEqualToString:@"m"] ? @"男" : @"女", message.age];
             self.infoLabel.textColor = Color_Gray3;
         }
