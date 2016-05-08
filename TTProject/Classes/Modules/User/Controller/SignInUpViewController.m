@@ -12,7 +12,7 @@
 
 @interface SignInUpViewController () <UIPickerViewDelegate, UIPickerViewDataSource, TTMDTextFieldDelegate>
 
-@property (nonatomic, strong) UIImageView *backgroundImageView;
+@property (nonatomic, strong) UIView *backgroundView;
 @property (nonatomic, strong) UIButton *signUpButton;
 @property (nonatomic, strong) UIButton *signInButton;
 @property (nonatomic, strong) UIView *maskView;
@@ -58,7 +58,7 @@
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = Color_White;
+    self.view.backgroundColor = Color_Green1;
     
     self.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     
@@ -89,7 +89,7 @@
 
 - (void)render
 {
-    [self.view addSubview:self.backgroundImageView];
+    [self.view addSubview:self.backgroundView];
     [self.view addSubview:self.signInButton];
     [self.view addSubview:self.signUpButton];
     [self.view addSubview:self.maskView];
@@ -148,15 +148,16 @@
 
 #pragma mark - Getters And Setters
 
-- (UIImageView *)backgroundImageView
+- (UIView *)backgroundView
 {
-    if ( !_backgroundImageView ) {
-        _backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
-        _backgroundImageView.image = [UIImage imageNamed:@"lanuch2"];
-        _backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+    if ( !_backgroundView ) {
+        
+        UIViewController *viewController = [[UIStoryboard storyboardWithName:@"LaunchScreen" bundle:nil] instantiateViewControllerWithIdentifier:@"LaunchScreen"];
+        _backgroundView = viewController.view;
+        _backgroundView.top = -8;
     }
     
-    return _backgroundImageView;
+    return _backgroundView;
 }
 
 - (UIButton *)signInButton

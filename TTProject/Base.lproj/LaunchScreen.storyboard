@@ -1,18 +1,57 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
-                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
-                    <imageView key="view" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lanuch2" id="NCq-0D-FQx">
+                <viewController storyboardIdentifier="LaunchScreen" id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="brP-tO-zMU"/>
+                        <viewControllerLayoutGuide type="bottom" id="f4y-Dy-cwa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OJl-ch-0M2">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </imageView>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Seek" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTz-Gt-YIJ">
+                                <rect key="frame" x="0.0" y="353" width="600" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="身边觅知音" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MmS-Rb-yHr">
+                                <rect key="frame" x="0.0" y="412" width="600" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="seek_boy" translatesAutoresizingMaskIntoConstraints="NO" id="jpk-Bu-OPB">
+                                <rect key="frame" x="150" y="28" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="8us-B0-sBg"/>
+                                    <constraint firstAttribute="width" constant="150" id="aRT-qo-Sdu"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.1529411765" green="0.83137254900000002" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="VTz-Gt-YIJ" firstAttribute="leading" secondItem="OJl-ch-0M2" secondAttribute="leadingMargin" id="65W-mh-Vfa"/>
+                            <constraint firstItem="jpk-Bu-OPB" firstAttribute="centerX" secondItem="OJl-ch-0M2" secondAttribute="centerX" id="NOC-Ly-dDd"/>
+                            <constraint firstItem="MmS-Rb-yHr" firstAttribute="leading" secondItem="OJl-ch-0M2" secondAttribute="leadingMargin" id="f8z-TO-Hps"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="VTz-Gt-YIJ" secondAttribute="trailing" id="hqf-oN-9dv"/>
+                            <constraint firstItem="VTz-Gt-YIJ" firstAttribute="top" secondItem="jpk-Bu-OPB" secondAttribute="bottom" constant="25" id="iNF-8r-d5E"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="MmS-Rb-yHr" secondAttribute="trailing" id="jdt-W8-3No"/>
+                            <constraint firstItem="VTz-Gt-YIJ" firstAttribute="centerX" secondItem="OJl-ch-0M2" secondAttribute="centerX" id="lrV-px-ao6"/>
+                            <constraint firstItem="jpk-Bu-OPB" firstAttribute="top" secondItem="OJl-ch-0M2" secondAttribute="topMargin" constant="60" id="oTA-Of-z1z"/>
+                            <constraint firstItem="MmS-Rb-yHr" firstAttribute="centerX" secondItem="OJl-ch-0M2" secondAttribute="centerX" id="qSh-F0-kTy"/>
+                            <constraint firstItem="MmS-Rb-yHr" firstAttribute="top" secondItem="VTz-Gt-YIJ" secondAttribute="bottom" constant="25" id="rIJ-Gz-KMR"/>
+                        </constraints>
+                    </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -20,6 +59,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="lanuch2" width="1080" height="1920"/>
+        <image name="seek_boy" width="300" height="300"/>
     </resources>
+    <color key="tintColor" red="0.15294117647058825" green="0.83137254901960778" blue="0.69803921568627447" alpha="1" colorSpace="calibratedRGB"/>
 </document>

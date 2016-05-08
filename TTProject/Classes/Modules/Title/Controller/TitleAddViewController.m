@@ -62,7 +62,7 @@
     
     self.titleAddTextField = [[UITextField alloc]initWithFrame:CGRectMake(self.titleImageView.right + 10, 0, SCREEN_WIDTH - 20 - self.titleImageView.right, 32)];
     self.titleAddTextField.centerY = self.titleAddBgView.height / 2;
-    self.titleAddTextField.placeholder = @"话题";
+    self.titleAddTextField.placeholder = @"输入话题名称";
     self.titleAddTextField.font = FONT(14);
     self.titleAddTextField.textColor = Color_Gray2;
     self.titleAddTextField.tintColor = Color_Green1;

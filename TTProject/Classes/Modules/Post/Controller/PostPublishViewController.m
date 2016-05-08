@@ -94,6 +94,10 @@
     self.postTextView.font = FONT(14);
     self.postTextView.delegate = self;
     self.postTextView.tintColor = Color_Green1;
+    self.postTextView.placeholderText = @"想说点什么呢，反正也没人知道你是谁";
+    self.postTextView.placeholderFont = FONT(14);
+    self.postTextView.placeholderTextColor = Color_Gray1;
+    
     if (self.postTitle) {
         self.postTextView.text = [NSString stringWithFormat:@"#%@#", self.postTitle];
     }
