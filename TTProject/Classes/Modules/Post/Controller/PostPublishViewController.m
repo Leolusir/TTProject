@@ -15,8 +15,9 @@
 #import "SKTopicParser.h"
 
 #import "TTActivityIndicatorView.h"
+#import "PhotoTweaksViewController.h"
 
-@interface PostPublishViewController () <UIScrollViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, YYTextViewDelegate>
+@interface PostPublishViewController () <UIScrollViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, YYTextViewDelegate, PhotoTweaksViewControllerDelegate>
 
 @property (nonatomic, strong) UIScrollView *containerView;
 
@@ -222,7 +223,7 @@
             DBG(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
             
             [self buttonsEnabled];
-            
+            [TTActivityIndicatorView hideActivityIndicatorForView:self.view animated:YES];
             return;
             
         }
@@ -286,7 +287,17 @@
     vc.callback = ^(NSString *title) {
         DBG(@"title:%@", title);
         strongify(self);
-        self.postTextView.text = [NSString stringWithFormat:@"#%@# %@", title, self.postTextView.text];
+        
+        NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:@"#[^#]+?#" options:NSRegularExpressionCaseInsensitive error:nil];
+        
+        NSRange matchRange = [regularExpression rangeOfFirstMatchInString:self.postTextView.text options:0 range:NSMakeRange(0, self.postTextView.text.length)];
+        
+        NSString *text = self.postTextView.text;
+        if ( matchRange.length > 0 && matchRange.location == 0 ) {
+            text = [text substringFromIndex:matchRange.length];
+        }
+        
+        self.postTextView.text = [NSString stringWithFormat:@"#%@# %@", title, [text trim]];
     };
     
     TTNavigationController *navigationController = [[ApplicationEntrance shareEntrance] currentNavigationController];
@@ -309,6 +320,20 @@
 - (void)handlePublishPostButton
 {
     DBG(@"publishPost");
+    
+    NSRegularExpression *regularExpression = [NSRegularExpression regularExpressionWithPattern:@"#[^#]+?#" options:NSRegularExpressionCaseInsensitive error:nil];
+    
+    NSRange matchRange = [regularExpression rangeOfFirstMatchInString:self.postTextView.text options:0 range:NSMakeRange(0, self.postTextView.text.length)];
+    
+    NSString *text = self.postTextView.text;
+    if ( matchRange.length > 0 && matchRange.location == 0 ) {
+        text = [text substringFromIndex:matchRange.length];
+    }
+    
+    if ( [text trim].length == 0 ) {
+        [self showNotice:@"说点什么吧"];
+        return;
+    }
     
     [self.view endEditing:YES];
     
@@ -347,6 +372,8 @@
             
             [self showNotice:status.msg];
             
+            [TTActivityIndicatorView hideActivityIndicatorForView:self.view animated:YES];
+            
         }];
     } else {
         [self publishPost];
@@ -380,8 +407,9 @@
 
     if ([mediaType isEqualToString:(__bridge NSString *)kUTTypeImage]){
         
-        self.postImage = [info objectForKey:UIImagePickerControllerEditedImage];
-        [self showImage];
+        PhotoTweaksViewController *vc = [[PhotoTweaksViewController alloc] initWithImage:[info objectForKey:UIImagePickerControllerOriginalImage]];
+        vc.delegate = self;
+        [[[ApplicationEntrance shareEntrance] currentNavigationController] pushViewController:vc animated:YES];
     }
     
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -390,6 +418,20 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - PhotoTweaksViewControllerDelegate
+
+- (void)photoTweaksController:(PhotoTweaksViewController *)controller didFinishWithCroppedImage:(UIImage *)croppedImage
+{
+    [[[ApplicationEntrance shareEntrance] currentNavigationController] popViewControllerAnimated:YES];
+    self.postImage = croppedImage;
+    [self showImage];
+}
+
+- (void)photoTweaksControllerDidCancel:(PhotoTweaksViewController *)controller
+{
+    [[[ApplicationEntrance shareEntrance] currentNavigationController] popViewControllerAnimated:YES];
 }
 
 #pragma mark - Notification Methods

@@ -24,6 +24,8 @@
 
 #define Color_Red1                    RGB(249, 76, 131)
 
+#define Color_Blue1                   RGB(30, 192, 242)
+
 #define Color_OrderGrayExpectButtonColor  RGB(187,188,204)
 
 #endif /* ColorMarco_h */

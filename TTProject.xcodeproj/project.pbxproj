@@ -40,6 +40,9 @@
 		2C8312CB1CC23AEF005E11AB /* DiscoverRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8312CA1CC23AEF005E11AB /* DiscoverRequest.m */; };
 		2C8312D61CC24EE9005E11AB /* PostImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8312D21CC24EE9005E11AB /* PostImageCell.m */; };
 		2C8312D71CC24EE9005E11AB /* PostTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8312D51CC24EE9005E11AB /* PostTextCell.m */; };
+		2C8388C71CDF576200BA6325 /* PhotoTweaksViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8388C21CDF576200BA6325 /* PhotoTweaksViewController.m */; };
+		2C8388C81CDF576200BA6325 /* PhotoTweakView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8388C41CDF576200BA6325 /* PhotoTweakView.m */; };
+		2C8388C91CDF576200BA6325 /* UIColor+Tweak.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8388C61CDF576200BA6325 /* UIColor+Tweak.m */; };
 		2C88E2791CCCC18D00646D9A /* SKTopicParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C88E2781CCCC18D00646D9A /* SKTopicParser.m */; };
 		2C88E2DC1CCDE09900646D9A /* TitleGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C88E2CE1CCDE09900646D9A /* TitleGroupViewController.m */; };
 		2C88E2DD1CCDE09900646D9A /* TitleListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C88E2D01CCDE09900646D9A /* TitleListViewController.m */; };
@@ -195,6 +198,14 @@
 		2C8312D31CC24EE9005E11AB /* PostImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostImageCell.h; sourceTree = "<group>"; };
 		2C8312D41CC24EE9005E11AB /* PostTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTextCell.h; sourceTree = "<group>"; };
 		2C8312D51CC24EE9005E11AB /* PostTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTextCell.m; sourceTree = "<group>"; };
+		2C8388C11CDF576200BA6325 /* PhotoTweaksViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTweaksViewController.h; sourceTree = "<group>"; };
+		2C8388C21CDF576200BA6325 /* PhotoTweaksViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTweaksViewController.m; sourceTree = "<group>"; };
+		2C8388C31CDF576200BA6325 /* PhotoTweakView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTweakView.h; sourceTree = "<group>"; };
+		2C8388C41CDF576200BA6325 /* PhotoTweakView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTweakView.m; sourceTree = "<group>"; };
+		2C8388C51CDF576200BA6325 /* UIColor+Tweak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Tweak.h"; sourceTree = "<group>"; };
+		2C8388C61CDF576200BA6325 /* UIColor+Tweak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Tweak.m"; sourceTree = "<group>"; };
+		2C8388CA1CDF596F00BA6325 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		2C8388CB1CDF596F00BA6325 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		2C88E2771CCCC18D00646D9A /* SKTopicParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKTopicParser.h; sourceTree = "<group>"; };
 		2C88E2781CCCC18D00646D9A /* SKTopicParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKTopicParser.m; sourceTree = "<group>"; };
 		2C88E2CD1CCDE09900646D9A /* TitleGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleGroupViewController.h; sourceTree = "<group>"; };
@@ -473,6 +484,19 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		2C8388C01CDF576200BA6325 /* PhotoTweaks */ = {
+			isa = PBXGroup;
+			children = (
+				2C8388C11CDF576200BA6325 /* PhotoTweaksViewController.h */,
+				2C8388C21CDF576200BA6325 /* PhotoTweaksViewController.m */,
+				2C8388C31CDF576200BA6325 /* PhotoTweakView.h */,
+				2C8388C41CDF576200BA6325 /* PhotoTweakView.m */,
+				2C8388C51CDF576200BA6325 /* UIColor+Tweak.h */,
+				2C8388C61CDF576200BA6325 /* UIColor+Tweak.m */,
+			);
+			path = PhotoTweaks;
+			sourceTree = "<group>";
+		};
 		2C88E2CB1CCDE09900646D9A /* Title */ = {
 			isa = PBXGroup;
 			children = (
@@ -633,6 +657,7 @@
 		2C8ECEA01CB8CCBA00A294AB /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				2C8388C01CDF576200BA6325 /* PhotoTweaks */,
 				2C83128C1CC1F4A8005E11AB /* TTKit */,
 				2C8ECEA11CB8CCBA00A294AB /* SVPullToRefresh */,
 				2C8ECEA71CB8CCBA00A294AB /* TTNetwork */,
@@ -1347,6 +1372,7 @@
 				2C8312A51CC205E4005E11AB /* UserModel.m in Sources */,
 				2C8ECF611CB8CCBA00A294AB /* UIView+TT.m in Sources */,
 				2C8ECF8A1CB8CCBA00A294AB /* WallItemCell.m in Sources */,
+				2C8388C81CDF576200BA6325 /* PhotoTweakView.m in Sources */,
 				2CB04A871CD0A3E00029B9C2 /* MessageResultModel.m in Sources */,
 				2CE574FF1CBD4D8400F2AC04 /* DiscoverViewController.m in Sources */,
 				2C8ECFA31CB8D2B900A294AB /* TTModuleEntrance.m in Sources */,
@@ -1379,9 +1405,11 @@
 				2C8ECF811CB8CCBA00A294AB /* DefaultWallCell.m in Sources */,
 				2CE575081CBD4DDF00F2AC04 /* MeViewController.m in Sources */,
 				2C8ECF571CB8CCBA00A294AB /* NSMutableDictionary+NullCheck.m in Sources */,
+				2C8388C91CDF576200BA6325 /* UIColor+Tweak.m in Sources */,
 				2C8ECF661CB8CCBA00A294AB /* TTViewPagerController.m in Sources */,
 				2C8ECF581CB8CCBA00A294AB /* NSMutableSet+NullCheck.m in Sources */,
 				2C8ECE681CB8C8F700A294AB /* main.m in Sources */,
+				2C8388C71CDF576200BA6325 /* PhotoTweaksViewController.m in Sources */,
 				2C8312BF1CC22F76005E11AB /* PostListViewController.m in Sources */,
 				2C83129A1CC1F4A8005E11AB /* TTHighlightTextView.m in Sources */,
 				2CE94CBE1CDD9FDC00E8519B /* PostManager.m in Sources */,
@@ -1417,6 +1445,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2C8ECE701CB8C8F700A294AB /* Base */,
+				2C8388CA1CDF596F00BA6325 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1425,6 +1454,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2C8ECE751CB8C8F700A294AB /* Base */,
+				2C8388CB1CDF596F00BA6325 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

@@ -34,24 +34,24 @@
     return self;
 }
 
-//+ (NSUInteger)contentRowCountAtPostId:(NSString *)postId
-//{
-//    
-//}
-//
-//+ (void)contentRowCount:(NSUInteger)count forPostId:(NSString *)postId
-//{
-//    
-//}
-//
-//+ (CGSize)contentSizeAtPostId:(NSString *)postId withRowCount:(NSUInteger)rowCount
-//{
-//    
-//}
-//
-//+ (void)contentSize:(CGSize)size forPostId:(NSString *)postId rowCount:(NSUInteger)rowCount
-//{
-//    
-//}
++ (NSUInteger)contentRowCountAtPostId:(NSString *)postId
+{
+    return 0;
+}
+
++ (void)contentRowCount:(NSUInteger)count forPostId:(NSString *)postId
+{
+    
+}
+
++ (CGSize)contentSizeAtPostId:(NSString *)postId withRowCount:(NSUInteger)rowCount
+{
+    return CGSizeZero;
+}
+
++ (void)contentSize:(CGSize)size forPostId:(NSString *)postId rowCount:(NSUInteger)rowCount
+{
+    
+}
 
 @end

@@ -76,6 +76,11 @@
 {
     DBG(@"handleAddTitleOKButton");
     
+    if ( self.titleAddTextField.text.length == 0 ) {
+        [self showNotice:@"请输入话题"];
+        return;
+    }
+    
     weakify(self);
     [[[ApplicationEntrance shareEntrance] currentNavigationController] popViewControllerAnimated:NO onCompletion:^{
         strongify(self);
