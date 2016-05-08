@@ -20,7 +20,7 @@
 - (void)viewDidLoad
 {
     
-    self.needLocation = YES;
+    self.needLocation = NO;
     
     [super viewDidLoad];
     
@@ -117,6 +117,10 @@
         } else {
             self.tableView.showsPullToRefresh = YES;
             [self finishRefresh];
+            
+            if ( LoadingTypeInit == self.loadingType ) {
+                [TTActivityIndicatorView hideActivityIndicatorForView:self.view animated:YES];
+            }
         }
         
     }];

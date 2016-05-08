@@ -230,6 +230,10 @@
             [self finishLoadMore];
         } else {
             [self finishRefresh];
+            
+            if ( LoadingTypeInit == self.loadingType ) {
+                [TTActivityIndicatorView hideActivityIndicatorForView:self.view animated:YES];
+            }
         }
         
     }];
