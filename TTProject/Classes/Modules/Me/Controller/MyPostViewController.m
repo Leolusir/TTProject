@@ -90,6 +90,10 @@
                 if ( !resultModel.posts || resultModel.posts.count == 0 ) {
                     [self showEmptyTips:self.emptyNotice ownerView:self.tableView];
                 }
+                
+                if ( LoadingTypeInit == self.loadingType ) {
+                    [TTActivityIndicatorView hideActivityIndicatorForView:self.view animated:YES];
+                }
             }
             
             [self addPosts:resultModel.posts];

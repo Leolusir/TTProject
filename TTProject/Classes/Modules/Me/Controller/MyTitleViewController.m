@@ -7,6 +7,7 @@
 //
 
 #import "MyTitleViewController.h"
+#import "TTActivityIndicatorView.h"
 
 #import "MeRequest.h"
 #import "TitleModel.h"
@@ -79,7 +80,7 @@
     
     if ( LoadingTypeInit == self.loadingType ) {
         self.tableView.showsPullToRefresh = YES;
-//        [self startRefresh];
+        [TTActivityIndicatorView showInView:self.view animated:YES];
     }
     
     weakify(self);
@@ -100,6 +101,10 @@
                 
                 if ( !resultModel.titles || resultModel.titles.count == 0 ) {
                     [self showEmptyTips:@"还没有发过话题" ownerView:self.tableView];
+                }
+                
+                if ( LoadingTypeInit == self.loadingType ) {
+                    [TTActivityIndicatorView hideActivityIndicatorForView:self.view animated:YES];
                 }
             }
             

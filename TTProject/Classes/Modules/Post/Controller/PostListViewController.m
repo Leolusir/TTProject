@@ -60,7 +60,7 @@
     
     if ( LoadingTypeInit == self.loadingType ) {
         self.tableView.showsPullToRefresh = YES;
-//        [self startRefresh];
+        [TTActivityIndicatorView showInView:self.view animated:YES];
     }
     
     if ( LoadingTypeLoadMore != self.loadingType && self.needLocation) {
@@ -78,6 +78,7 @@
                 [self finishRefresh];
                 
                 [self showEmptyTips:self.emptyNotice ownerView:self.tableView];
+                [TTActivityIndicatorView hideActivityIndicatorForView:self.view animated:YES];
                 
                 return;
                 

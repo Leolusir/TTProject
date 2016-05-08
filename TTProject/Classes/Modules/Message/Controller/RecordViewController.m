@@ -9,6 +9,7 @@
 #import "RecordViewController.h"
 
 #import "PostViewController.h"
+#import "TTActivityIndicatorView.h"
 
 #import "RecordModel.h"
 #import "MessageModel.h"
@@ -102,7 +103,7 @@
     
     if ( LoadingTypeInit == self.loadingType ) {
         self.tableView.showsPullToRefresh = YES;
-//        [self startRefresh];
+        [TTActivityIndicatorView showInView:self.view animated:YES];
     }
     
     weakify(self);
@@ -120,6 +121,10 @@
             } else {
                 [self finishRefresh];
                 [self.records removeAllObjects];
+                
+                if ( LoadingTypeInit == self.loadingType ) {
+                    [TTActivityIndicatorView hideActivityIndicatorForView:self.view animated:YES];
+                }
             }
             
             [self.records addObjectsFromArray:resultModel.records];

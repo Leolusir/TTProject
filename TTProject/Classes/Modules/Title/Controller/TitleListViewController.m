@@ -8,6 +8,7 @@
 
 #import "TitleListViewController.h"
 #import "TitleAddViewController.h"
+#import "TTActivityIndicatorView.h"
 #import "TitleRequest.h"
 #import "TitleModel.h"
 
@@ -19,6 +20,7 @@
 
 @property (nonatomic, strong) NSMutableArray<TitleModel> *titles;
 @property (nonatomic, strong) NSMutableArray<TitleModel> *hotTitles;
+@property (nonatomic, strong) NSMutableDictionary *titleIds;
 
 @property (nonatomic, strong) AMapLocationManager *locationManager;
 
@@ -101,6 +103,7 @@
     
     self.titles = [NSMutableArray<TitleModel> array];
     self.hotTitles = [NSMutableArray<TitleModel> array];
+    self.titleIds = [NSMutableDictionary dictionary];
     
     [self loadData];
 }
@@ -113,7 +116,7 @@
     
     if ( LoadingTypeInit == self.loadingType ) {
         self.tableView.showsPullToRefresh = YES;
-//        [self startRefresh];
+        [TTActivityIndicatorView showInView:self.view animated:YES];
     }
     
     if ( LoadingTypeLoadMore != self.loadingType ) {
@@ -195,9 +198,13 @@
                 [self.titles removeAllObjects];
                 [self.hotTitles removeAllObjects];
                 [self.hotTitles addObjectsFromSafeArray:resultModel.hotTitles];
+                
+                if ( LoadingTypeInit == self.loadingType ) {
+                    [TTActivityIndicatorView hideActivityIndicatorForView:self.view animated:YES];
+                }
             }
             
-            [self.titles addObjectsFromArray:resultModel.titles];
+            [self addTitles:resultModel.titles];
             
             self.wp = resultModel.wp;
             
@@ -226,6 +233,19 @@
         }
         
     }];
+}
+
+- (void)addTitles:(NSArray *)titles
+{
+    if ( titles && titles.count > 0 ) {
+        for (TitleModel *title in titles) {
+            if (![self.titleIds objectForKey:title.id]) {
+                [self.titles addSafeObject:title];
+                [self.titleIds setSafeObject:title.id forKey:title.id];
+            }
+        }
+    }
+    
 }
 
 #pragma mark - UITableViewDataSource

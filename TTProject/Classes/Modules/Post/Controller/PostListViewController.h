@@ -8,6 +8,7 @@
 
 #import "BaseTableViewController.h"
 #import "PostModel.h"
+#import "TTActivityIndicatorView.h"
 
 @interface PostListViewController : BaseTableViewController
 

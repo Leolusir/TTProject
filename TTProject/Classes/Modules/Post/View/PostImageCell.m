@@ -20,7 +20,7 @@
 
 - (void)drawCell{
     
-    self.backgroundColor = Color_White;
+    self.backgroundColor = Color_Gray4;
     [self addSubview:self.postImageView];
     
 }
@@ -29,13 +29,13 @@
     
     if ( self.cellData ) {
 
-        [self.postImageView setOnlineImage:[NSString stringWithFormat:@"%@-s",self.cellData]];
+//        [self.postImageView setOnlineImage:[NSString stringWithFormat:@"%@-s",self.cellData]];
         
-//        weakify(self);
-//        [self.postImageView setOnlineImage:(NSString *)self.cellData complete:^(UIImage *image) {
-//            strongify(self);
-//            self.postImageView.contentMode = UIViewContentModeScaleAspectFit;
-//        }];
+        weakify(self);
+        [self.postImageView setOnlineImage:(NSString *)self.cellData complete:^(UIImage *image) {
+            strongify(self);
+            self.postImageView.contentMode = UIViewContentModeScaleAspectFit;
+        }];
     }
     
 }
