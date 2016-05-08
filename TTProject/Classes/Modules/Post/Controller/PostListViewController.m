@@ -29,6 +29,8 @@
 {
     [super viewDidLoad];
     
+    self.view.backgroundColor = Color_Gray5;
+    
     [self initAMap];
     
     [self initData];
