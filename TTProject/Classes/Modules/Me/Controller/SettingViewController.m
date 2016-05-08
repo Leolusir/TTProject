@@ -63,7 +63,7 @@
     
     self.menu = @[
                   @{@"type":@"item", @"key":@"1", @"title":@"应用名称", @"link":@"", @"line":@YES, @"arrow":@NO, @"value":@"Seek"},
-                  @{@"type":@"item", @"key":@"2", @"title":@"版本信息", @"link":@"", @"line":@NO, @"arrow":@NO, @"value":@"1.0.0.0 beta"},
+                  @{@"type":@"item", @"key":@"2", @"title":@"版本信息", @"link":@"", @"line":@NO, @"arrow":@NO, @"value":APP_VERSION_SHOW},
                   @{@"type":@"empty",},
                   @{@"type":@"item", @"key":@"3", @"title":@"推送开关", @"link":@"", @"line":@NO, @"arrow":@NO, @"value":pushStatus},
                   @{@"type":@"empty",},

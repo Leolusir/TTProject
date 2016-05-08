@@ -11,7 +11,7 @@
 
 // 当前版本号
 #define APP_VERSION                 1000
-#define APP_VERSION_SHOW            @"1.0.0.0"
+#define APP_VERSION_SHOW            @"1.0.0.0 beta"
 
 // 应用类型
 #define APP_TYPE                    @"iphone"
