@@ -22,6 +22,7 @@
 
 - (void)drawCell{
     
+    self.backgroundColor = Color_White;
     [self addSubview:self.titleLabel];
     [self addSubview:self.countLabel];
     

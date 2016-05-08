@@ -77,6 +77,11 @@
         [params setSafeObject:@"0" forKey:@"wp"];
     }
     
+    if ( LoadingTypeInit == self.loadingType ) {
+        self.tableView.showsPullToRefresh = YES;
+//        [self startRefresh];
+    }
+    
     weakify(self);
     
     [MeRequest getMyTitlesWithParams:params success:^(TitleListResultModel *resultModel) {

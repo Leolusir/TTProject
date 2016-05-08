@@ -22,7 +22,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.tabbarItem = [[TTTabbarItem alloc] initWithTitle:@"周围" titleColor:Color_Gray1 selectedTitleColor:Color_Green1 icon:[UIImage imageNamed:@"icon_tabbar_around_normal"] selectedIcon:[UIImage imageNamed:@"icon_tabbar_around_selected"]];
+        self.tabbarItem = [[TTTabbarItem alloc] initWithTitle:@"附近" titleColor:Color_Gray1 selectedTitleColor:Color_Green1 icon:[UIImage imageNamed:@"icon_tabbar_around_normal"] selectedIcon:[UIImage imageNamed:@"icon_tabbar_around_selected"]];
     }
     return self;
 }
@@ -34,7 +34,7 @@
     
     [super viewDidLoad];
     
-    self.title = @"周围";
+    self.title = @"附近";
     
     [self addNavigationBar];
     
@@ -60,12 +60,13 @@
 {
     [super addNavigationBar];
    
-    UIImage *addImage = [UIImage imageNamed:@"icon_nav_add"];
+    UIImage *addImage = [UIImage imageNamed:@"icon_nav_write"];
     UIButton *addPostButton = [UIButton rightBarButtonWithImage:addImage highlightedImage:addImage target:self action:@selector(handleAddPostButton) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationBar setRightBarButton:addPostButton];
     
-    UIImage *locationImage = [UIImage imageNamed:@"icon_nav_location"];
+    UIImage *locationImage = [UIImage imageNamed:@"icon_nav_telescope"];
     UIButton *locationButton = [UIButton rightBarButtonWithImage:locationImage highlightedImage:locationImage target:self action:@selector(handleLocationButton) forControlEvents:UIControlEventTouchUpInside];
+    locationButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -10);
     [self.navigationBar setLeftBarButton:locationButton];
     
 }

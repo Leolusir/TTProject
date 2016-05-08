@@ -121,6 +121,7 @@
 		2CE575051CBD4DBF00F2AC04 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE575041CBD4DBF00F2AC04 /* MessageViewController.m */; };
 		2CE575081CBD4DDF00F2AC04 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE575071CBD4DDF00F2AC04 /* MeViewController.m */; };
 		2CE94CBE1CDD9FDC00E8519B /* PostManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE94CBD1CDD9FDC00E8519B /* PostManager.m */; };
+		2CE94CC11CDDBD4800E8519B /* AppInitResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE94CC01CDDBD4800E8519B /* AppInitResultModel.m */; };
 		2CFD2D161CCB511500229DC3 /* PostPublishResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CFD2D151CCB511500229DC3 /* PostPublishResultModel.m */; };
 		B48F94164A872B6052C97989 /* libPods-TTProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA48561C30BAE97F6A4871E1 /* libPods-TTProject.a */; };
 /* End PBXBuildFile section */
@@ -365,6 +366,8 @@
 		2CE575071CBD4DDF00F2AC04 /* MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
 		2CE94CBC1CDD9FDC00E8519B /* PostManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostManager.h; sourceTree = "<group>"; };
 		2CE94CBD1CDD9FDC00E8519B /* PostManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostManager.m; sourceTree = "<group>"; };
+		2CE94CBF1CDDBD4800E8519B /* AppInitResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppInitResultModel.h; sourceTree = "<group>"; };
+		2CE94CC01CDDBD4800E8519B /* AppInitResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppInitResultModel.m; sourceTree = "<group>"; };
 		2CFD2D141CCB511500229DC3 /* PostPublishResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostPublishResultModel.h; sourceTree = "<group>"; };
 		2CFD2D151CCB511500229DC3 /* PostPublishResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostPublishResultModel.m; sourceTree = "<group>"; };
 		87CA5552EA17FCCAD0A11845 /* Pods-TTProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-TTProject/Pods-TTProject.release.xcconfig"; sourceTree = "<group>"; };
@@ -1116,6 +1119,8 @@
 				2C8312A11CC2059F005E11AB /* SignInUpResultModel.m */,
 				2C8312A31CC205E4005E11AB /* UserModel.h */,
 				2C8312A41CC205E4005E11AB /* UserModel.m */,
+				2CE94CBF1CDDBD4800E8519B /* AppInitResultModel.h */,
+				2CE94CC01CDDBD4800E8519B /* AppInitResultModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1197,6 +1202,11 @@
 					2C8ECE621CB8C8F700A294AB = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 4MYP92V34J;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1365,6 +1375,7 @@
 				2C8ECF751CB8CCBA00A294AB /* TTNavigationController.m in Sources */,
 				2C8ECF6C1CB8CCBA00A294AB /* RootScrollViewController.m in Sources */,
 				2C3B71231CD26F4500D461E2 /* SettingViewController.m in Sources */,
+				2CE94CC11CDDBD4800E8519B /* AppInitResultModel.m in Sources */,
 				2C8ECF811CB8CCBA00A294AB /* DefaultWallCell.m in Sources */,
 				2CE575081CBD4DDF00F2AC04 /* MeViewController.m in Sources */,
 				2C8ECF571CB8CCBA00A294AB /* NSMutableDictionary+NullCheck.m in Sources */,

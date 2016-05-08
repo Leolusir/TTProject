@@ -20,6 +20,7 @@
 #define Color_Gray2                   RGB(85, 85, 85)
 #define Color_Gray3                   RGB(200, 200, 200)
 #define Color_Gray4                   RGB(250, 250, 250)
+#define Color_Gray5                   RGB(245, 245, 245)
 
 #define Color_Red1                    RGB(249, 76, 131)
 

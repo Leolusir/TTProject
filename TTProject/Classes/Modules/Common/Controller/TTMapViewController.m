@@ -115,7 +115,7 @@
         TTNavigationController *navigationController = [[ApplicationEntrance shareEntrance] currentNavigationController];
         [navigationController pushViewController:vc animated:YES];
     } else {
-        [self showAlert:@"定位失败!"];
+        [self showNotice:@"定位失败!"];
     }
 }
 

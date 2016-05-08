@@ -19,7 +19,8 @@
 @property (nonatomic, strong) UIImageView    *imageView;
 @property (nonatomic, strong) UIColor        *titleColor;
 @property (nonatomic, strong) UIColor        *selectedTitleColor;
-@property (nonatomic, strong) UIView         *backgroundView;
+//@property (nonatomic, strong) UIView         *backgroundView;
+@property (nonatomic, strong) UIView         *badgeView;
 
 @end
 
@@ -57,6 +58,15 @@
         self.imageView.contentMode = UIViewContentModeCenter;
         [self addSubview:self.imageView];
         
+        self.badgeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 6, 6)];
+        self.badgeView.layer.cornerRadius = 3;
+        self.badgeView.backgroundColor = Color_Red1;
+        self.badgeView.top = self.imageView.top;
+        self.badgeView.right = self.imageView.right;
+        self.badgeView.hidden = YES;
+        
+        [self addSubview:self.badgeView];
+        
         [self addTarget:self action:@selector(didSelect) forControlEvents:UIControlEventTouchUpInside];
  
     }
@@ -70,6 +80,8 @@
     self.label.bottom = self.height - 4.f;
     self.imageView.centerX = self.width / 2;
     self.imageView.frame= CGRectOffset(self.imageView.frame, self.imageInset.left, self.imageInset.top);
+    self.badgeView.top = self.imageView.top;
+    self.badgeView.right = self.imageView.right;
 }
 
 - (void)setTitle:(NSString*)title
@@ -100,6 +112,11 @@
     if (self.selected) {
         self.imageView.image = selectedIcon;
     }
+}
+
+-(void)showBadge:(BOOL)show
+{
+    self.badgeView.hidden = !show;
 }
 
 #pragma -mark

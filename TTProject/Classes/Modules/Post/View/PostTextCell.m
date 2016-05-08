@@ -20,9 +20,14 @@
 @interface PostTextCell ()<UITextViewDelegate>
 
 @property (nonatomic, strong) YYLabel *contentLabel;
-@property (nonatomic, strong) UILabel *countLabel;
 @property (nonatomic, strong) PostVoteView *postVoteView;
 @property (nonatomic, strong) UILabel *readMoreLabel;
+@property (nonatomic, strong) UIView *infoView;
+
+@property (nonatomic, strong) UIImageView *createTimeIconImageView;
+@property (nonatomic, strong) UIImageView *memberIconImageView;
+@property (nonatomic, strong) UILabel *createTimeLabel;
+@property (nonatomic, strong) UILabel *memberLabel;
 
 @end
 
@@ -32,10 +37,13 @@
     
     self.backgroundColor = Color_White;
     [self addSubview:self.contentLabel];
-    [self addSubview:self.countLabel];
     [self addSubview:self.postVoteView];
     [self addSubview:self.readMoreLabel];
-    
+    [self addSubview:self.infoView];
+    [self.infoView addSubview:self.createTimeIconImageView];
+    [self.infoView addSubview:self.createTimeLabel];
+    [self.infoView addSubview:self.memberIconImageView];
+    [self.infoView addSubview:self.memberLabel];
 }
 
 - (void)reloadData{
@@ -68,9 +76,9 @@
         self.contentLabel.textLayout = textLayout;
         self.contentLabel.size = textLayout.textBoundingSize;
         
-        CGFloat contentHeight = ceil(textLayout.textBoundingSize.height) + 10 + 12;
+        CGFloat contentHeight = ceil(textLayout.textBoundingSize.height);
         
-        CGFloat cellHeight = 10 + ( contentHeight < 55 ? 55 : contentHeight ) + 15;
+        CGFloat cellHeight = 10 + ( contentHeight < 55 ? 55 : contentHeight ) + 10;
         
         if (rowLimit && 10 == textLayout.rowCount ) {
             YYTextLayout *noRowLimitLayout = [PostTextCell builtTextLayout:attributedText withMaxRow:0];
@@ -83,9 +91,25 @@
             self.readMoreLabel.hidden = YES;
         }
         
-        self.countLabel.text = [NSString stringWithFormat:@"%@    %ld人参与",post.createTime, (long)post.member];//@"10分钟前 100人参与";
-        [self.countLabel sizeToFit];
-        self.countLabel.bottom = cellHeight - 15;
+        cellHeight += 30;
+        
+        self.infoView.bottom = cellHeight;
+        
+        self.createTimeLabel.text = post.createTime;
+        [self.createTimeLabel sizeToFit];
+        self.createTimeLabel.centerY = 15;
+        self.createTimeLabel.centerX = SCREEN_WIDTH / 4 + 10;
+        
+        self.createTimeIconImageView.centerY = 15;
+        self.createTimeIconImageView.right = self.createTimeLabel.left - 5;
+        
+        self.memberLabel.text = [NSString stringWithFormat:@"%ld人参与", (long)post.member];
+        [self.memberLabel sizeToFit];
+        self.memberLabel.centerY = 15;
+        self.memberLabel.centerX = SCREEN_WIDTH / 4 * 3 + 10;
+        
+        self.memberIconImageView.centerY = 15;
+        self.memberIconImageView.right = self.memberLabel.left - 5;
         
         self.postVoteView.vote = post.vote;
         self.postVoteView.voteUp = post.voteUp;
@@ -109,18 +133,21 @@
         
         YYTextLayout *textLayout = [PostTextCell builtTextLayout:attributedText withMaxRow:rowLimit ? 10 : 0];
         
-        CGFloat contentHeight = ceil(textLayout.textBoundingSize.height) + 10 + 12;
+        CGFloat contentHeight = ceil(textLayout.textBoundingSize.height);
         
-        CGFloat height = 10 + ( contentHeight < 55 ? 55 : contentHeight ) + 15;
+        CGFloat height = 10 + ( contentHeight < 55 ? 55 : contentHeight ) + 10;
         
         if (rowLimit && 10 == textLayout.rowCount ) {
             YYTextLayout *noRowLimitLayout = [PostTextCell builtTextLayout:attributedText withMaxRow:0];
-            DBG(@"文本%@ 行数%ld 无限制行数%ld", post.content, textLayout.rowCount, noRowLimitLayout.rowCount);
+//            DBG(@"文本%@ 行数%ld 无限制行数%ld", post.content, textLayout.rowCount, noRowLimitLayout.rowCount);
             
             if ( noRowLimitLayout.rowCount > 10 ) {
                 height += MORE_HEIGHT;
             }
+            
         }
+        
+        height += 30;
         
         return height;
     }
@@ -148,15 +175,44 @@
     return _contentLabel;
 }
 
-- (UILabel *)countLabel
+- (UILabel *)createTimeLabel
 {
-    if ( !_countLabel ) {
-        _countLabel = [[UILabel alloc] initWithFrame:CGRectMake(PADDING, 0, SCREEN_WIDTH - PADDING * 2, 0)];
-        _countLabel.textColor = Color_Gray3;
-        _countLabel.font = FONT(10);
+    if ( !_createTimeLabel ) {
+        _createTimeLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+        _createTimeLabel.textColor = Color_Gray3;
+        _createTimeLabel.font = FONT(10);
     }
     
-    return _countLabel;
+    return _createTimeLabel;
+}
+
+- (UIImageView *)createTimeIconImageView
+{
+    if ( !_createTimeIconImageView ) {
+        _createTimeIconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_post_time"]];
+    }
+    
+    return _createTimeIconImageView;
+}
+
+- (UILabel *)memberLabel
+{
+    if ( !_memberLabel ) {
+        _memberLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+        _memberLabel.textColor = Color_Gray3;
+        _memberLabel.font = FONT(10);
+    }
+    
+    return _memberLabel;
+}
+
+- (UIImageView *)memberIconImageView
+{
+    if ( !_memberIconImageView ) {
+        _memberIconImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_post_member"]];
+    }
+    
+    return _memberIconImageView;
 }
 
 - (PostVoteView *)postVoteView
@@ -171,9 +227,9 @@
 {
     if ( !_readMoreLabel ) {
         _readMoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(PADDING, 0, 0, 0)];
-        _readMoreLabel.textColor = Color_Gray3;
+        _readMoreLabel.textColor = Color_Green1;
         _readMoreLabel.font = FONT(12);
-        _readMoreLabel.text = @"查看更多";
+        _readMoreLabel.text = @"查看全文";
         [_readMoreLabel sizeToFit];
         _readMoreLabel.hidden = YES;
     }
@@ -181,11 +237,20 @@
     return _readMoreLabel;
 }
 
+- (UIView *)infoView
+{
+    if ( !_infoView ) {
+        _infoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 30)];
+        _infoView.backgroundColor = Color_Gray4;
+    }
+    return _infoView;
+}
+
 #pragma mark - Private Methods
 
 - (void)highlightTapWithContainerView:(UIView *)containerView text:(NSAttributedString *)text range:(NSRange)range rect:(CGRect)rect
 {
-    DBG(@"highlightTap %@ %ld %ld", text.string, range.length, range.location);
+//    DBG(@"highlightTap %@ %ld %ld", text.string, range.length, range.location);
     
     NSString *title = [[text.string substringWithRange:range] stringByReplacingOccurrencesOfString:@"#" withString:@""];
     

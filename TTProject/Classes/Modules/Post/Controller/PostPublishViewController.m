@@ -14,6 +14,8 @@
 #import <YYText/YYText.h>
 #import "SKTopicParser.h"
 
+#import "TTActivityIndicatorView.h"
+
 @interface PostPublishViewController () <UIScrollViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, YYTextViewDelegate>
 
 @property (nonatomic, strong) UIScrollView *containerView;
@@ -161,10 +163,26 @@
     if ([UIImagePickerController isSourceTypeAvailable:sourceType]) {
         UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
         imagePicker.sourceType = sourceType;
-        imagePicker.allowsEditing = YES;
+//        imagePicker.allowsEditing = YES;
         imagePicker.delegate = self;
         [self presentViewController:imagePicker animated:YES completion:nil];
     }
+}
+
+- (void)buttonsEnabled
+{
+    self.publishPostButton.enabled = YES;
+    self.deleteImageButton.enabled = YES;
+    self.addTitleButton.enabled = YES;
+    self.addImageButton.enabled = YES;
+}
+
+- (void)buttonsDisabled
+{
+    self.publishPostButton.enabled = NO;
+    self.deleteImageButton.enabled = NO;
+    self.addTitleButton.enabled = NO;
+    self.addImageButton.enabled = NO;
 }
 
 - (void)showImage
@@ -196,11 +214,10 @@
         
         if (error)
         {
-            // TODO: 错误消息待优化
-            [self showAlert:@"定位失败！"];
+            [self showNotice:@"定位失败!"];
             DBG(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
             
-            self.publishPostButton.enabled = YES;
+            [self buttonsEnabled];
             
             return;
             
@@ -229,10 +246,12 @@
             
             [self showNotice:@"发布成功"];
             
-            self.publishPostButton.enabled = YES;
+            [self buttonsEnabled];
             
             NSDictionary *userInfo = @{@"post" : resultModel.post};
             [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFY_APP_POST_PUBLISH_SUCCESS object:nil userInfo:userInfo];
+            
+            [TTActivityIndicatorView hideActivityIndicatorForView:self.view animated:YES];
             
             [self clickback];
             
@@ -240,9 +259,11 @@
             
             DBG(@"%@", status);
             
-            self.publishPostButton.enabled = YES;
+            [self buttonsEnabled];
             
             [self showNotice:status.msg];
+            
+            [TTActivityIndicatorView hideActivityIndicatorForView:self.view animated:YES];
             
         }];
         
@@ -287,9 +308,9 @@
     
     [self.view endEditing:YES];
     
-    self.publishPostButton.enabled = NO;
+    [self buttonsDisabled];
     
-    // TODO: 添加Loading，遮盖整个界面
+    [TTActivityIndicatorView showInView:self.view animated:YES];
     
     if ( self.postImage ) {
         
@@ -318,7 +339,7 @@
             
             strongify(self);
             
-            self.publishPostButton.enabled = YES;
+            [self buttonsEnabled];
             
             [self showNotice:status.msg];
             

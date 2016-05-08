@@ -37,6 +37,13 @@
  */
 -(void)setTitle:(NSString*)title;
 
+/**
+ *  是否显示badge
+ *
+ *  @param show 是否显示
+ */
+-(void)showBadge:(BOOL)show;
+
 @end
 
 @protocol TTTabbarItemDelegate <NSObject>

@@ -31,6 +31,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         self.tabbarItem = [[TTTabbarItem alloc] initWithTitle:@"消息" titleColor:Color_Gray1 selectedTitleColor:Color_Green1 icon:[UIImage imageNamed:@"icon_tabbar_message_normal"] selectedIcon:[UIImage imageNamed:@"icon_tabbar_message_selected"]];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newMessageReceived) name:kNOTIFY_APP_NEW_MESSAGE_RECEIVED object:nil];
     }
     return self;
 }
@@ -48,6 +49,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userSignIn) name:kNOTIFY_APP_USER_SIGNIN object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userSignOut) name:kNOTIFY_APP_USER_SIGNOUT object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(messageReplySuccess:) name:kNOTIFY_APP_MESSAGE_REPLY_SUCCESS object:nil];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tabbarItem showBadge:NO];
 }
 
 #pragma mark - Override Methods
@@ -90,6 +98,11 @@
         [params setSafeObject:self.wp forKey:@"wp"];
     } else {
         [params setSafeObject:@"0" forKey:@"wp"];
+    }
+    
+    if ( LoadingTypeInit == self.loadingType ) {
+        self.tableView.showsPullToRefresh = YES;
+//        [self startRefresh];
     }
     
     weakify(self);
@@ -291,7 +304,13 @@
         
     }
     
+}
+
+- (void)newMessageReceived
+{
+    [self initData];
     
+    [self.tabbarItem showBadge:YES];
 }
 
 #pragma mark - TTAlertViewDelegate

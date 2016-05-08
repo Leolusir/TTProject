@@ -119,7 +119,7 @@
 {
     if ( !_unreadMarkView ) {
         _unreadMarkView = [[UIView alloc] initWithFrame:CGRectMake(7, 37, 6, 6)];
-        _unreadMarkView.backgroundColor = Color_Green1;
+        _unreadMarkView.backgroundColor = Color_Red1;
         _unreadMarkView.layer.cornerRadius = 3;
     }
     return _unreadMarkView;

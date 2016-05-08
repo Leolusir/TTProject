@@ -30,6 +30,7 @@
         acitivityIndView = [[TTActivityIndicatorView alloc] initWithView:view];
         acitivityIndView.alpha = 0.0f;
         [view addSubview:acitivityIndView];
+        [view bringSubviewToFront:acitivityIndView];
         [acitivityIndView show:animated];
     }
     
@@ -38,7 +39,7 @@
 
 + (BOOL)hideActivityIndicatorForView:(UIView *)view animated:(BOOL)animated {
     
-    TTActivityIndicatorView *activityIndicator = [TTActivityIndicatorView XSJActivityIndicatorForView:view];
+    TTActivityIndicatorView *activityIndicator = [TTActivityIndicatorView TTActivityIndicatorForView:view];
     if (activityIndicator != nil) {
         if (animated) {
             [view bringSubviewToFront:activityIndicator];
@@ -49,7 +50,7 @@
     return NO;
 }
 
-+ (TTActivityIndicatorView *)XSJActivityIndicatorForView:(UIView *)view
++ (TTActivityIndicatorView *)TTActivityIndicatorForView:(UIView *)view
 {
     TTActivityIndicatorView *activityIndicator = nil;
     NSArray *subviews = view.subviews;
@@ -81,13 +82,11 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
-        [_circleView setImage:[UIImage imageNamed:@"loading_circle"]];
+        _circleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"loading_circle"]];
         _circleView.center = CGPointMake(self.width/2.0f, self.height/2.0f);
         [self addSubview:_circleView];
         self.userInteractionEnabled = NO;
     }
-  
     
     return self;
 }

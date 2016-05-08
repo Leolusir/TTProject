@@ -39,7 +39,7 @@
     if (!CGRectIsEmpty(_defaultFrame)) {
         self.view.frame = _defaultFrame;
     }
-    self.view.backgroundColor = Color_Gray4;
+    self.view.backgroundColor = Color_Gray5;
     [self.navigationController.navigationBar setHidden:YES];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.needBlurEffect = YES;

@@ -29,7 +29,7 @@
     
     if ( self.cellData ) {
 
-        [self.postImageView setOnlineImage:(NSString *)self.cellData];
+        [self.postImageView setOnlineImage:[NSString stringWithFormat:@"%@-s",self.cellData]];
         
 //        weakify(self);
 //        [self.postImageView setOnlineImage:(NSString *)self.cellData complete:^(UIImage *image) {

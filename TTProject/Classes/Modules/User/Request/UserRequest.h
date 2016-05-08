@@ -8,6 +8,7 @@
 
 #import "BaseRequest.h"
 #import "SignInUpResultModel.h"
+#import "AppInitResultModel.h"
 
 @interface UserRequest : BaseRequest
 
@@ -16,5 +17,7 @@
 + (void)signInWithParams:(NSDictionary *)params success:(void(^)(SignInUpResultModel *resultModel))success failure:(void(^)(StatusModel *status))failure;
 
 + (void)getCaptchaWithParams:(NSDictionary *)params success:(void(^)())success failure:(void(^)(StatusModel *status))failure;
+
++ (void)registerClientIdWithParams:(NSDictionary *)params success:(void(^)(AppInitResultModel *resultModel))success failure:(void(^)(StatusModel *status))failure;
 
 @end

@@ -111,6 +111,11 @@
         return;
     }
     
+    if ( LoadingTypeInit == self.loadingType ) {
+        self.tableView.showsPullToRefresh = YES;
+//        [self startRefresh];
+    }
+    
     if ( LoadingTypeLoadMore != self.loadingType ) {
         
         weakify(self);
@@ -120,7 +125,7 @@
             
             if (error)
             {
-                [self showAlert:@"定位失败！"];
+                [self showNotice:@"定位失败!"];
                 DBG(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
                 
                 self.tableView.showsPullToRefresh = YES;

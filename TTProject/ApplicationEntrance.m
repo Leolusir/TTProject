@@ -20,6 +20,8 @@
 
 #import "GeTuiSdk.h"
 
+#import "UserRequest.h"
+
 @interface ApplicationEntrance () <GeTuiSdkDelegate>
 
 @property (nonatomic, strong) NSDictionary *remoteInfo;
@@ -160,9 +162,7 @@
 {
     if (self.remoteInfo && [[self.remoteInfo allKeys] containsObject:@"payload"]) {
         
-        NSString *url = [NSString stringWithFormat:@"%@",[self.remoteInfo objectForKey:@"payload"]];
-        
-        [self handleOpenURL:url];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFY_APP_NEW_MESSAGE_RECEIVED object:nil];
         
         self.remoteInfo = nil;
         
@@ -259,6 +259,34 @@
 //个推SDK已注册，返回clientId
 - (void)GeTuiSdkDidRegisterClient:(NSString *)clientId {
     DBG(@"\n>>>[GeTuiSdk RegisterClient]:%@\n\n", clientId);
+    
+    self.clientId = clientId;
+    
+    if ( [TTUserService sharedService].isLogin ) {
+        
+        NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+        [params setSafeObject:clientId forKey:@"clientId"];
+        [params setSafeObject:[TTUserService sharedService].id forKey:@"userId"];
+        [params setSafeObject:@"ios" forKey:@"deviceType"];
+        
+        [UserRequest registerClientIdWithParams:params success:^(AppInitResultModel *resultModel) {
+            
+            if ( resultModel ) {
+                if ( resultModel.version > APP_VERSION ) {
+                    // TODO 提示更新
+                }
+                
+                if ( resultModel.newMsg > 0 ) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFY_APP_NEW_MESSAGE_RECEIVED object:nil];
+                }
+            }
+            
+        } failure:^(StatusModel *status) {
+            
+        }];
+        
+    }
+    
 }
 
 //个推错误报告，集成步骤发生的任何错误都在这里通知，如果集成后，无法正常收到消息，查看这里的通知
@@ -277,6 +305,8 @@
     
     NSString *msg = [NSString stringWithFormat:@"taskId=%@,messageId:%@,payloadMsg:%@%@", taskId, msgId, payloadMsg, offLine ? @"<离线消息>" : @""];
     DBG(@"\n>>>[GeTuiSdk ReceivePayload]:%@\n\n", msg);
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNOTIFY_APP_NEW_MESSAGE_RECEIVED object:nil];
 }
 
 /** SDK收到sendMessage消息回调 */

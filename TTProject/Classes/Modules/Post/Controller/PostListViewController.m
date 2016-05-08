@@ -56,6 +56,11 @@
 
     [self hideEmptyTips];
     
+    if ( LoadingTypeInit == self.loadingType ) {
+        self.tableView.showsPullToRefresh = YES;
+//        [self startRefresh];
+    }
+    
     if ( LoadingTypeLoadMore != self.loadingType && self.needLocation) {
         
         weakify(self);
@@ -65,7 +70,7 @@
             
             if (error)
             {
-                [self showAlert:@"定位失败!"];
+                [self showNotice:@"定位失败!"];
                 DBG(@"locError:{%ld - %@};", (long)error.code, error.localizedDescription);
                 self.tableView.showsPullToRefresh = YES;
                 [self finishRefresh];
@@ -166,37 +171,45 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.posts.count;
+    return self.posts.count * 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    if ( 0 == section % 2 ) {
+        return 2;
+    }
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PostModel *post = [self.posts safeObjectAtIndex:indexPath.section];
-
-    if (post) {
-
-        if ( 0 == indexPath.row ) {
-
-            PostImageCell *cell = [PostImageCell dequeueReusableCellForTableView:tableView];
-            cell.cellData = post.imageUrl;
-            [cell reloadData];
-            return cell;
-
-        } else if ( 1 == indexPath.row) {
-
-            PostTextCell *cell = [PostTextCell dequeueReusableCellForTableView:tableView];
-            cell.cellData = @{@"post":post, @"rowLimit":@YES};
-            [cell reloadData];
-            return cell;
-
+    if ( 0 == indexPath.section % 2 ) {
+        
+        PostModel *post = [self.posts safeObjectAtIndex:indexPath.section / 2];
+        
+        if (post) {
+            
+            if ( 0 == indexPath.row ) {
+                
+                PostImageCell *cell = [PostImageCell dequeueReusableCellForTableView:tableView];
+                cell.cellData = post.imageUrl;
+                [cell reloadData];
+                return cell;
+                
+            } else if ( 1 == indexPath.row) {
+                
+                PostTextCell *cell = [PostTextCell dequeueReusableCellForTableView:tableView];
+                cell.cellData = @{@"post":post, @"rowLimit":@YES};
+                [cell reloadData];
+                return cell;
+                
+            }
+            
         }
-    
+        
     }
+    
 
     BaseTableViewCell *cell = [BaseTableViewCell dequeueReusableCellForTableView:tableView];
     [cell reloadData];
@@ -207,22 +220,26 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PostModel *post = [self.posts safeObjectAtIndex:indexPath.section];
-
     CGFloat height = 0;
-
-    if ( post ) {
+    
+    if ( 0 == indexPath.section % 2 ) {
+        PostModel *post = [self.posts safeObjectAtIndex:indexPath.section / 2];
         
-        if ( 0 == indexPath.row ) {
+        if ( post ) {
             
-            height = [PostImageCell heightForCell:post.imageUrl];
-            
-        } else if ( 1 == indexPath.row) {
-            
-            height = [self getTextCellHeight:post];
+            if ( 0 == indexPath.row ) {
+                
+                height = [PostImageCell heightForCell:post.imageUrl];
+                
+            } else if ( 1 == indexPath.row) {
+                
+                height = [self getTextCellHeight:post];
+                
+            }
             
         }
-        
+    } else {
+        height = 10;
     }
     
     return height;
@@ -230,20 +247,25 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    PostModel *post = [self.posts safeObjectAtIndex:indexPath.section];
-    
-    if ( post ) {
-        DBG(@"Post:%@ Click", post.id);
+    if ( 0 == indexPath.section % 2 ) {
         
-        PostViewController *vc = [[PostViewController alloc] init];
-        vc.post = post;
-        vc.postId = post.id;
-        vc.userIdOne = post.userId;
-        vc.userIdTwo = [TTUserService sharedService].id;
+        PostModel *post = [self.posts safeObjectAtIndex:indexPath.section / 2];
         
-        TTNavigationController *navigationController = [[ApplicationEntrance shareEntrance] currentNavigationController];
-        [navigationController pushViewController:vc animated:YES];
+        if ( post ) {
+            
+            DBG(@"Post:%@ Click", post.id);
+            
+            PostViewController *vc = [[PostViewController alloc] init];
+            vc.post = post;
+            vc.postId = post.id;
+            vc.userIdOne = post.userId;
+            vc.userIdTwo = [TTUserService sharedService].id;
+            
+            TTNavigationController *navigationController = [[ApplicationEntrance shareEntrance] currentNavigationController];
+            [navigationController pushViewController:vc animated:YES];
+        }
     }
+    
 }
 
 #pragma mark - TTErrorTipsViewDelegate

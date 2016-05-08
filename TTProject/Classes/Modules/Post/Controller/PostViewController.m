@@ -175,6 +175,10 @@
     self.replyBgView.bottom = self.view.height;
     [self.view addSubview:self.replyBgView];
     
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, LINE_WIDTH)];
+    lineView.backgroundColor = Color_Green1;
+    [self.replyBgView addSubview:lineView];
+    
     self.replyButton = [UIButton buttonWithImage:[UIImage imageNamed:@"icon_reply"] highlightedImage:[UIImage imageNamed:@"icon_reply"] target:self action:@selector(handleReplyButton) forControlEvents:UIControlEventTouchUpInside];
     self.replyButton.centerY = self.replyBgView.height / 2;
     self.replyButton.right = SCREEN_WIDTH;
@@ -220,19 +224,22 @@
     
     if ( 0 == indexPath.section ) {
         
-        if ( 0 == indexPath.row ) {
-            
-            PostImageCell *cell = [PostImageCell dequeueReusableCellForTableView:tableView];
-            cell.cellData = self.post.imageUrl;
-            [cell reloadData];
-            return cell;
-            
-        } else if ( 1 == indexPath.row) {
-            
-            PostTextCell *cell = [PostTextCell dequeueReusableCellForTableView:tableView];
-            cell.cellData = @{@"post":self.post, @"rowLimit":@NO};
-            [cell reloadData];
-            return cell;
+        if ( self.post ) {
+            if ( 0 == indexPath.row ) {
+                
+                PostImageCell *cell = [PostImageCell dequeueReusableCellForTableView:tableView];
+                cell.cellData = self.post.imageUrl;
+                [cell reloadData];
+                return cell;
+                
+            } else if ( 1 == indexPath.row) {
+                
+                PostTextCell *cell = [PostTextCell dequeueReusableCellForTableView:tableView];
+                cell.cellData = @{@"post":self.post, @"rowLimit":@NO};
+                [cell reloadData];
+                return cell;
+                
+            }
             
         }
         
@@ -266,15 +273,20 @@
     
     if ( 0 == indexPath.section ) {
         
-        if ( 0 == indexPath.row ) {
+        if ( self.post ) {
             
-            height = [PostImageCell heightForCell:self.post.imageUrl];
-            
-        } else if ( 1 == indexPath.row) {
-            
-            height = [PostTextCell heightForCell:@{@"post":self.post, @"rowLimit":@NO}];
+            if ( 0 == indexPath.row ) {
+                
+                height = [PostImageCell heightForCell:self.post.imageUrl];
+                
+            } else if ( 1 == indexPath.row) {
+                
+                height = [PostTextCell heightForCell:@{@"post":self.post, @"rowLimit":@NO}];
+                
+            }
             
         }
+        
         
     } else {
         
@@ -299,9 +311,8 @@
         if ( 0 == indexPath.row ) {
             
             TTGalleryViewController *galleryViewController = [[TTGalleryViewController alloc] init];
-            galleryViewController.imageSrcs = @[self.post.imageUrl];
+            galleryViewController.imageSrcs = @[[NSString stringWithFormat:@"%@-l",self.post.imageUrl]];
             [[[ApplicationEntrance shareEntrance] currentNavigationController] pushViewController:galleryViewController animated:YES];
-            
         }
     }
 }
