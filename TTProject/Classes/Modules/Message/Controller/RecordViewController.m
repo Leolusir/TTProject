@@ -122,6 +122,10 @@
                 [self finishRefresh];
                 [self.records removeAllObjects];
                 
+                if ( !resultModel.records || resultModel.records.count == 0 ) {
+                    [self showEmptyTips:@"还没有与人交谈" ownerView:self.tableView];
+                }
+                
                 if ( LoadingTypeInit == self.loadingType ) {
                     [TTActivityIndicatorView hideActivityIndicatorForView:self.view animated:YES];
                 }

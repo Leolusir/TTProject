@@ -199,6 +199,10 @@
                 [self.hotTitles removeAllObjects];
                 [self.hotTitles addObjectsFromSafeArray:resultModel.hotTitles];
                 
+                if ( ( !resultModel.titles || resultModel.titles.count == 0 ) && (!resultModel.hotTitles || resultModel.hotTitles.count == 0) ) {
+                    [self showEmptyTips:@"想和周围人一起聊点什么呢" ownerView:self.tableView];
+                }
+                
                 if ( LoadingTypeInit == self.loadingType ) {
                     [TTActivityIndicatorView hideActivityIndicatorForView:self.view animated:YES];
                 }

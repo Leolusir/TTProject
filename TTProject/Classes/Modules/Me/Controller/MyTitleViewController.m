@@ -46,15 +46,15 @@
     
 }
 
-- (void)addNavigationBar
-{
-    [super addNavigationBar];
-    
-    UIImage *addImage = [UIImage imageNamed:@"icon_nav_add"];
-    UIButton *addTopicButton = [UIButton rightBarButtonWithImage:addImage highlightedImage:addImage target:self action:@selector(handleAddTopicButton) forControlEvents:UIControlEventTouchUpInside];
-    [self.navigationBar setRightBarButton:addTopicButton];
-    
-}
+//- (void)addNavigationBar
+//{
+//    [super addNavigationBar];
+//    
+//    UIImage *addImage = [UIImage imageNamed:@"icon_nav_add"];
+//    UIButton *addTopicButton = [UIButton rightBarButtonWithImage:addImage highlightedImage:addImage target:self action:@selector(handleAddTopicButton) forControlEvents:UIControlEventTouchUpInside];
+//    [self.navigationBar setRightBarButton:addTopicButton];
+//    
+//}
 
 #pragma mark - Private Methods
 
