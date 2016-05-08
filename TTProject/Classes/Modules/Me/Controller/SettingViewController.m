@@ -62,7 +62,7 @@
     }
     
     self.menu = @[
-                  @{@"type":@"item", @"key":@"1", @"title":@"应用名称", @"link":@"", @"line":@YES, @"arrow":@NO, @"value":@"Seek"},
+                  @{@"type":@"item", @"key":@"1", @"title":@"应用名称", @"link":@"", @"line":@YES, @"arrow":@NO, @"value":@"seek"},
                   @{@"type":@"item", @"key":@"2", @"title":@"版本信息", @"link":@"", @"line":@NO, @"arrow":@NO, @"value":APP_VERSION_SHOW},
                   @{@"type":@"empty",},
                   @{@"type":@"item", @"key":@"3", @"title":@"推送开关", @"link":@"", @"line":@NO, @"arrow":@NO, @"value":pushStatus},
@@ -71,7 +71,7 @@
                   @{@"type":@"item", @"key":@"5", @"title":@"市场联系", @"link":@"", @"line":@YES, @"arrow":@NO, @"value":@"devils.team@outlook.com"},
                   @{@"type":@"item", @"key":@"6", @"title":@"意见交流", @"link":@"", @"line":@NO, @"arrow":@NO, @"value":@"QQ:3275149780"},
                   @{@"type":@"empty",},
-                  @{@"type":@"item", @"key":@"7", @"title":@"登出", @"link":@"", @"line":@NO, @"arrow":@NO},
+                  @{@"type":@"item", @"key":@"7", @"title":@"退出登录", @"link":@"", @"line":@NO, @"arrow":@NO},
                   ];
 }
 
@@ -143,10 +143,28 @@
     NSDictionary *itemData = [self.menu safeObjectAtIndex:indexPath.row];
     
     if ( [@"3" isEqualToString:[itemData objectForKey:@"key"]] ) {
-        [self showAlert:@"如果你要关闭或开启Seek的新消息推送，请在iPhone的 \"设置 - 通知\" 功能中，找到应用程序 \"Seek\" 进行更改。"];
+        [self showAlert:@"如果你要关闭或开启Seek的新消息推送，请在iPhone的 \"设置 - 通知\" 功能中，找到应用程序 \"seek\" 进行更改。"];
     } else if ( [@"7" isEqualToString:[itemData objectForKey:@"key"]] ) {
-        [[TTUserService sharedService] logout];
+        
+        TTAlertView *alertView = [[TTAlertView alloc] initWithTitle:nil message:@"确定退出当前账户吗？" containerView:nil delegate:self confirmButtonTitle:@"确定" otherButtonTitles:@[@"取消"]];
+        [alertView show];
     }
+}
+
+#pragma mark - TTAlertViewDelegate
+
+- (void)alertView:(TTAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    DBG(@"%ld", (long)buttonIndex);
+    
+    if ( 0 == buttonIndex ) {
+        
+        DBG(@"退出");
+        
+        [[TTUserService sharedService] logout];
+        
+    }
+    
 }
 
 @end

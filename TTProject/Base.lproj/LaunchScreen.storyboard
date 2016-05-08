@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Seek" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTz-Gt-YIJ">
-                                <rect key="frame" x="0.0" y="353" width="600" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="seek" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VTz-Gt-YIJ">
+                                <rect key="frame" x="0.0" y="353" width="600" height="24"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -49,7 +49,7 @@
                             <constraint firstItem="VTz-Gt-YIJ" firstAttribute="centerX" secondItem="OJl-ch-0M2" secondAttribute="centerX" id="lrV-px-ao6"/>
                             <constraint firstItem="jpk-Bu-OPB" firstAttribute="top" secondItem="OJl-ch-0M2" secondAttribute="topMargin" constant="60" id="oTA-Of-z1z"/>
                             <constraint firstItem="MmS-Rb-yHr" firstAttribute="centerX" secondItem="OJl-ch-0M2" secondAttribute="centerX" id="qSh-F0-kTy"/>
-                            <constraint firstItem="MmS-Rb-yHr" firstAttribute="top" secondItem="VTz-Gt-YIJ" secondAttribute="bottom" constant="25" id="rIJ-Gz-KMR"/>
+                            <constraint firstItem="MmS-Rb-yHr" firstAttribute="top" secondItem="VTz-Gt-YIJ" secondAttribute="bottom" constant="20" id="rIJ-Gz-KMR"/>
                         </constraints>
                     </view>
                 </viewController>
