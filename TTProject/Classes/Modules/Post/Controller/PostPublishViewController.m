@@ -103,7 +103,7 @@
     self.postTextView.placeholderTextColor = Color_Gray1;
     
     if (self.postTitle) {
-        self.postTextView.text = [NSString stringWithFormat:@"#%@#", self.postTitle];
+        self.postTextView.text = [NSString stringWithFormat:@"#%@# ", self.postTitle];
     }
     [self.containerView addSubview:self.postTextView];
     

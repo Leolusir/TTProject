@@ -12,6 +12,7 @@
 #import "MessageModel.h"
 #import "PostTextCell.h"
 #import "PostImageCell.h"
+#import "PostInfoCell.h"
 #import "MessageCell.h"
 #import "MessageRequest.h"
 
@@ -213,7 +214,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ( 0 == section ) {
-        return 2;
+        return 3;
     }
     
     return self.messages.count + 1;
@@ -225,20 +226,26 @@
     if ( 0 == indexPath.section ) {
         
         if ( self.post ) {
-            if ( 0 == indexPath.row ) {
+            
+            if ( 1 == indexPath.row && self.post.imageUrl ) {
                 
                 PostImageCell *cell = [PostImageCell dequeueReusableCellForTableView:tableView];
-                cell.cellData = self.post.imageUrl;
+                cell.cellData = @{@"imageSrc":self.post.imageUrl, @"w":@(self.post.w), @"h":@(self.post.h)};
                 [cell reloadData];
                 return cell;
                 
-            } else if ( 1 == indexPath.row) {
+            } else if ( 0 == indexPath.row) {
                 
                 PostTextCell *cell = [PostTextCell dequeueReusableCellForTableView:tableView];
                 cell.cellData = @{@"post":self.post, @"rowLimit":@NO};
                 [cell reloadData];
                 return cell;
                 
+            } else if ( 2 == indexPath.row ) {
+                PostInfoCell *cell = [PostInfoCell dequeueReusableCellForTableView:tableView];
+                cell.cellData = self.post;
+                [cell reloadData];
+                return cell;
             }
             
         }
@@ -275,13 +282,17 @@
         
         if ( self.post ) {
             
-            if ( 0 == indexPath.row ) {
+            if ( 1 == indexPath.row && self.post.imageUrl ) {
                 
-                height = [PostImageCell heightForCell:self.post.imageUrl];
+                height = [PostImageCell heightForCell:@{@"imageSrc":self.post.imageUrl, @"w":@(self.post.w), @"h":@(self.post.h)}];
                 
-            } else if ( 1 == indexPath.row) {
+            } else if ( 0 == indexPath.row) {
                 
                 height = [PostTextCell heightForCell:@{@"post":self.post, @"rowLimit":@NO}];
+                
+            } else if ( 2 == indexPath.row ) {
+                
+                height = [PostInfoCell heightForCell:self.post];
                 
             }
             
@@ -308,7 +319,7 @@
     
     if ( 0 == indexPath.section ) {
         
-        if ( 0 == indexPath.row ) {
+        if ( 1 == indexPath.row ) {
             
             TTGalleryViewController *galleryViewController = [[TTGalleryViewController alloc] init];
             galleryViewController.imageSrcs = @[[NSString stringWithFormat:@"%@-l",self.post.imageUrl]];

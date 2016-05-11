@@ -51,9 +51,13 @@
     
     [self.sliderView jumpToItemAtIndex:self.index];
     
-    self.backButton = [UIButton backButtonWithTarget:self action:@selector(clickback) forControlEvents:UIControlEventTouchUpInside];
-    self.backButton.top = 20;
-    [self.view addSubview:self.backButton];
+    
+    [self.sliderView bk_whenTapped:^{
+        [self clickback];
+    }];
+//    self.backButton = [UIButton backButtonWithTarget:self action:@selector(clickback) forControlEvents:UIControlEventTouchUpInside];
+//    self.backButton.top = 20;
+//    [self.view addSubview:self.backButton];
     
 }
 
