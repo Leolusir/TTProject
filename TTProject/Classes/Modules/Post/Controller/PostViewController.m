@@ -171,6 +171,10 @@
 
 - (void)addReplyView
 {
+    if ( IsEmptyString(self.userIdOne) || IsEmptyString(self.userIdTwo) || [self.userIdOne isEqualToString:self.userIdTwo]) {
+        return;
+    }
+    
     self.replyBgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 60)];
     self.replyBgView.backgroundColor = Color_White;
     self.replyBgView.bottom = self.view.height;
