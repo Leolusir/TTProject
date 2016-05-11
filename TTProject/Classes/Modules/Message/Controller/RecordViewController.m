@@ -102,9 +102,11 @@
     }
     
     if ( LoadingTypeInit == self.loadingType ) {
-        self.tableView.showsPullToRefresh = YES;
+//        self.tableView.showsPullToRefresh = YES;
         [TTActivityIndicatorView showInView:self.view animated:YES];
     }
+    
+    [self hideEmptyTips];
     
     weakify(self);
     

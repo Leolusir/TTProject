@@ -149,6 +149,7 @@
     PostModel *post = [userInfo objectForKey:@"post"];
     
     if ( post ) {
+        [self hideEmptyTips];
         [self insertPost:post atIndex:0];
         [self reloadData];
     }

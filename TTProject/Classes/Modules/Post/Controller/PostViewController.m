@@ -35,8 +35,6 @@
 {
     [super viewDidLoad];
     
-    self.title = @"详情";
-    
     self.view.backgroundColor = Color_Gray5;
     
     [self addReplyView];

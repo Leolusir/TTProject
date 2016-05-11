@@ -115,6 +115,32 @@
     [self.formBgView removeAllSubviews];
     [self.formBgView addSubview:self.maleImageView];
     [self.formBgView addSubview:self.femaleImageView];
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 0, 0)];
+    titleLabel.text = @"选择性别";
+    titleLabel.textColor = Color_Green1;
+    titleLabel.font = FONT(14);
+    [titleLabel sizeToFit];
+    [self.formBgView addSubview:titleLabel];
+    
+    UILabel *boyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    boyLabel.text = @"男";
+    boyLabel.textColor = Color_Green1;
+    boyLabel.font = FONT(16);
+    [boyLabel sizeToFit];
+    boyLabel.top = self.maleImageView.bottom + 20;
+    boyLabel.centerX = self.maleImageView.centerX;
+    [self.formBgView addSubview:boyLabel];
+    
+    UILabel *girlLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    girlLabel.text = @"女";
+    girlLabel.textColor = Color_Red1;
+    girlLabel.font = FONT(16);
+    [girlLabel sizeToFit];
+    girlLabel.top = boyLabel.top;
+    girlLabel.centerX = self.femaleImageView.centerX;
+    [self.formBgView addSubview:girlLabel];
+    
 }
 
 - (void)addSignUpComponentToFormStep2
@@ -125,6 +151,13 @@
     
     ((UIView *)[self.datePickerView.subviews objectAtIndex:1]).hidden = YES;
     ((UIView *)[self.datePickerView.subviews objectAtIndex:2]).hidden = YES;
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 0, 0)];
+    titleLabel.text = @"你出生于";
+    titleLabel.textColor = Color_Green1;
+    titleLabel.font = FONT(14);
+    [titleLabel sizeToFit];
+    [self.formBgView addSubview:titleLabel];
 
 }
 

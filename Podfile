@@ -20,6 +20,7 @@ pod 'AMap3DMap'
 pod 'AMapSearch'
 pod 'UMengAnalytics'
 pod 'GTSDK'
+pod 'CWStatusBarNotification', '~> 2.3.4'
 
 end
 

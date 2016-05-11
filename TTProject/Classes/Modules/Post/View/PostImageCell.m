@@ -8,7 +8,7 @@
 
 #import "PostImageCell.h"
 
-#define IMAGE_HEIGHT SCREEN_WIDTH
+#define MAX_IMAGE_HEIGHT SCREEN_WIDTH
 
 @interface PostImageCell ()
 
@@ -20,7 +20,7 @@
 
 - (void)drawCell{
     
-    self.backgroundColor = Color_Gray4;
+    self.backgroundColor = Color_White;
     [self addSubview:self.postImageView];
     
 }
@@ -29,13 +29,15 @@
     
     if ( self.cellData ) {
 
-//        [self.postImageView setOnlineImage:[NSString stringWithFormat:@"%@-s",self.cellData]];
+        NSDictionary *data = (NSDictionary *)self.cellData;
         
+        self.postImageView.height = [PostImageCell heightForCell:self.cellData];
         weakify(self);
-        [self.postImageView setOnlineImage:(NSString *)self.cellData complete:^(UIImage *image) {
+        [self.postImageView setOnlineImage:[NSString stringWithFormat:@"%@-s",data[@"imageSrc"]] complete:^(UIImage *image) {
             strongify(self);
             self.postImageView.contentMode = UIViewContentModeScaleAspectFit;
         }];
+        
     }
     
 }
@@ -43,7 +45,14 @@
 + (CGFloat)heightForCell:(id)cellData {
     
     if (cellData) {
-        return IMAGE_HEIGHT;
+        
+        NSDictionary *data = (NSDictionary *)cellData;
+        CGFloat imageWidth = [data[@"w"] floatValue];
+        CGFloat imageHeight = [data[@"h"] floatValue];
+        
+        CGFloat cellHeight = imageHeight / imageWidth * SCREEN_WIDTH;
+        
+        return cellHeight > MAX_IMAGE_HEIGHT ? MAX_IMAGE_HEIGHT : cellHeight;
     }
     return 0;
 }
@@ -53,7 +62,7 @@
 - (UIImageView *)postImageView
 {
     if ( !_postImageView ) {
-        _postImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, IMAGE_HEIGHT)];
+        _postImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, MAX_IMAGE_HEIGHT)];
     }
     
     return _postImageView;

@@ -21,6 +21,7 @@
         self.interactivePopGestureRecognizer.delegate = self;
     }
     
+//    self.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -28,14 +29,23 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
-    // fix 'nested pop animation can result in corrupted navigation bar'
-    if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-        self.interactivePopGestureRecognizer.enabled = NO;
-    }
-    
-    [super pushViewController:viewController animated:animated];
-}
+//- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
+//{
+//    // fix 'nested pop animation can result in corrupted navigation bar'
+//    if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+//        self.interactivePopGestureRecognizer.enabled = NO;
+//    }
+//
+//    [super pushViewController:viewController animated:animated];
+//}
+//
+//- (void)navigationController:(UINavigationController *)navigationController
+//       didShowViewController:(UIViewController *)viewController
+//                    animated:(BOOL)animated
+//{
+//    if ([navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+//        navigationController.interactivePopGestureRecognizer.enabled = YES;
+//    }
+//}
 
 @end

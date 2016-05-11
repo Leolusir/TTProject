@@ -11,6 +11,7 @@
 #import "TTActivityIndicatorView.h"
 #import "TitleRequest.h"
 #import "TitleModel.h"
+#import "CWStatusBarNotification.h"
 
 #import "TitleCell.h"
 
@@ -27,6 +28,8 @@
 @property (nonatomic, assign) CLLocationDegrees latitude;
 @property (nonatomic, assign) CLLocationDegrees longitude;
 @property (nonatomic, strong) NSString *country;
+
+@property (nonatomic, strong) CWStatusBarNotification *notification;
 
 @end
 
@@ -105,6 +108,11 @@
     self.hotTitles = [NSMutableArray<TitleModel> array];
     self.titleIds = [NSMutableDictionary dictionary];
     
+    self.notification = [CWStatusBarNotification new];
+    self.notification.notificationLabelBackgroundColor = Color_Green1;
+    self.notification.notificationLabelTextColor = Color_White;
+    self.notification.notificationLabelFont = FONT(12);
+    
     [self loadData];
 }
 
@@ -115,16 +123,20 @@
     }
     
     if ( LoadingTypeInit == self.loadingType ) {
-        self.tableView.showsPullToRefresh = YES;
+//        self.tableView.showsPullToRefresh = YES;
         [TTActivityIndicatorView showInView:self.view animated:YES];
     }
     
     if ( LoadingTypeLoadMore != self.loadingType ) {
         
+        [self.notification displayNotificationWithMessage:@"定位中···" completion:nil];
+        
         weakify(self);
         [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
             
             strongify(self);
+            
+            [self.notification dismissNotification];
             
             if (error)
             {
@@ -136,6 +148,8 @@
                 [self finishRefresh];
                 
                 [self showEmptyTips:@"想和周围人一起聊点什么呢" ownerView:self.tableView];
+                
+                [TTActivityIndicatorView hideActivityIndicatorForView:self.view animated:YES];
                 
                 return;
                 
@@ -181,6 +195,8 @@
         [params setSafeObject:@"0" forKey:@"wp"];
     }
     
+    [self hideEmptyTips];
+    
     weakify(self);
     
     [TitleRequest getTopicsWithParams:params success:^(TitleListResultModel *resultModel) {
@@ -198,6 +214,7 @@
                 [self.titles removeAllObjects];
                 [self.hotTitles removeAllObjects];
                 [self.hotTitles addObjectsFromSafeArray:resultModel.hotTitles];
+                [self.titleIds removeAllObjects];
                 
                 if ( ( !resultModel.titles || resultModel.titles.count == 0 ) && (!resultModel.hotTitles || resultModel.hotTitles.count == 0) ) {
                     [self showEmptyTips:@"想和周围人一起聊点什么呢" ownerView:self.tableView];

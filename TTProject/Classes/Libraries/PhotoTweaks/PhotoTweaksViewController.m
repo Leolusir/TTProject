@@ -94,7 +94,7 @@
                                         sourceImage:self.image.CGImage
                                          sourceSize:self.image.size
                                   sourceOrientation:self.image.imageOrientation
-                                        outputWidth:self.image.size.width
+                                        outputWidth:self.image.size.width / xScale
                                            cropSize:self.photoView.cropView.frame.size
                                       imageViewSize:self.photoView.photoContentView.bounds.size];
 
@@ -176,7 +176,20 @@
                                  withQuality:kCGInterpolationNone];
 
     CGFloat aspect = cropSize.height/cropSize.width;
-    CGSize outputSize = CGSizeMake(outputWidth, outputWidth*aspect);
+    
+    CGFloat outputHeight = outputWidth * aspect;
+    
+    if ( outputWidth > 2000 ) {
+        outputWidth = 2000;
+        outputHeight = outputWidth * aspect;
+    }
+    
+    if ( outputHeight > 2000 ) {
+        outputHeight = 2000;
+        outputWidth = outputHeight / aspect;
+    }
+    
+    CGSize outputSize = CGSizeMake(outputWidth, outputHeight);
 
     CGContextRef context = CGBitmapContextCreate(NULL,
                                                  outputSize.width,

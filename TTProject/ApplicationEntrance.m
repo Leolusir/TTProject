@@ -14,15 +14,15 @@
 #import "TitleListViewController.h"
 #import "RecordViewController.h"
 #import "MeViewController.h"
+#import <StoreKit/StoreKit.h>
 
-#import "SignInUpViewController.h"
 #import "TTUserService.h"
 
 #import "GeTuiSdk.h"
 
 #import "UserRequest.h"
 
-@interface ApplicationEntrance () <GeTuiSdkDelegate>
+@interface ApplicationEntrance () <GeTuiSdkDelegate, TTAlertViewDelegate, SKStoreProductViewControllerDelegate>
 
 @property (nonatomic, strong) NSDictionary *remoteInfo;
 @property (nonatomic, strong) NSString *clientId;
@@ -254,6 +254,29 @@
 
 }
 
+#pragma mark - TTAlertViewDelegate
+
+- (void)alertView:(TTAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    DBG(@"%ld", (long)buttonIndex);
+    
+    if ( 0 == buttonIndex ) {
+        
+        SKStoreProductViewController *storeVC = [[SKStoreProductViewController alloc] init];
+        storeVC.delegate = self;
+        [storeVC loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier: APPLEID}
+                           completionBlock:^(BOOL result, NSError *error) {
+                               if (result && !error) {
+                                   [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:storeVC animated:YES completion:nil];
+                               } else {
+                                   [[UIApplication sharedApplication] openURL:[NSURL URLWithString:URL_UPDATE]];
+                               }
+                           }];
+        
+    }
+    
+}
+
 #pragma mark - GeTuiSdkDelegate
 
 //个推SDK已注册，返回clientId
@@ -273,7 +296,8 @@
             
             if ( resultModel ) {
                 if ( resultModel.version > APP_VERSION ) {
-                    // TODO 提示更新
+                    TTAlertView *alertView = [[TTAlertView alloc] initWithTitle:nil message:@"确定退出当前账户吗？" containerView:nil delegate:self confirmButtonTitle:@"确定" otherButtonTitles:@[@"取消"]];
+                    [alertView show];
                 }
                 
                 if ( resultModel.newMsg > 0 ) {

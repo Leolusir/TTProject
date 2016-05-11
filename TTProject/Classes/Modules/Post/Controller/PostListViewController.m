@@ -10,6 +10,9 @@
 #import "PostViewController.h"
 #import "PostTextCell.h"
 #import "PostImageCell.h"
+#import "PostInfoCell.h"
+#import "TTGalleryViewController.h"
+#import "CWStatusBarNotification.h"
 
 @interface PostListViewController ()
 
@@ -18,6 +21,8 @@
 @property (nonatomic, strong) NSMutableArray<PostModel> *posts;
 
 @property (nonatomic, strong) AMapLocationManager *locationManager;
+
+@property (nonatomic, strong) CWStatusBarNotification *notification;
 
 @end
 
@@ -36,6 +41,8 @@
     [self initData];
     
     self.emptyNotice = @"周围冷冷清清";
+    
+    // TODO: 图片文字换个位置
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postVoteSuccess:) name:kNOTIFY_APP_POST_VOTE_SUCCESS object:nil];
 }
@@ -59,16 +66,20 @@
     [self hideEmptyTips];
     
     if ( LoadingTypeInit == self.loadingType ) {
-        self.tableView.showsPullToRefresh = YES;
+//        self.tableView.showsPullToRefresh = YES;
         [TTActivityIndicatorView showInView:self.view animated:YES];
     }
     
     if ( LoadingTypeLoadMore != self.loadingType && self.needLocation) {
         
+        [self.notification displayNotificationWithMessage:@"定位中···" completion:nil];
+        
         weakify(self);
         [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
             
             strongify(self);
+            
+            [self.notification dismissNotification];
             
             if (error)
             {
@@ -138,6 +149,10 @@
     self.textCellHeightCache = [NSMutableDictionary dictionary];
     self.postIds = [NSMutableDictionary dictionary];
     self.wp = @"0";
+    self.notification = [CWStatusBarNotification new];
+    self.notification.notificationLabelBackgroundColor = Color_Green1;
+    self.notification.notificationLabelTextColor = Color_White;
+    self.notification.notificationLabelFont = FONT(12);
     
     [self loadData];
 }
@@ -180,7 +195,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ( 0 == section % 2 ) {
-        return 2;
+        return 3;
     }
     return 1;
 }
@@ -193,20 +208,25 @@
         
         if (post) {
             
-            if ( 0 == indexPath.row ) {
+            if ( 1 == indexPath.row && post.imageUrl ) {
                 
                 PostImageCell *cell = [PostImageCell dequeueReusableCellForTableView:tableView];
-                cell.cellData = post.imageUrl;
+                cell.cellData = @{@"imageSrc":post.imageUrl, @"w":@(post.w), @"h":@(post.h)};
                 [cell reloadData];
                 return cell;
                 
-            } else if ( 1 == indexPath.row) {
+            } else if ( 0 == indexPath.row) {
                 
                 PostTextCell *cell = [PostTextCell dequeueReusableCellForTableView:tableView];
                 cell.cellData = @{@"post":post, @"rowLimit":@YES};
                 [cell reloadData];
                 return cell;
                 
+            } else if ( 2 == indexPath.row ) {
+                PostInfoCell *cell = [PostInfoCell dequeueReusableCellForTableView:tableView];
+                cell.cellData = post;
+                [cell reloadData];
+                return cell;
             }
             
         }
@@ -230,13 +250,17 @@
         
         if ( post ) {
             
-            if ( 0 == indexPath.row ) {
+            if ( 1 == indexPath.row && post.imageUrl ) {
                 
-                height = [PostImageCell heightForCell:post.imageUrl];
+                height = [PostImageCell heightForCell:@{@"imageSrc":post.imageUrl, @"w":@(post.w), @"h":@(post.h)}];
                 
-            } else if ( 1 == indexPath.row) {
+            } else if ( 0 == indexPath.row) {
                 
                 height = [self getTextCellHeight:post];
+                
+            } else if ( 2 == indexPath.row ) {
+                
+                height = [PostInfoCell heightForCell:post];
                 
             }
             
@@ -258,14 +282,21 @@
             
             DBG(@"Post:%@ Click", post.id);
             
-            PostViewController *vc = [[PostViewController alloc] init];
-            vc.post = post;
-            vc.postId = post.id;
-            vc.userIdOne = post.userId;
-            vc.userIdTwo = [TTUserService sharedService].id;
-            
-            TTNavigationController *navigationController = [[ApplicationEntrance shareEntrance] currentNavigationController];
-            [navigationController pushViewController:vc animated:YES];
+            if ( 1 == indexPath.row ) {
+                
+                TTGalleryViewController *galleryViewController = [[TTGalleryViewController alloc] init];
+                galleryViewController.imageSrcs = @[[NSString stringWithFormat:@"%@-l",post.imageUrl]];
+                [[[ApplicationEntrance shareEntrance] currentNavigationController] pushViewController:galleryViewController animated:YES];
+            } else {
+                PostViewController *vc = [[PostViewController alloc] init];
+                vc.post = post;
+                vc.postId = post.id;
+                vc.userIdOne = post.userId;
+                vc.userIdTwo = [TTUserService sharedService].id;
+                
+                TTNavigationController *navigationController = [[ApplicationEntrance shareEntrance] currentNavigationController];
+                [navigationController pushViewController:vc animated:YES];
+            }
         }
     }
     

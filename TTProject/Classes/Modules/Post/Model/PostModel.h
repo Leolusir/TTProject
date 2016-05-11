@@ -26,5 +26,7 @@
 @property (nonatomic, assign) NSInteger member;
 @property (nonatomic, strong) NSString<Optional> *imageUrl;
 @property (nonatomic ,strong) NSString *userId;
+@property (nonatomic, assign) CGFloat w;
+@property (nonatomic, assign) CGFloat h;
 
 @end

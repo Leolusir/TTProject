@@ -21,7 +21,7 @@
 
 #define APP_SCHEME @"jump"
 
-//#define BASE_URL @"http://114.55.25.110:8080/" // 开发
-#define BASE_URL @"http://139.196.193.216:8080/" // 生产
+#define BASE_URL @"http://114.55.25.110:8080/" // 开发
+//#define BASE_URL @"http://139.196.193.216:8080/" // 生产
 
 #endif /* SystemMacro_h */

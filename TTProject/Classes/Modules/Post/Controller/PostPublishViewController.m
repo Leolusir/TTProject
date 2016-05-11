@@ -16,6 +16,7 @@
 
 #import "TTActivityIndicatorView.h"
 #import "PhotoTweaksViewController.h"
+#import "CWStatusBarNotification.h"
 
 @interface PostPublishViewController () <UIScrollViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, YYTextViewDelegate, PhotoTweaksViewControllerDelegate>
 
@@ -33,6 +34,8 @@
 @property (nonatomic, strong) UIButton *publishPostButton;
 
 @property (nonatomic, strong) AMapLocationManager *locationManager;
+
+@property (nonatomic, strong) CWStatusBarNotification *notification;
 
 @end
 
@@ -95,7 +98,7 @@
     self.postTextView.font = FONT(14);
     self.postTextView.delegate = self;
     self.postTextView.tintColor = Color_Green1;
-    self.postTextView.placeholderText = @"想说点什么呢，反正也没人知道你是谁";
+    self.postTextView.placeholderText = @"想说点什么呢";
     self.postTextView.placeholderFont = FONT(14);
     self.postTextView.placeholderTextColor = Color_Gray1;
     
@@ -212,10 +215,14 @@
 
 - (void)publishPost
 {
+    [self.notification displayNotificationWithMessage:@"定位中···" completion:nil];
+    
     weakify(self);
     [self.locationManager requestLocationWithReGeocode:YES completionBlock:^(CLLocation *location, AMapLocationReGeocode *regeocode, NSError *error) {
         
         strongify(self);
+        
+        [self.notification dismissNotification];
         
         if (error)
         {
@@ -246,6 +253,10 @@
         [params setSafeObject:[TTUserService sharedService].id forKey:@"userId"];
         [params setSafeObject:self.postTextView.text forKey:@"content"];
         [params setSafeObject:self.postImageKey forKey:@"imageUrl"];
+        if ( self.postImage ) {
+            [params setSafeObject:@(self.postImage.size.width) forKey:@"w"];
+            [params setSafeObject:@(self.postImage.size.height) forKey:@"h"];
+        }
         
         [PostRequest publishPostWithParams:params success:^(PostPublishResultModel *resultModel) {
             

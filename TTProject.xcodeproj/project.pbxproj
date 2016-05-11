@@ -125,6 +125,7 @@
 		2CE575081CBD4DDF00F2AC04 /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE575071CBD4DDF00F2AC04 /* MeViewController.m */; };
 		2CE94CBE1CDD9FDC00E8519B /* PostManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE94CBD1CDD9FDC00E8519B /* PostManager.m */; };
 		2CE94CC11CDDBD4800E8519B /* AppInitResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CE94CC01CDDBD4800E8519B /* AppInitResultModel.m */; };
+		2CF621C11CE24E1800CB0FA9 /* PostInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF621C01CE24E1800CB0FA9 /* PostInfoCell.m */; };
 		2CFD2D161CCB511500229DC3 /* PostPublishResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CFD2D151CCB511500229DC3 /* PostPublishResultModel.m */; };
 		B48F94164A872B6052C97989 /* libPods-TTProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA48561C30BAE97F6A4871E1 /* libPods-TTProject.a */; };
 /* End PBXBuildFile section */
@@ -379,6 +380,8 @@
 		2CE94CBD1CDD9FDC00E8519B /* PostManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostManager.m; sourceTree = "<group>"; };
 		2CE94CBF1CDDBD4800E8519B /* AppInitResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppInitResultModel.h; sourceTree = "<group>"; };
 		2CE94CC01CDDBD4800E8519B /* AppInitResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppInitResultModel.m; sourceTree = "<group>"; };
+		2CF621BF1CE24E1800CB0FA9 /* PostInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostInfoCell.h; sourceTree = "<group>"; };
+		2CF621C01CE24E1800CB0FA9 /* PostInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostInfoCell.m; sourceTree = "<group>"; };
 		2CFD2D141CCB511500229DC3 /* PostPublishResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostPublishResultModel.h; sourceTree = "<group>"; };
 		2CFD2D151CCB511500229DC3 /* PostPublishResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostPublishResultModel.m; sourceTree = "<group>"; };
 		87CA5552EA17FCCAD0A11845 /* Pods-TTProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TTProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-TTProject/Pods-TTProject.release.xcconfig"; sourceTree = "<group>"; };
@@ -480,6 +483,8 @@
 				2C8312D51CC24EE9005E11AB /* PostTextCell.m */,
 				2C5008671CC366A800D0101B /* PostVoteView.h */,
 				2C5008681CC366A800D0101B /* PostVoteView.m */,
+				2CF621BF1CE24E1800CB0FA9 /* PostInfoCell.h */,
+				2CF621C01CE24E1800CB0FA9 /* PostInfoCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1392,6 +1397,7 @@
 				2C88E2DE1CCDE09900646D9A /* TitleListResultModel.m in Sources */,
 				2C8ECF6F1CB8CCBA00A294AB /* BaseRequest.m in Sources */,
 				2C8ECF861CB8CCBA00A294AB /* TTEmptyTipsView.m in Sources */,
+				2CF621C11CE24E1800CB0FA9 /* PostInfoCell.m in Sources */,
 				2CB04A841CD0A3550029B9C2 /* MessageModel.m in Sources */,
 				2C8ECF701CB8CCBA00A294AB /* BaseCollectionSectionHeaderView.m in Sources */,
 				2C8312A21CC2059F005E11AB /* SignInUpResultModel.m in Sources */,
@@ -1553,8 +1559,8 @@
 			baseConfigurationReference = D3A98496E4A70382C7CD097D /* Pods-TTProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: MING LU (X3V47L4HFS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: MING LU (X3V47L4HFS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = TTProject/PrefixHeader.pch;
 				INFOPLIST_FILE = TTProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1570,8 +1576,8 @@
 			baseConfigurationReference = 87CA5552EA17FCCAD0A11845 /* Pods-TTProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: MING LU (X3V47L4HFS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: MING LU (X3V47L4HFS)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = TTProject/PrefixHeader.pch;
 				INFOPLIST_FILE = TTProject/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

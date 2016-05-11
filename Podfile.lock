@@ -32,6 +32,7 @@ PODS:
   - BlocksKit/UIKit (2.2.5):
     - BlocksKit/Core
     - BlocksKit/DynamicDelegate
+  - CWStatusBarNotification (2.3.4)
   - GTSDK (1.4.2)
   - HappyDNS (0.2.3)
   - JSONModel (1.0.2)
@@ -57,6 +58,7 @@ DEPENDENCIES:
   - AMapLocation
   - AMapSearch
   - BlocksKit (~> 2.2.5)
+  - CWStatusBarNotification (~> 2.3.4)
   - GTSDK
   - JSONModel (~> 1.0.2)
   - MBProgressHUD (~> 0.9)
@@ -85,6 +87,7 @@ SPEC CHECKSUMS:
   AMapLocation: 5412fbf0385716d4d481e39a95929057cddc093f
   AMapSearch: cff4faf59c007f7d1f2bae2d7170c3912783981a
   BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
+  CWStatusBarNotification: 3fec41edcb0ae3677d9febfcb9632d8bdf52294c
   GTSDK: 51a12836895312a872f75a2fe0f2e788dee75b19
   HappyDNS: 6d85942e64c28b4fa61f8c76580398f52d6d1d11
   JSONModel: 6ffcb4ffa3659c9e9a2e5d45d6c7705bab187c03
@@ -99,6 +102,6 @@ SPEC CHECKSUMS:
   UMengAnalytics: 4bf831415146b9c57cb10be65fbd43462ef8cf65
   YYText: ac09660c9ccd9b817f409a20caa6f5587444d2ae
 
-PODFILE CHECKSUM: 787b43c9240aec5dec17c83ac8b1de9df219b4f1
+PODFILE CHECKSUM: bcc49dc7d84640f2431228c885fec028c23e8d07
 
 COCOAPODS: 1.0.0.rc.1
