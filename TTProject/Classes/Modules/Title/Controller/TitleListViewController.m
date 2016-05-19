@@ -343,9 +343,9 @@
     
     NSString *title = @"";
     if ( 0 == section ) {
-        title = @"最热话题";
+        title = @"正在热议的话题";
     } else {
-        title = @"最新话题";
+        title = @"最新更新的话题";
     }
     
     NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:title];

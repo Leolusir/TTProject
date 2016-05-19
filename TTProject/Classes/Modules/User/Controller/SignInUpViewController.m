@@ -257,7 +257,7 @@
 {
     if ( !_phoneTextField ) {
         _phoneTextField = [[TTMDTextField alloc] initWithFrame:CGRectMake(30, 30, SCREEN_WIDTH - 100, 40) normalColor:Color_Green1 errorColor:Color_Red1 disabledColor:Color_Gray1 textColor:Color_Gray2 placeholderTextColor:Color_Gray3 titleFontSize:10 textFontSize:14];
-        _phoneTextField.placeholder = @"手机号";
+        _phoneTextField.placeholder = @"手机号(+86)";
         _phoneTextField.delegate = self;
         _phoneTextField.keyboardType = UIKeyboardTypePhonePad;
     }

@@ -18,9 +18,9 @@
 #define GETUI_APP_SECRET                         @"QVuG1coxPl7Imw0gSddxx9"
 
 // 高德
-#define AMAP_LOCATION_KEY                             @"b53d77dabc08fbee9b3741bbddf88a53"
-#define AMAP_MAP_KEY                               @"b53d77dabc08fbee9b3741bbddf88a53"
-#define AMAP_SEARCH_KEY                               @"b53d77dabc08fbee9b3741bbddf88a53"
+#define AMAP_LOCATION_KEY                        @"b53d77dabc08fbee9b3741bbddf88a53"
+#define AMAP_MAP_KEY                             @"b53d77dabc08fbee9b3741bbddf88a53"
+#define AMAP_SEARCH_KEY                          @"b53d77dabc08fbee9b3741bbddf88a53"
 
 #endif /* VendorMacro_h */
 
